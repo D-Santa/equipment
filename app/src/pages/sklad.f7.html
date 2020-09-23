@@ -1,0 +1,162 @@
+<style>
+  
+  .areas{
+  height:100%;
+  width:100%;
+  border:solid 1px orange;
+  }
+  .demo-swiper {
+  margin: 0px 0 35px;
+  min-height: 50px;
+  height: 91%;
+}
+  </style>
+  <template>
+    <div class="page" data-name="home">
+      <!-- Top Navbar -->
+      <div class="navbar">
+        <div class="navbar-inner sliding">
+       <div class="left"  @Click="backs">
+            <a href="#" class="link text-color-white">
+              <i class="icon icon-back"></i><span class="ios-only">Назад</span>
+            </a>
+        </div>
+       <div class="title"><font color="white">Склад</font></div>
+        </div>
+      </div>
+
+      <div class="toolbar tabbar tabbar-labels toolbar-bottom" id="toolbatzaya">
+          <div class="toolbar-inner">
+            <a href="#tab-1" class="tab-link tab-link-active"> 
+              <i class="icon material-icons">today</i>
+              <span class="tabbar-label">Заявки</span>
+            </a>
+            <a href="#tab-2" class="tab-link">
+              <!-- Different icons for iOS and MD themes -->
+              <i class="icon material-icons">email</i>
+              <!-- Label text -->
+              <span class="tabbar-label">Мой склад</span>
+            </a>
+          </div>
+        </div>
+        <div class="tabs">
+          <div class="page-content tab tab-active" id="tab-1">
+            <div class="swiper-container swiper-init demo-swiper demo-swiper-auto roles3" data-speed="200" data-space-between="15" data-centered-Slides-Bounds="true"  data-slides-per-view="auto"  data-loop="false" data-centered-slides="true" style="margin-top:10px;">
+              <div class="swiper-wrapper" style="--f7-navbar-height: 40px;">
+                <div class="swiper-slide">
+                  <div class="navbar" style="--f7-bars-bg-color:#ebecf0; --f7-navbar-font-size: 15px;">
+                    <div class="navbar-inner">
+                      <div class="title sliding text-color-black">Новые<span class="badge color-red" id="bad_sklad_new" style="display: none;">0</span></div>
+                    </div>
+                    </div>
+                    <div style="position: absolute; width: 100%; max-height: 90%; overflow:auto; background-color: #c6c8d1;">
+                  <div id="sklad_new" class="sklad_virt">
+                  </div>
+                    </div>
+              </div>
+                <div class="swiper-slide">
+                <div class="navbar" style="--f7-bars-bg-color:#ebecf0; --f7-navbar-font-size: 15px;">
+                  <div class="navbar-inner">
+                    <div class="title sliding text-color-black">Активные<span class="badge color-red" id="bad_sklad_active" style="display: none;">0</span></div>
+                  </div>
+                  </div>
+                  <div style="position: absolute; width: 100%; max-height: 90%; overflow:auto; background-color: #c6c8d1;">
+              <div id="sklad_active" class="sklad_virt">
+              </div>
+              </div>
+            </div>
+                <div class="swiper-slide">
+                <div class="navbar" style="--f7-bars-bg-color:#ebecf0; --f7-navbar-font-size: 15px;">
+                  <div class="navbar-inner">
+                    <div class="title sliding text-color-black">Отправлено<span class="badge color-red" id="bad_sklad_ot" style="display: none;">0</span></div>
+                  </div>
+                  </div>
+                  <div style="position: absolute; width: 100%; max-height: 90%; overflow:auto; background-color: #c6c8d1;">
+                <div id="sklad_otp" class="sklad_virt2">
+                </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                <div class="navbar" style="--f7-bars-bg-color:#ebecf0; --f7-navbar-font-size: 15px;">
+                  <div class="navbar-inner">
+                    <div class="title sliding text-color-black">Доставлено<span class="badge color-red" id="bad_sklad_dos" style="display: none;">0</span></div>
+                  </div>
+                  </div>
+                  <div style="position: absolute; width: 100%; max-height: 90%; overflow:auto; background-color: #c6c8d1;">
+                <div id="sklad_dos" class="sklad_virt1">
+                </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="page-content tab" id="tab-2">
+                    <div class="list accordion-list">
+                        <ul id="moi_sklad">
+                              </ul>
+                </div>
+              </div>
+
+        </div>
+
+    </div>
+  </template>
+  <script>
+  export default {
+   methods: {
+    backs: function () {
+      var app = this.$app;
+      var $$ = this.$$;
+      var router = this.$router;
+      app.panel.enableSwipe('left');
+      router.back();
+      if (app.data.url=="/"){
+      app.methods.home.users();
+      app.methods.home.timers();
+      }
+    },
+      },
+  on: {
+        pageInit: function () {
+      var app = this.$app;
+      var $$ = this.$$;
+      var router = this.$router;
+      app.preloader.show('blue');
+      app.methods.sklad.zayavki();
+      app.methods.sklad.sklad();
+      $$('.sklad_virt').on('click','div,a',function(){
+  var id = $$(this).attr('data-id');
+  var id_db = $$(this).attr('name');
+  var z_id = $$(this).attr('z-id');
+  var type = $$(this).attr('type');
+  if (id!=null){
+    app.data.url="sklad";
+  router.navigate('/history/?id='+id+"&state=sklad&id_db="+id_db+"&z_id="+z_id+"&type="+type+"&d=0");
+  }
+  });
+
+  $$('.sklad_virt1').on('click','div,a',function(){
+  var id = $$(this).attr('data-id');
+  var id_db = $$(this).attr('name');
+  var z_id = $$(this).attr('z-id');
+  var type = $$(this).attr('type');
+  if (id!=null){
+    app.data.url="sklad";
+  router.navigate('/history/?id='+id+"&state=sklad&id_db="+id_db+"&z_id="+z_id+"&type="+type+"&d=1");
+  }
+  });
+
+  $$('.sklad_virt2').on('click','div,a',function(){
+  var id = $$(this).attr('data-id');
+  var id_db = $$(this).attr('name');
+  var z_id = $$(this).attr('z-id');
+  var type = $$(this).attr('type');
+  if (id!=null){
+    app.data.url="sklad";
+  router.navigate('/history/?id='+id+"&state=sklad&id_db="+id_db+"&z_id="+z_id+"&type="+type+"&d=2");
+  }
+  });
+          },
+      },
+  };
+  </script>

@@ -1,0 +1,70 @@
+<template>
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a class="link nazad" @Click="backs">
+          <i  style="color:#073974;" class="icon icon-back"></i>
+        </a>
+      </div>
+      <div class="title"><font size="3%">Форум</font></div>
+    </div>
+  </div>
+  <div class="page-content">
+
+<div id="virtual-list">
+
+	</div>
+		  
+    </div>
+
+</div>
+</template>
+<script>
+export default {
+ methods: {
+    backs: function () {
+		var app = this.$f7;
+		var $$ = this.$$; 
+		var router = this.$router;
+		router.navigate('/',{reloadAll:true});
+	//	app.data.routs.rout="home";
+		},
+		 
+		},
+on: {
+    pageInit: function () {
+	var app = this.$f7;
+		var $$ = this.$$;
+	var router = this.$router;
+//	app.data.routs.rout ="moi";
+app.preloader.show('blue');
+		app.request.get('https://tedeco.kz/equipment/api/obr.php',{id:app.data.user.id,roles:app.data.user.roles,zapros:'spisok'},function(notifi){
+app.preloader.hide();
+var ht="";
+if (notifi[0].message=="ok"){
+	for (var s = 0; s<notifi.length; s++)
+	ht+='<div data-id ="'+notifi[s].id+'" name="'+notifi[s].id_db+'" value="'+notifi[s].company+', '+notifi[s].place+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="'+notifi[s].company+', '+notifi[s].place+'" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'</div>'+
+  '<div data-id ="'+notifi[s].id+'" value="'+notifi[s].company+', '+notifi[s].place+'"name="'+notifi[s].id_db+'"  class="card-content card-content-padding">'+notifi[s].name+'<br>id:'+notifi[s].id_db+'<br>Статус:'+notifi[s].status+'<br>'+notifi[s].company+', '+notifi[s].place+'</div>'+
+'<div data-id ="'+notifi[s].id+'" value="'+notifi[s].company+', '+notifi[s].place+'" name="'+notifi[s].id_db+'"  class="card-footer">'+notifi[s].data+'</div></div>';
+}
+if (ht=="")$$('#virtual-list').html('Ничего нет')
+else
+$$('#virtual-list').html(ht);
+
+
+},function(){
+app.preloader.hide();
+},'json');
+
+$$('#virtual-list').on('click','div',function(){
+  var id = $$(this).attr('data-id');
+  var id_db = $$(this).attr('name');
+var place = $$(this).attr('value');
+router.navigate("/history/?id="+id+"&stat=forum&id_db="+id_db+"&place="+place);
+//router.navigate('/otvet/?title=Ответ&id='+id);
+});
+	},
+	},
+};
+</script>

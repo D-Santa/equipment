@@ -1,0 +1,429 @@
+<template>
+<div class="page">
+  <div class="navbar bg-color-blue">
+    <div class="navbar-inner sliding">
+      <div class="left"  @Click="back">
+        <a href="#" class="link text-color-white">
+          <i class="icon icon-back"></i><span class="ios-only">Назад</span>
+        </a>
+    </div>
+      <div class="title">Подача данных</div>
+    </div>
+  </div>
+  
+	<div class="toolbar tabbar toolbar-bottom">
+    <div style="width:100%;height:100%;display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;" class="button" id="proverka"><font size="3%" color="white">Отправить</font></div>
+    </div>
+
+  <div class="page-content">
+    <div class="block">
+      <p><b>Поток концентрата (FL01), л/час</b>
+      </p>
+      <div class="list no-hairlines-md" style="margin-top:-5px;">
+        <ul>
+          <li class="item-content item-input item-input-outline">
+            <div class="item-inner">
+              <div class="item-title"></div>
+              <div class="item-input-wrap">
+              <input type="number" id="n1">
+              </div>
+            </div>
+            </li>
+          </ul>
+          </div>
+
+          <p><b>Поток пермеата (FL02), л/час</b>
+          </p>
+          <div class="list no-hairlines-md" style="margin-top:-5px;">
+            <ul>
+              <li class="item-content item-input item-input-outline">
+                <div class="item-inner">
+                  <div class="item-title"></div>
+                  <div class="item-input-wrap">
+                  <input type="number" id="n2">
+                  </div>
+                </div>
+                </li>
+              </ul>
+              </div>
+
+              <p><b>Проводимость, мкСм/см</b>
+              </p>
+              <div class="list no-hairlines-md" style="margin-top:-5px;">
+                <ul>
+                  <li class="item-content item-input item-input-outline">
+                    <div class="item-inner">
+                      <div class="item-title"></div>
+                      <div class="item-input-wrap">
+                      <input type="number" id="n3">
+                      </div>
+                    </div>
+                    </li>
+                  </ul>
+                  </div>
+
+                  <p><b>Температура</b>
+                  </p>
+                  <div class="list no-hairlines-md" style="margin-top:-5px;">
+                    <ul>
+                      <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                          <div class="item-title"></div>
+                          <div class="item-input-wrap">
+                          <input type="number" id="n4">
+                          </div>
+                        </div>
+                        </li>
+                        <li><div class="block"><a class="button button-fill color-red" id="add_photo">добавить фото/видео</a></div></li>
+                      </ul>
+                      </div>
+
+                      <div class="list no-hairlines-md" style="margin-top:-5px;">
+                        <ul>
+                            
+                          </ul>
+                          </div>
+
+    </div>
+    <div id="images" class="block"></div>
+  </div>
+</div>
+</template>
+<script>
+export default {
+  methods: {
+    back: function () {
+      var app = this.$app;
+      var $$ = this.$$;
+      var router = this.$router;
+	  router.back();
+    },
+      },
+  on: {
+		pageInit: function () {
+		var app = this.$app;
+		var $$ = this.$$;
+    var router = this.$router;
+    var bd = this.$route.query.id;
+    var image=[];
+    $$('#proverka').on('click',function(){
+      if ($$('#n1').val()=="" || $$('#n2').val()=="" || $$('#n3').val()=="" || $$('#n4').val()=="")
+      app.dialog.alert('Заполните все поля');
+      else{
+        var uploads = "";
+    if (image.length>=1)uploads="1";
+    if (uploads=="")app.dialog.alert('Нужно отправить как минимум 1 фоту');
+    else
+    {
+app.preloader.show('blue');
+app.request.post('https://tedeco.kz/equipment/api/monitoring.php',{user:app.data.user.id,bd:bd,n1:$$('#n1').val(),n2:$$('#n2').val(),n3:$$('#n3').val(),n4:$$('#n4').val(),upload:uploads},function(otvet){
+  app.preloader.hide();
+if (otvet[0].message=="ok"){
+  if (uploads=="1"){
+			  var image2=[];
+			  for (var t=0; t<image.length;t++)
+			  if (image[t].name!="dell")
+			image2.push({
+				put:''+image[t].put,
+			name:''+image[t].name,
+			style:""+image[t].style
+			});
+			var progress = (1*100)/image2.length;
+			var t = 0;
+			var s=-1;
+			var dialog = app.dialog.progress('Загрузка', t);
+		if (image2.length>=1)
+			var interval = setInterval(function() {
+			dialog.setProgress(progress);
+			var tes = t+1,tes2 = image2.length;
+			dialog.setText('Вложение '+tes.toString()+' of '+tes2.toString());
+			if (s!=t){
+			s=t;
+		if (image2[t].name=="image"){
+		var imageURI = image2[t].put;
+		var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpeg";
+        var params = new Object();
+        params.value1 = "m";
+        params.value2 = "param";
+
+        options.params = params;
+        options.chunkedMode = false;
+var ft = new FileTransfer();
+ft.upload(imageURI,encodeURI("https://tedeco.kz/equipment/api/upload.php?zapros=1&id="+otvet[0].zaya_id+"&type=image"),function(result) {
+	t++;
+	progress = ((t+1)*100)/image2.length;
+	},
+	function(error) {
+	},
+	options);
+			}
+			else
+			if (image2[t].name=="video")
+			{
+				var path = image2[t].put;
+var ft = new FileTransfer();
+var options         = new FileUploadOptions();
+options.fileKey = "file";
+options.fileName = path.substr(path.lastIndexOf('/')+1);
+options.mimeType    = "video/mp4";
+options.chunkedMode = false;
+ft.upload(path,encodeURI("https://tedeco.kz/equipment/api/upload.php?zapros=1&id="+otvet[0].zaya_id+"&type=video"),function(result) {
+	t++;
+	progress = ((t+1)*100)/image2.length;
+            },
+            function(error) {
+            },options);
+
+			}
+			
+			}
+			if (image2.length-1<=t){
+				clearInterval(interval);
+				dialog.close();
+			  app.dialog.alert('Данные приняты',function(){
+    app.panel.enableSwipe('left');
+	  router.back();
+  });
+			}
+			
+		},100);
+		
+		
+	}
+	else
+	{
+	  app.dialog.alert('Данные приняты',function(){
+    app.panel.enableSwipe('left');
+	  router.back();
+  });
+  }
+  
+
+}
+},'json');
+      }
+    }
+    });
+
+    $$('#add_photo').on('click', function(){
+app.dialog.create({
+    title: 'Добавить фото',
+    buttons: [
+      {
+        text: 'Выбрать файл',
+		 onClick: function() {
+		 getImage();
+		 }
+      },
+      {
+        text: 'Сфотографировать',
+		onClick: function() {
+		capturePhoto();
+		 }
+	  },
+	  {
+        text: 'Снять на видео',
+		onClick: function() {
+			navigator.device.capture.captureVideo(videoSuccess, captureError, {limit: 1});
+		 }
+      },
+	  {
+        text: '<a class="button button-fill color-black">Отмена</a>',
+      },
+    ],
+    verticalButtons: true,
+  }).open();
+});	 
+
+function videoSuccess(mediaFiles) {
+        var i, path, len;
+    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+        path = mediaFiles[i].fullPath;
+        // do something interesting with the file
+	}
+image.push({
+		put:''+path,
+		name:'video',
+		style:"get"
+		});
+		var neww="";
+		neww+='<div style="margin-top:10px;" class="swiper-container glav_swipe swiper-init demo-swiper demo-swiper-auto" data-speed="500" data-space-between="10" data-slides-per-view="1.1" data-loop="true" data-centered-slides="true" ><div class="swiper-pagination"></div>'+
+  '<div class="swiper-wrapper" >';
+		for (var s = image.length-1; s>=0; s--){
+	var rot="";
+	if (image[s].style=="cap") rot="rotate(90deg);";
+	if (image[s].name=="image")
+neww+='<div data-id="'+s+'" class="swiper-slide" style="background-image:url(\''+image[s].put+'\');background-position: center;'+rot+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"></div></div>';
+else
+if (image[s].name=="video")
+neww+='<div data-id="'+s+'" class="swiper-slide" background-position: center;'+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"><video width="100" height="150" controls>'+
+   '<source src="'+image[s].put+'" type="video/mp4">'+
+'</video></div></div>';
+}
+neww+='</div></div>';
+$$('#images').html(neww);
+var mySwiper = app.swiper.create('.glav_swipe', {
+slidesPerView: 3,
+spaceBetween: 20,
+slidesOffsetBefore: 10,
+slidesOffsetAfter:10,
+pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+  },
+});
+    }
+
+var captureError = function(error) {
+};
+
+function getImage() {
+        navigator.camera.getPicture(getuploadPhoto, function(message) {
+            app.dialog.alert('файл не выбран');
+        }, {
+            quality: 100,
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        });
+
+    }
+var Put;
+	function getuploadPhoto(imageURI) {
+		image.push({
+		put:''+imageURI,
+		name:'image',
+		style:"get"
+		});
+		var neww="";
+		neww+='<div style="margin-top:10px;" class="swiper-container glav_swipe swiper-init demo-swiper demo-swiper-auto" data-speed="500" data-space-between="10" data-slides-per-view="1.1" data-loop="true" data-centered-slides="true" ><div class="swiper-pagination"></div>'+
+  '<div class="swiper-wrapper" >';
+		for (var s = image.length-1; s>=0; s--){
+	var rot="";
+	if (image[s].style=="cap") rot="rotate(90deg);";
+	if (image[s].name=="image")
+neww+='<div data-id="'+s+'" class="swiper-slide" style="background-image:url(\''+image[s].put+'\');background-position: center;'+rot+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"></div></div>';
+else
+if (image[s].name=="video")
+neww+='<div data-id="'+s+'" class="swiper-slide" background-position: center;'+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"><video width="100" height="150" controls>'+
+   '<source src="'+image[s].put+'" type="video/mp4">'+
+'</video></div></div>';
+}
+neww+='</div></div>';
+$$('#images').html(neww);
+var mySwiper = app.swiper.create('.glav_swipe', {
+slidesPerView: 3,
+spaceBetween: 20,
+slidesOffsetBefore: 10,
+slidesOffsetAfter:10,
+pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+  },
+});
+    
+}
+
+$$('#images').on('click','a',function(){
+var id_news = $$(this).attr('data-id');
+app.dialog.confirm("Вы точно хотите удалить?",function(){
+image[id_news].name="dell";
+var neww="";
+		neww+='<div style="margin-top:10px;" class="swiper-container glav_swipe swiper-init demo-swiper demo-swiper-auto" data-speed="500" data-space-between="10" data-slides-per-view="1.1" data-loop="true" data-centered-slides="true" ><div class="swiper-pagination"></div>'+
+  '<div class="swiper-wrapper" >';
+		for (var s = image.length-1; s>=0; s--){
+	var rot="";
+	if (image[s].style=="cap") rot="rotate(90deg);";
+	if (image[s].name=="image")
+neww+='<div data-id="'+s+'" class="swiper-slide" style="background-image:url(\''+image[s].put+'\');background-position: center;'+rot+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"></div></div>';
+else
+if (image[s].name=="video")
+neww+='<div data-id="'+s+'" class="swiper-slide" background-position: center;'+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"><video width="100" height="150" controls>'+
+   '<source src="'+image[s].put+'" type="video/mp4">'+
+'</video></div></div>';
+}
+neww+='</div></div>';
+$$('#images').html(neww);
+var mySwiper = app.swiper.create('.glav_swipe', {
+slidesPerView: 3,
+spaceBetween: 20,
+slidesOffsetBefore: 10,
+slidesOffsetAfter:10,
+pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+  },
+});
+
+});
+});
+
+	function capturePhoto() {
+      navigator.camera.getPicture(onPhotoDataSuccess, function(message) {
+	  app.dialog.alert('файл не выбран');
+		}, { quality: 100,
+        destinationType: Camera.DestinationType.FILE_URI,
+		});
+    }
+
+	function onPhotoDataSuccess(imageURI) {
+		image.push({
+		put:''+imageURI,
+		name:'image',
+		style:"cap"
+		});
+		var neww="";
+		neww+='<div style="margin-top:10px;" class="swiper-container glav_swipe swiper-init demo-swiper demo-swiper-auto" data-speed="500" data-space-between="10" data-slides-per-view="1.1" data-loop="true" data-centered-slides="true" ><div class="swiper-pagination"></div>'+
+  '<div class="swiper-wrapper" >';
+		for (var s = image.length-1; s>=0; s--){
+	var rot="";
+	if (image[s].style=="cap") rot="rotate(90deg);";
+	if (image[s].name=="image")
+neww+='<div data-id="'+s+'" class="swiper-slide" style="background-image:url(\''+image[s].put+'\');background-position: center;'+rot+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"></div></div>';
+else
+if (image[s].name=="video")
+neww+='<div data-id="'+s+'" class="swiper-slide" background-position: center;'+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"><video width="100" height="150" controls>'+
+   '<source src="'+image[s].put+'" type="video/mp4">'+
+'</video></div></div>';
+}
+neww+='</div></div>';
+$$('#images').html(neww);
+var mySwiper = app.swiper.create('.glav_swipe', {
+slidesPerView: 3,
+spaceBetween: 20,
+slidesOffsetBefore: 10,
+slidesOffsetAfter:10,
+pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+  },
+});
+    }
+
+
+    },
+  }
+
+};
+</script>

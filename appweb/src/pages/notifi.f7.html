@@ -1,0 +1,67 @@
+<template>
+	<div class="page" data-name="notifi">
+	  <!-- Top Navbar -->
+	  <div class="navbar">
+		<div class="navbar-inner">
+		  <div class="left"  @Click="back">
+            <a href="#" class="link text-color-white">
+              <i class="icon icon-back"></i><span class="ios-only">Назад</span>
+            </a>
+        </div>
+		  <div class="title sliding">Уведомления</div>
+		</div>
+	  </div>
+	  <!-- Scrollable page content-->
+	  <div class="page-content">
+		  <div class="block" id="virt_notifi">
+
+		  </div>
+	  </div>
+	</div>
+  </template>
+  <script>
+  export default {
+	methods: {
+    back: function () {
+      var app = this.$app;
+      var $$ = this.$$;
+      var router = this.$router;
+      app.panel.enableSwipe('left');
+	  router.back();
+    },
+      },
+  on: {
+		pageInit: function () {
+		var app = this.$app;
+		var $$ = this.$$;
+		var router = this.$router;
+		app.panel.disableSwipe('left');
+		app.preloader.show('blue');
+		app.request.get('https://tedeco.kz/equipment/api/notifi.php',{id:app.data.user.id},function(notifi){
+			app.preloader.hide();
+			var ht ="";
+if (notifi.length>=1){
+	for (var s = 0; s<notifi.length; s++)
+	ht+='<div class="card" data-id="'+notifi[s].id_zaya+'" name="'+notifi[s].id_bd+'"><div name="'+notifi[s].id_bd+'" data-id="'+notifi[s].id_zaya+'" class="card-header">ID аппарата <font color="red">'+notifi[s].id_bd+'</font></div>'+
+  '<div name="'+notifi[s].id_bd+'" data-id="'+notifi[s].id_zaya+'" class="card-content card-content-padding">'+notifi[s].fio+' изменил статус <font color="blue">'+notifi[s].status+'</font></div>'+
+'<div name="'+notifi[s].id_bd+'" data-id="'+notifi[s].id_zaya+'" class="card-footer">'+notifi[s].data+'</div></div>';
+$$('#virt_notifi').html(ht);
+}
+else
+$$('#virt_notifi').html('У вас ничего нету');
+ },function(){
+  app.preloader.hide();
+  app.dialog.alert('Нет подключения к интернету');
+  },'json');
+
+  $$('#virt_notifi').on('click','div,a',function(){
+  var id = $$(this).attr('data-id');
+  var id_db = $$(this).attr('name');
+  if (id!=null){
+	router.navigate("/history/?id="+id+"&stat=active&id_db="+id_db);
+  }
+  });
+		},
+	  },
+  };
+  </script>

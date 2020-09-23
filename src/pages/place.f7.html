@@ -1,0 +1,437 @@
+<template>
+<div class="page" data-name="company">
+  <div class="navbar">
+    <div class="navbar-inner sliding" style="background-color:#222c3c">
+      <div class="title text-color-white" >Админ панель</div>
+      <div class="right">
+        <a href="#" class="link" id="back">
+          <span class="text-color-white">Закрыть</span>
+        </a>
+      </div>
+    </div>
+  </div>
+   <div class="panel panel-left panel-reveal theme-dark">
+ 		<div class="navbar">
+          <div class="navbar-inner text-color-white" style="background-color:#171717">
+            <div class="title"><a class="link text-color-white">
+			<img src="static/img/log.png" class="avatar">
+                <span class="margin-right-half">&nbsp;Equipment</span>
+                
+              </a></div>
+          </div>
+        </div>
+      <div class="view">
+	  
+        <div class="page"  style="--f7-list-chevron-icon-color:transparent;--f7-list-bg-color: #171717;">
+		
+          <div class="list" >
+            <ul>
+              <li>
+                <a class="item-content item-link company">
+                  <div class="item-media">
+                    <i class="icon f7-icons">data_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Компания</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a class="item-content item-link users">
+                  <div class="item-media">
+                    <i class="icon f7-icons">person</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Пользователи</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a id="sotrud" class="item-content item-link sotrudnik">
+                  <div class="item-media">
+                    <i class="icon f7-icons">list_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Сотрудники</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+<div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link zayavki">
+                  <div class="item-media">
+                    <i class="icon f7-icons">color_filter</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Заявки</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+		  
+		  <div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link sklad">
+                  <div class="item-media">
+                    <i class="icon f7-icons">layers_alt_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Склад</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+		</div>
+      </div>
+    </div>
+
+
+  <div class="page-content">
+
+	
+					
+<div class="row margin-horizontal">
+
+              <div class="col-100 margin-top">
+			  
+			    <div class="card text-color-black col-100"  style="--f7-card-border-radius:30px;">
+                      <div class="card-content card-content-padding">
+					  <a id="add_company" class="col button button-fill button-round color-red" style="position:absolute;right: 15px;">Добавить новую&nbsp;<i class="icon f7-icons" style="margin-top:-2px;">add</i></a>
+            <a id="companya" class="col button button-fill button-round color-blue" style="position:absolute;right: 180px;">Назад</a>
+<i class="icon f7-icons margin-right-half" style="font-size: 24px; margin-top:-5px;margin-left:10px;opacity:0.6;">layers_alt_fill</i><font size="4px" style="opacity:0.6;"><b><span id="name_places">Расположение</span></b></font>
+		</div>
+
+                    </div>
+                <div class="card data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                  <div class="card-header">Список расположении</div>
+                  <div class="card-content card-content-padding scrollable">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="label-cell">№</th>
+                          <th class="label-cell">Название</th>
+						  <th class="label-cell"></th>
+						  <th class="label-cell"></th>
+                        </tr>
+                      </thead>
+                      <tbody id = "virt_comp">
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+  </div>
+
+
+
+</div>
+</template>
+<script>
+export default {
+
+    on: {
+      pageInit: function () {
+      var app = this.$app;
+	  var $$ = this.$$;
+	  var router = this.$router;  
+
+	var panel = app.panel.create({
+  el: '.panel-left',
+});
+panel.open();
+var id_place=this.$route.query.id;
+$$('#name_places').text(this.$route.query.title);
+app.preloader.show('blue');
+	app.request.get('http://tedeco.kz/equipment/api/add_place.php',{zapros:'list',id_place:id_place},function(data){                                          							
+app.preloader.hide();
+if (data[0].message=="ok"){
+var virt_comp = document.getElementById("virt_comp"); 
+	for (var s=0;s<data.length; s++){
+    virt_comp.innerHTML  +='<tr>'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:30%">'+data[s].name+'</td>'+
+                          '<td class="label-cell" style="width:10%"><button name="0" value="'+data[s].name+'" class="col button button-fill" data-id="'+data[s].id+'">Редактировать</button></td>'+
+						  '<td class="label-cell" style="width:10%"><button name="1" class="col button button-fill color-red" data-id="'+data[s].id+'">Удалить</button></td>'+
+                        '</tr>';
+}
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+
+
+$$('#virt_comp').on('click','button',function(){
+var id = $$(this).attr('data-id');
+var name = $$(this).attr('name');
+if (name=="1")
+app.dialog.confirm('Вы точно хотите удалить?',function(){
+app.preloader.show('blue');
+app.request.get('http://tedeco.kz/equipment/api/add_place.php',{zapros:'dell',id:id},function(data){                                          							
+app.preloader.hide();
+if (data[0].message=="ok"){
+app.dialog.alert('Удалено',function(){
+	app.request.get('http://tedeco.kz/equipment/api/add_place.php',{zapros:'list',id_place:id_place},function(data){                                          							
+app.preloader.hide();
+$$("#virt_comp").html("");
+if (data[0].message=="ok"){
+
+var virt_comp = document.getElementById("virt_comp"); 
+	for (var s=0;s<data.length; s++){
+    virt_comp.innerHTML  +='<tr>'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:30%">'+data[s].name+'</td>'+
+                          '<td class="label-cell" style="width:10%"><button name="0" value="'+data[s].name+'" class="col button button-fill" data-id="'+data[s].id+'">Редактировать</button></td>'+
+						  '<td class="label-cell" style="width:10%"><button name="1" class="col button button-fill color-red" data-id="'+data[s].id+'">Удалить</button></td>'+
+                        '</tr>';
+}
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+}); 
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+});
+else{
+  var name = $$(this).attr("value");
+  app.request.get('http://tedeco.kz/equipment/api/add_company.php',{zapros:'list'},function(data){                                          							
+app.preloader.hide();
+if (data[0].message=="ok"){
+var virt_comp = ""; 
+	for (var s=0;s<data.length; s++)
+    virt_comp  +='<option value="'+data[s].id+'">'+data[s].name+'</option>';	
+    
+app.dialog.create({
+ title: '<div style="text-align: center;"><font color="red">Редактирование</font></div>',
+ text:"",
+content:'<div class="list no-hairlines-md">'+
+  '<ul>'+
+     '<li class="item-content item-input item-input-outline">'+
+                              '<div class="item-inner">'+
+                                '<div class="item-title">Название</div>'+
+                                '<div class="item-input-wrap">'+
+                                  '<input type="text" placeholder="Название"  value="'+name+'" id="name_company">'+
+                                  '<span class="input-clear-button"></span>'+
+                                '</div>'+
+
+                              '</div>'+
+                              '</li>'+
+                              '<li class="item-content item-input item-input-outline">'+
+                            '<div class="item-inner">'+
+                             ' <div class="item-title">Компания</div>'+
+                                 '                           <div class="item-input-wrap input-dropdown-wrap">'+
+          '<select placeholder="Выберите" id="place_option">'+
+		   virt_comp+
+         ' </select>'+
+       ' </div>'+
+                           ' </div>'+
+                          '</li>'+
+  '</ul>'+
+'</div>',
+on: {
+    opened: function () {
+$$('#place_option').val(id_place);
+    }
+  },
+ buttons: [
+ {
+        text: '<a class="col button button-fill">Отмена</a>',
+		 onClick: function() {
+		 }
+      },
+		{
+        text: '<a class="col button button-fill">Сохранить</a>',
+		onClick: function(){
+
+		app.preloader.show('blue');
+		app.request.get('http://tedeco.kz/equipment/api/add_place.php',{name:$$('#name_company').val(),zapros:"update",company:$$('#place_option').val(),id:id},function(otvet){                                          							
+app.preloader.hide();
+if (otvet[0].message=="ok")
+app.dialog.alert('Изменено',function(){
+	app.request.get('http://tedeco.kz/equipment/api/add_place.php',{zapros:'list',id_place:id_place},function(data){                                          							
+app.preloader.hide();
+$$("#virt_comp").html("");
+if (data[0].message=="ok"){
+
+var virt_comp = document.getElementById("virt_comp"); 
+	for (var s=0;s<data.length; s++){
+    virt_comp.innerHTML  +='<tr>'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:30%">'+data[s].name+'</td>'+
+                          '<td class="label-cell" style="width:10%"><button name="0" value="'+data[s].name+'" class="col button button-fill" data-id="'+data[s].id+'">Редактировать</button></td>'+
+						  '<td class="label-cell" style="width:10%"><button  name="1" class="col button button-fill color-red" data-id="'+data[s].id+'">Удалить</button></td>'+
+                        '</tr>';
+}
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+});
+else
+app.dialog.alert('Ошибка');
+},
+function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+		
+		}
+      }
+],
+}).open(); 
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+
+}
+});
+$$('#back').on('click',function(){
+  panel.destroy();
+    router.back({force: true,animate:false});
+});
+$$('#companya').on('click',function(){
+		  panel.destroy();
+router.navigate('/company/',{animate:false,reloadCurrent:true});
+});	
+
+		$$('.company').on('click',function(){
+		  panel.destroy();
+router.navigate('/company/',{animate:false,reloadCurrent:true});
+});	
+		$$('.users').on('click',function(){
+		  panel.destroy();
+router.navigate('/users/',{animate:false,reloadCurrent:true});
+});	
+
+
+		$$('.zayavki').on('click',function(){
+		  panel.destroy();
+router.navigate('/zayavki/',{animate:false,reloadCurrent:true});
+});	
+
+		$$('.sotrudnik').on('click',function(){
+		  panel.destroy();
+router.navigate('/sot/',{animate:false,reloadCurrent:true});
+});	
+
+	  window.addEventListener('popstate', function(event) {
+ panel.destroy();
+   router.refreshPage();
+
+}, false);
+
+$$('#vputi').on('click',function(){
+ panel.destroy();
+router.navigate('/vputi/',{animate:false,reloadCurrent:true});
+});
+
+$$('#pere').on('click',function(){
+ panel.destroy();
+router.navigate('/pere/',{animate:false,reloadCurrent:true});
+});
+
+$$('#add_company').on('click', function(){
+	
+	app.dialog.create({
+ title: '<div style="text-align: center;"><font color="red">Новое расположение</font></div>',
+ text:"",
+content:'<div class="list no-hairlines-md">'+
+  '<ul>'+
+     '<li class="item-content item-input item-input-outline">'+
+                              '<div class="item-inner">'+
+                                '<div class="item-title item-floating-label">Название</div>'+
+                                '<div class="item-input-wrap">'+
+                                  '<input type="text" placeholder="Название" id="name_company">'+
+                                  '<span class="input-clear-button"></span>'+
+                                '</div>'+
+
+                              '</div>'+
+                              '</li>'+
+  '</ul>'+
+'</div>',
+on: {
+    opened: function () {
+
+    }
+  },
+ buttons: [
+ {
+        text: '<a class="col button button-fill">Отмена</a>',
+		 onClick: function() {
+		 }
+      },
+		{
+        text: '<a class="col button button-fill">Добавить</a>',
+		onClick: function(){
+
+		app.preloader.show('blue');
+		app.request.get('http://tedeco.kz/equipment/api/add_place.php',{name:$$('#name_company').val(),zapros:"add",company:id_place},function(otvet){                                          							
+app.preloader.hide();
+if (otvet[0].message=="ok")
+app.dialog.alert('Добавлено',function(){
+	app.request.get('http://tedeco.kz/equipment/api/add_place.php',{zapros:'list',id_place:id_place},function(data){                                          							
+app.preloader.hide();
+$$("#virt_comp").html("");
+if (data[0].message=="ok"){
+
+var virt_comp = document.getElementById("virt_comp"); 
+	for (var s=0;s<data.length; s++){
+    virt_comp.innerHTML  +='<tr>'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:30%">'+data[s].name+'</td>'+
+                          '<td class="label-cell" style="width:10%"><button name="0" value="'+data[s].name+'" class="col button button-fill" data-id="'+data[s].id+'">Редактировать</button></td>'+
+						  '<td class="label-cell" style="width:10%"><button  name="1" class="col button button-fill color-red" data-id="'+data[s].id+'">Удалить</button></td>'+
+                        '</tr>';
+}
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+});
+else
+app.dialog.alert('Ошибка');
+},
+function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+		
+		}
+      }
+],
+}).open();   
+
+});
+
+		},
+    },
+  };
+</script>

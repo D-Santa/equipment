@@ -1,0 +1,150 @@
+<template>
+	<div class="page" data-name="vodo">
+	  <!-- Top Navbar -->
+	  <div class="navbar">
+		<div class="navbar-inner">
+		  <div class="left"  @Click="backvodo">
+            <a href="#" class="link text-color-white">
+              <i class="icon icon-back"></i><span class="ios-only">Назад</span>
+            </a>
+        </div>
+		  <div class="title sliding">Мониторинг сис.водоочистки</div>
+		</div>
+	  </div>
+	  <!-- Scrollable page content-->
+	  <div class="page-content">
+		<div class="list accordion-list">
+			<ul id ="company">
+
+
+			</ul>
+		</div>
+	  </div>
+	</div>
+  </template>
+  <script>
+  export default {
+	methods: {
+    backvodo: function () {
+      var app = this.$app;
+      var $$ = this.$$;
+      var router = this.$router;
+      app.panel.enableSwipe('left');
+	  router.back();
+	  if (app.data.url=="/"){
+      app.methods.home.users();
+      app.methods.home.timers();
+      }
+    },
+      },
+  on: {
+		pageInit: function () {
+		var app = this.$app;
+		var $$ = this.$$;
+		var router = this.$router;
+		app.panel.disableSwipe('left');
+		app.preloader.show('blue');
+		app.request.post('https://tedeco.kz/equipment/api/monitoring.php',{zapros:"list",id:app.data.user.id},function(notifi){
+			app.preloader.hide();
+			var comp=[];
+			var ht =[],cp="";
+if (notifi.length>=1){
+	for (var s = 0; s<notifi.length; s++){
+		var color="";
+		if (parseFloat(notifi[s].provodimost)<=5 && parseFloat(notifi[s].provodimost)!=0)color="bg-color-green";
+		else
+		if (parseFloat(notifi[s].provodimost)>5 && parseFloat(notifi[s].provodimost)<=8)color="bg-color-yellow";
+		else
+		if (parseFloat(notifi[s].provodimost)>8)color="bg-color-red";
+		if (comp.length==0){
+			cp+='<li class="accordion-item"><a href="#" class="item-content item-link">'+
+				'<div class="item-inner">'+
+					'<div class="item-title">'+notifi[s].company+'</div>'+
+					'</div></a>'+
+					'<div class="accordion-item-content" style="background-color: #c6c8d1;">'+
+							'<div class="list inset"><ul class="mono" id="comp'+notifi[s].company_id+'"></ul></div></div>'+
+					  '</li>';
+			comp.push({
+				id:notifi[s].company_id,
+				name:'<li>'+
+		'<a opci="'+notifi[s].opci+'" opci_name="'+notifi[s].opci_name+'" id="'+notifi[s].id+'" name="'+notifi[s].name+'" class="item-link item-content '+color+'">'+
+		'<div class="item-inner">'+
+			'<div class="item-title">'+notifi[s].name+'<div class="item-footer">'+notifi[s].data+'</div></div>'+
+          '<div class="item-after">'+notifi[s].provodimost+'</div>'+
+		  '</div>'+
+		'</a>'+
+	'</li>'
+			});
+		}
+		else
+		{
+			var b=0;
+			for (var n=0;n<comp.length; n++)
+			if (comp[n].id==notifi[s].company_id){
+				comp[n].name+='<li>'+
+		'<a opci="'+notifi[s].opci+'" opci_name="'+notifi[s].opci_name+'" id="'+notifi[s].id+'" name="'+notifi[s].name+'" class="item-link item-content '+color+'">'+
+		'<div class="item-inner">'+
+			'<div class="item-title">'+notifi[s].name+'<div class="item-footer">'+notifi[s].data+'</div></div>'+
+          '<div class="item-after">'+notifi[s].provodimost+'</div>'+
+		  '</div>'+
+		'</a>'+
+	'</li>';
+				b=1;
+				break;
+			}
+			if (b==0){
+				cp+='<li class="accordion-item"><a href="#" class="item-content item-link">'+
+				'<div class="item-inner">'+
+					'<div class="item-title">'+notifi[s].company+'</div>'+
+					'</div></a>'+
+					'<div class="accordion-item-content" style="background-color: #c6c8d1;">'+
+						'<div class="list inset"><ul class="mono" id="comp'+notifi[s].company_id+'"></ul></div></div>'+
+							'</div>'+
+					  '</li>';
+					  comp.push({
+				id:notifi[s].company_id,
+				name:'<li>'+
+		'<a opci="'+notifi[s].opci+'" opci_name="'+notifi[s].opci_name+'" id="'+notifi[s].id+'" name="'+notifi[s].name+'" class="item-link item-content '+color+'">'+
+		'<div class="item-inner">'+
+			'<div class="item-title">'+notifi[s].name+'<div class="item-footer">'+notifi[s].data+'</div></div>'+
+          '<div class="item-after">'+notifi[s].provodimost+'</div>'+
+		  '</div>'+
+		'</a>'+
+	'</li>'
+			});
+		}
+		}
+	ht+='<li>'+
+		'<a opci="'+notifi[s].opci+'" opci_name="'+notifi[s].opci_name+'" id="'+notifi[s].id+'" name="'+notifi[s].name+'" class="item-link item-content '+color+'">'+
+		'<div class="item-inner">'+
+			'<div class="item-title">'+notifi[s].name+'<div class="item-footer">'+notifi[s].data+'</div></div>'+
+          '<div class="item-after">'+notifi[s].provodimost+'</div>'+
+		  '</div>'+
+		'</a>'+
+	'</li>';
+		}
+		$$('#company').html(cp);
+for (var v=0;v<comp.length; v++)
+$$('#comp'+comp[v].id).html(comp[v].name);
+$$('.mono').on('click','a',function(){
+var id = $$(this).attr('id');
+var name =  $$(this).attr('name');
+var opci =  $$(this).attr('opci');
+var opci_name =  $$(this).attr('opci_name');
+router.navigate('/vodo_his/?name='+name+'&bd='+id+'&opci='+opci+'&opci_name='+opci_name);
+});
+//$$('#virt_vodo').html(ht);
+}
+else
+$$('#company').html('У вас ничего нету');
+ },function(){
+  app.preloader.hide();
+  app.dialog.alert('Нет подключения к интернету');
+  },'json');
+
+
+
+		},
+	  },
+  };
+  </script>

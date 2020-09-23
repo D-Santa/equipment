@@ -1,0 +1,209 @@
+<style>
+	.highcharts-figure, .highcharts-data-table table {
+    min-width: 360px; 
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+	</style>
+<template>
+	<div class="page" data-name="vodo_his">
+	  <!-- Top Navbar -->
+	  <div class="navbar">
+		<div class="navbar-inner">
+		  <div class="left">
+            <a href="#" class="link text-color-white back">
+              <i class="icon icon-back"></i><span class="ios-only">Назад</span>
+            </a>
+        </div>
+		  <div class="title sliding">{{this.$route.query.name}}</div>
+		</div>
+	  </div>
+	  <!-- Scrollable page content-->
+	  <div class="page-content">
+		  <div class="block">
+		  <p class="row"><font color="gray">Средняя проводимость</font> <span id="sred">0</span></p>
+		  </div>
+		<figure class="highcharts-figure">
+			<div id="container"></div>
+			<br>
+			<div id="container2"></div>
+		</figure>
+	  </div>
+	</div>
+  </template>
+  <script>
+  export default {
+  on: {
+		pageInit: function () {
+		var app = this.$app;
+		var $$ = this.$$;
+		var router = this.$router;
+		app.panel.disableSwipe('left');
+ var bd = this.$route.query.bd;
+		app.preloader.show('blue');
+		app.request.post('https://tedeco.kz/equipment/api/monitoring.php',{zapros:"id",bd:bd},function(notifi){
+		app.preloader.hide();
+		var dat=[],Recovery=[],provod=[],sred=0;
+		for (var h=0; h<notifi.length; h++){
+		dat[h]=notifi[h].data;
+		var f=(parseFloat(notifi[h].n2)*100)/(parseFloat(notifi[h].n1)+parseFloat(notifi[h].n2));
+		Recovery[h]=parseFloat(f.toFixed(2));
+		provod[h] = parseFloat(notifi[h].n3);
+		sred+=parseFloat(notifi[h].n3);
+		}
+		sred=sred/notifi.length;
+		$$('#sred').text(sred.toFixed(2));
+		Highcharts.chart('container', {
+			chart: {
+                backgroundColor:'#f1eeee',
+        type: 'line',
+		height:300,
+        scrollablePlotArea: {
+            scrollPositionX: 1,
+            minWidth:700
+        }
+    },
+    exporting: {
+                        enabled: false
+                    },
+                    credits:{
+                        enabled: false
+                    },
+    title: {
+        text: 'Recovery'
+	},
+	legend: {
+                enabled:false,
+                },
+    xAxis: {
+        categories: dat
+    },
+    yAxis: {
+        title: {
+            text: ''
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: true
+        },
+        series: {
+      point: {
+        events: {
+          mouseOver: function() {
+            var point = this,
+              chart = this.series.chart;
+
+            if (chart.customTooltip) { // destroy the old one when rendering new
+              chart.customTooltip.destroy();
+              chart.customTooltip = undefined;
+            }
+
+            chart.customTooltip = chart.renderer.label( // render tooltip
+                point.series.name + 't= <strong>15</strong><br>F/O1=<strong>1</strong><br>F/02=<strong>4</strong>', // tooltip's content
+                chart.plotLeft + point.plotX, // point.x
+                chart.plotTop + point.plotY // point.y
+              )
+              .attr({ // style tooltip
+                'stroke-width': 1,
+                zIndex: 8,
+                stroke: point.series.color,
+                padding: 8,
+                r: 3,
+                fill: 'rgb(247, 247, 247)'
+              })
+              .add(chart.rGroup)
+
+            chart.rGroup.translate(-chart.customTooltip.width / 2, -chart.customTooltip.height - 15).toFront() // translate(-50%, -50%)
+          }
+        }
+      }
+    } 
+    },
+    series: [{
+        name: '',
+        data: Recovery
+    }]
+});
+
+Highcharts.chart('container2', {
+			chart: {
+		type: 'line',
+		height:300,
+        backgroundColor:'#f1eeee',
+        scrollablePlotArea: {
+            scrollPositionX: 1,
+            minWidth:700
+        }
+    },
+    exporting: {
+                        enabled: false
+                    },
+                    credits:{
+                        enabled: false
+                    },
+    title: {
+        text: 'Проводимость, мкСм/см'
+	},
+	legend: {
+                enabled:false,
+                },
+    xAxis: {
+        categories: dat
+    },
+    yAxis: {
+        title: {
+            text: ''
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        } 
+},
+    series: [{
+        name: '',
+        data: provod
+    }]
+});
+
+		},'json');
+
+		},
+	  },
+  };
+  </script>

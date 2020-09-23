@@ -1,0 +1,1016 @@
+<style>
+	.areas{
+	height:100%;
+	width:100%;
+	border:solid 1px orange;
+	}
+	
+	</style><template>
+	<div class="page" data-name="home">
+	  <!-- Top Navbar -->
+	  <div class="navbar">
+		<div class="navbar-inner">
+		  <div class="left">
+			<a href="#" class="link icon-only panel-open" data-panel="left">
+			  <i class="icon f7-icons if-not-md">menu</i>
+			  <i class="icon material-icons if-md">menu</i>
+			</a>
+		  </div>
+		  <div class="title sliding">Equipment</div>
+		  <div class="right">
+				<a href="/notifi/" class="link icon-only">
+				  <i class="icon material-icons">notifications<span class="badge color-red" id="notifi"></span></i>
+				</a>
+			  </div>
+		</div>
+	  </div>
+
+	  <div id="toolbarhome" class="toolbar tabbar toolbar-bottom">
+		<div style="width:100%;height:100%;display: -webkit-flex;
+		display: flex;
+		align-items: center;
+		justify-content: center;" class="button" id="scaner2"><font size="3%" color="white">Сканировать QR код</font></div>
+	  </div>
+	  <!-- Scrollable page content  <div class="fon2"></div>
+	
+			<div class="swiper-container accordion-list swiper-init demo-swiper demo-swiper-auto roles3" data-speed="200" data-space-between="15" data-centered-Slides-Bounds="true"  data-slides-per-view="auto"  data-loop="false" data-centered-slides="true" style="margin-top:10px;">
+			<div class="swiper-wrapper" style="--f7-navbar-height: 40px;">
+			  <div class="swiper-slide accordion-item">
+					<div class="navbar" style="--f7-bars-bg-color:#ebecf0; --f7-navbar-font-size: 15px;">
+						<div class="navbar-inner">
+						  <div class="title sliding text-color-black">Новые<span class="badge color-red" id="bad_new" style="display: none;">0</span></div>
+						</div>
+					  </div>
+					  <div style="position: absolute; width: 100%; max-height: 95%; overflow:auto; background-color: #c6c8d1;">
+				  <div id="virt_home_new" class="virt_home_ accordion-item-content">
+				  </div>
+					  </div>
+			</div>
+			  <div class="swiper-slide">
+				<div class="navbar" style="--f7-bars-bg-color:#ebecf0; --f7-navbar-font-size: 15px;">
+					<div class="navbar-inner">
+					  <div class="title sliding text-color-black">Активные<span class="badge color-red" id="bad_active" style="display: none;">0</span></div>
+					</div>
+				  </div>
+				  <div style="position: absolute; width: 100%; max-height: 95%; overflow:auto; background-color: #c6c8d1;">
+			<div id="virt_home_active" class="virt_home_">
+			</div>
+			</div>
+		</div>
+			  <div class="swiper-slide">
+				<div class="navbar" style="--f7-bars-bg-color:#ebecf0; --f7-navbar-font-size: 15px;">
+					<div class="navbar-inner">
+					  <div class="title sliding text-color-black">Подтверждения от Инициатора<span class="badge color-red" id="bad_pod" style="display: none;">0</span></div>
+					</div>
+				  </div>
+				  <div style="position: absolute; width: 100%; max-height: 95%; overflow:auto; background-color: #c6c8d1;">
+				<div id="virt_home_pod" class="virt_home_">
+				</div>
+				  </div>
+			  </div>
+			  <div class="swiper-slide">
+				<div class="navbar" style="--f7-bars-bg-color:#ebecf0; --f7-navbar-font-size: 15px;">
+					<div class="navbar-inner">
+					  <div class="title sliding text-color-black">Подтверждения от админа<span class="badge color-red" id="bad_pod_admin" style="display: none;">0</span></div>
+					</div>
+				  </div>
+				  <div style="position: absolute; width: 100%; max-height: 95%; overflow:auto; background-color: #c6c8d1;">
+				<div id="virt_home_pod_admin" class="virt_home_">
+				</div>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+	-->
+	 
+	  <div class="page-content">
+		<div style="display: none;" class="roles2">
+			<div class="block">
+			<p class="row">
+				<button  class="col button  button-fill" style="background-color:#222c3c;" id = "scaner">Сканировать QR код</button>
+			</p>
+			<p class="row">
+				<button  class="col button  button-fill" style="background-color:#222c3c;"  id = "vybor">Выбрать</button>
+				</p>
+			</div>
+				</div>
+<div class="block roles3">
+				<div class="list accordion-list">
+					<ul>
+					  <li class="accordion-item"><a href="#" class="item-content item-link">
+						  <div class="item-inner">
+							<div class="item-title">Новые<span class="badge color-red" id="bad_new" style="display: none;">0</span></div>
+						  </div></a>
+						<div class="accordion-item-content" style="background-color: #c6c8d1;">
+						  <div id="virt_home_new" class="virt_home_">
+							
+						  </div>
+						</div>
+					  </li>
+					  <li class="accordion-item"><a href="#" class="item-content item-link">
+						<div class="item-inner">
+						  <div class="item-title">Активные<span class="badge color-red" id="bad_active" style="display: none;">0</span></div>
+						</div></a>
+					  <div class="accordion-item-content" style="background-color: #c6c8d1;">
+						<div id="virt_home_active" class="virt_home_">
+						  
+						</div>
+					  </div>
+					</li>
+					<li class="accordion-item"><a href="#" class="item-content item-link">
+						<div class="item-inner">
+						  <div class="item-title">Подтверждения от инициатора<span class="badge color-red" id="bad_pod" style="display: none;">0</span></div>
+						</div></a>
+					  <div class="accordion-item-content" style="background-color: #c6c8d1;">
+						<div id="virt_home_pod" class="virt_home_">
+						  
+						</div>
+					  </div>
+					</li>
+
+					<li class="accordion-item"><a href="#" class="item-content item-link">
+						<div class="item-inner">
+						  <div class="item-title">Подтверждения от админа<span class="badge color-red" id="bad_pod_admin" style="display: none;">0</span></div>
+						</div></a>
+					  <div class="accordion-item-content" style="background-color: #c6c8d1;">
+						<div id="virt_home_pod_admin" class="virt_home_">
+						  
+						</div>
+					  </div>
+					</li>
+					  </ul></div>
+</div>
+
+
+	  </div>
+	</div>
+  </template>
+  <script>
+  export default {
+  on: {
+		pageInit: function () {
+		var app = this.$app;
+		var $$ = this.$$;
+		var router = this.$router;
+		app.data.url="/";	
+
+		var push = PushNotification.init({
+     "android": {
+        "senderID": "110519839613",
+			"vibrate": true
+       }, 
+	   "ios": {
+       "sound": true,
+        "vibration": true,
+        "badge": true
+         },
+        "windows": {}
+        });
+		
+		push.on('registration', function(data) {
+			 app.data.token= data.registrationId;
+			 app.request.get('https://tedeco.kz/equipment/api/notifi.php',{zapros:'active',id:app.data.user.id,token:data.registrationId},function(notifi){
+if (notifi.length>=1){
+	$$('#notifi').show();
+	$$('#notifi').text(notifi.length);
+}
+else
+$$('#notifi').hide();
+ },function(){
+  app.preloader.hide();
+  app.dialog.alert('Нет подключения к интернету');
+  },'json');
+           });
+
+
+				push.on('notification', function(data) {
+					router.refreshPage();
+				});
+				
+
+
+
+
+		app.panel.enableSwipe('left');
+		$$('.roles2').hide();
+		$$('.roles3').hide();
+		$$('#scaner').hide();
+		$$('.fon2').hide();
+		$$('#toolbarhome').hide();
+		$$('#notifi').hide();
+		if (app.data.user.roles=="2"){
+			app.preloader.show('blue');
+		app.methods.home.users();
+		$$('.roles2').hide();
+          $$('#scaner').hide();
+          $$('.fon2').show();
+          $$('#toolbarhome').show();
+		  $$('.roles3').show();
+		  if (app.data.user.vodo=="1")
+		  $$('#voda').show();
+		  else
+		  $$('#voda').hide();
+		$$('#sklad').show();
+		$$('#history').hide();
+		}
+		else{
+        $$('.roles2').show();
+        $$('.roles3').hide();
+        $$('#scaner').show();
+		$$('#virt_home').hide();
+		$$('#voda').hide();
+		$$('#history').show();
+		$$('#sklad').hide();
+        }	
+      	app.methods.home.timers();
+
+		$$('#vybor').on('click',function(){
+			 app.preloader.show('blue');
+  app.request.post('https://tedeco.kz/equipment/api/list.php',{zapros:'spisok',id:app.data.user.id},function(data){                                          							
+  app.preloader.hide();
+  if (data[0].message=="ok"){ 
+  var tegs="";
+  for (var s=0; s<data.length; s++)
+  tegs+='<p><a href="#" class="button button-fill color-blue link popup-close" value="5" name="'+data[s].id+'">id='+data[s].id+' ('+data[s].equip+')</a></p>';
+		var dynamicPopup = app.popup.create({
+	content: '<div class="popup pop-info-action">'+
+	  '<div class="view popup-view">'+
+		  '<div class="page">'+
+			  '<div class="navbar">'+
+				  '<div class="navbar-inner" style="background-color:#222c3c;">'+
+					  '<div class="title">Выберите аппараты</div>'+
+					  '<div class="right"><a class="link popup-close" href="#">Закрыть</a></div>'+
+				  '</div>'+
+			  '</div>'+
+			  '<div class="page-content block"><br>'+tegs+
+			  '<br></div>'+
+		  '</div>'+
+	  '</div>'+
+  '</div>',
+	// Events
+	on: {
+	  open: function (popup) {
+	   
+	  },
+	  opened: function (popup) {
+		$$('a').on('click',function(){
+		var name = $$(this).attr('name');
+		if ($$(this).attr('value')=="5")
+		 router.navigate('/scaner/?id='+name+'#about');
+		});
+	  },
+	}
+  });
+   dynamicPopup.open();
+   }
+  
+
+	  //  router.navigate('/scaner/?id=3#about');
+	  },function(){
+  app.preloader.hide();
+  app.dialog.alert('Нет подключения к интернету');
+  },'json');
+		});
+		
+		$$('#forum').on('click',function(){
+		  app.panel.close();
+		router.navigate('/moi/',{reloadAll:true});
+		});
+
+		 $$('#history').on('click',function(){
+		  app.panel.close();
+		router.navigate('/zayavka/');
+		//router.navigate('/monitoring/?id=367&opci=4&opci_name=234');
+		});
+
+		$$('#vodo_b').on('click',function(){
+		  app.panel.close();
+		router.navigate('/vodo/');
+		});
+
+		$$('#sklad').on('click',function(){
+		  app.panel.close();
+		router.navigate('/sklad/');
+		});
+
+		
+
+				$$('#scaner').on('click',function(){
+   var scaner = cordova.plugins.barcodeScanner.scan(
+		function (result) {
+			var results = result.text;
+			var texts=results[0]+results[1]+results[2]+results[3]+results[4]+results[5];
+			if (texts!="tedeco")
+				app.dialog.alert('QR код не правильный');
+			else{
+			 var textjson="";
+			for (var i =6; i<results.length;i++ )
+				textjson = textjson+results[i];
+			var jsons = JSON.parse(textjson);
+			app.preloader.show('blue');
+			var lists="";
+function zaya(){
+	app.request.get('https://tedeco.kz/equipment/api/zayavka.php',{zapros:'id',id:app.data.user.id,glav:app.data.user.glav,roles:app.data.user.roles,id_bd:jsons[0].id},function(notifi){                                          							
+  app.preloader.hide();
+			var ht1 ="",ht2 ="",ht3 ="",ht4 ="",ht5 ="",ht6 ="",bad_active1=0;
+if (notifi.length>=1){
+      for (var s = 0; s<notifi.length; s++)
+      if (notifi[s].active==="0"){
+      ht1+='<div data-id ="'+notifi[s].id+'" name="'+notifi[s].id_db+'" value="0" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="0" data-id ="'+notifi[s].id+'"><i>Заявка</i> № '+notifi[s].id+'<font color="red">Новая</font></div>'+
+      '<div data-id ="'+notifi[s].id+'" value="0"name="'+notifi[s].id_db+'"  class="card-content card-content-padding"><center><b>'+notifi[s].name+'</b></center><br><b>id: </b> '+notifi[s].id_db+'<br><b>Вид неисправности: </b> '+notifi[s].status+'<br><b>Расположение: </b> '+notifi[s].company+', '+notifi[s].place+'<br><b>Инициатор: </b> '+notifi[s].vrach+'<br></div>'+
+    '<div data-id ="'+notifi[s].id+'" value="0"name="'+notifi[s].id_db+'"  class="card-footer color-black">'+notifi[s].data+'<div class="right" style="display:none"><a data-id ="'+notifi[s].id+'" value="2" class="button button-fill color-green">Принять</a></div></div></div>';
+	bad_active1++;
+}else
+    if (notifi[s].active==="1"){
+      bad_active1++;
+    ht2+='<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="1" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="#408ac7">Активные</font></div>'+
+    '<div data-id ="'+notifi[s].id+'" value="0"name="'+notifi[s].id_db+'"  class="card-content card-content-padding">'+notifi[s].name+'<br><b>id: </b> '+notifi[s].id_db+'<br><b>Вид неисправности: </b> '+notifi[s].status+'<br><b>Расположение: </b> '+notifi[s].company+', '+notifi[s].place+'<br><b>Инициатор: </b> '+notifi[s].vrach+'<br><b>Инженер: </b>'+notifi[s].ispol+'</div>'+
+    '<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-footer"><font color="black">'+notifi[s].data+'</font><div class="right">Куратор: '+notifi[s].kurator+'</div><div class="right" style="display:none"><a name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" value="4" class="button button-fill color-green">Начать ремонт</a></div></div></div>';
+    }else
+    if (notifi[s].active==="7"){
+    ht3+='<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="1" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="#408ac7">Активные</font></div>'+
+    '<div data-id ="'+notifi[s].id+'" value="0"name="'+notifi[s].id_db+'"  class="card-content card-content-padding">'+notifi[s].name+'<br><b>id: </b> '+notifi[s].id_db+'<br><b>Вид неисправности: </b> '+notifi[s].status+'<br><b>Расположение: </b> '+notifi[s].company+', '+notifi[s].place+'<br><b>Инициатор: </b> '+notifi[s].vrach+'<br><b>Инженер: </b>'+notifi[s].ispol+'</div>'+
+    '<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-footer"><font color="black">'+notifi[s].data+'</font><div class="right">Куратор: '+notifi[s].kurator+'</div><div class="right" style="display:none"><a name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" value="3" class="button button-fill color-green">Завершить</a></div></div></div>';
+    bad_active1++;
+    }else
+    if (notifi[s].active==="2"){
+    ht4+='<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="1" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="#408ac7">Ожидание</font></div>'+
+    '<div data-id ="'+notifi[s].id+'" value="0"name="'+notifi[s].id_db+'"  class="card-content card-content-padding">'+notifi[s].name+'<br><b>id: </b> '+notifi[s].id_db+'<br><b>Вид неисправности: </b> '+notifi[s].status+'<br><b>Расположение: </b> '+notifi[s].company+', '+notifi[s].place+'<br><b>Инициатор: </b> '+notifi[s].vrach+'<br><b>Инженер: </b>'+notifi[s].ispol+'</div>'+
+    '<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-footer"><font color="black">'+notifi[s].data+'</font><div class="right">Куратор: '+notifi[s].kurator+'</div><div class="right" style="display:none">Ожидание подтверждения</div></div></div>';
+    }else
+    if (notifi[s].active==="8"){
+    ht5+='<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="1" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="#408ac7">Ожидание зап. части</font></div>'+
+    '<div data-id ="'+notifi[s].id+'" value="0"name="'+notifi[s].id_db+'"  class="card-content card-content-padding">'+notifi[s].name+'<br><b>id: </b> '+notifi[s].id_db+'<br><b>Вид неисправности: </b> '+notifi[s].status+'<br><b>Расположение: </b> '+notifi[s].company+', '+notifi[s].place+'<br><b>Инициатор: </b> '+notifi[s].vrach+'<br><b>Инженер: </b>'+notifi[s].ispol+'</div>'+
+    '<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-footer"><font color="black">'+notifi[s].data+'</font><div class="right">Куратор: '+notifi[s].kurator+'</div><div class="right" style="display:none"><a name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" value="3" class="button button-fill color-green">Завершить</a></div></div></div>';
+    bad_active1++;
+    }
+
+lists=ht1+ht2+ht3+ht5+ht4+ht6;
+var dynamicPopup = app.popup.create({
+	content: '<div class="popup pop-info-action">'+
+	  '<div class="view popup-view">'+
+		  '<div class="page">'+
+			  '<div class="navbar">'+
+				  '<div class="navbar-inner" style="background-color:#222c3c;">'+
+					  '<div class="title">Заявки</div>'+
+					  '<div class="right"><a class="link popup-close" href="#">Закрыть</a></div>'+
+				  '</div>'+
+			  '</div>'+
+			  '<div class="toolbar tabbar toolbar-bottom">'+
+		'<div style="width:100%;height:100%;display: -webkit-flex;'+
+		'display: flex;'+
+		'align-items: center;'+
+		'justify-content: center;" class="button" id="zaya_new"><font size="3%" color="white">Подать новую заявку</font></div>'+
+	  '</div>'+
+			  '<div class="page-content block"><br><br><p class="row">По данному аппарату имеется '+bad_active1.toString()+' активные заявки.</p><div id="virt_home2">'+lists+'</div>'+
+			  '<br></div>'+
+		  '</div>'+
+	  '</div>'+
+  '</div>',
+	// Events
+	on: {
+	  open: function (popup) {
+	   
+	  },
+	  opened: function (popup) {
+		$$('#zaya_new').on('click',function(){
+		app.dialog.confirm('Вы точно хотитет подать новую заявку?',function(){
+			dynamicPopup.close();
+router.navigate('/scaner/?id='+jsons[0].id+'&text=1#about');
+		});
+	});
+		$$('#virt_home2').on('click','div,a',function(){
+  var id = $$(this).attr('data-id');
+  var id_db = $$(this).attr('name');
+  var value = $$(this).attr('value');
+  if (id!=null){
+  if (value=="0"){
+	dynamicPopup.close();
+  router.navigate('/history/?id='+id+"&stat=new");
+  }
+  else
+  if (value=="1"){
+	dynamicPopup.close();
+	  router.navigate("/history/?id="+id+"&stat=active&id_db="+id_db);
+  }
+  else  {
+	dynamicPopup.close();
+	  router.navigate("/history/?id="+id+"&stat=active&id_db="+id_db);
+  }
+  }
+  //app.dialog.alert(id);
+
+  });
+
+
+
+	  },
+	}
+  });
+   if (bad_active1 >=1)dynamicPopup.open();
+   else
+   router.navigate('/scaner/?id='+jsons[0].id+'&text=0#about');
+}
+else
+{
+}
+ },function(){
+  app.preloader.hide();
+  app.dialog.alert('Нет подключения к интернету');
+  },'json');
+}
+	app.preloader.show('blue');
+			app.request.post('https://tedeco.kz/equipment/api/list.php',{id:jsons[0].id},function(otvet){                                          							
+  app.preloader.hide();
+if (otvet[0][0].message=="ok" && otvet[0][0].etype=="2"){
+	var dynamicPopup = app.popup.create({
+	content: '<div class="popup pop-info-action">'+
+	  '<div class="view popup-view">'+
+		  '<div class="page">'+
+			  '<div class="navbar">'+
+				  '<div class="navbar-inner" style="background-color:#222c3c;">'+
+					  '<div class="title">Выберите</div>'+
+					  '<div class="right"><a class="link popup-close" href="#">Закрыть</a></div>'+
+				  '</div>'+
+			  '</div>'+
+			  '<div class="page-content block"><br><p><a href="#" class="button button-fill color-blue link popup-close" value="5">Новая заявка</a></p><p><a opci_name="'+otvet[0][0].type_opci_name+'" opci="'+otvet[0][0].type_opci+'" class="button button-fill color-blue link popup-close" value="6">Подача данных</a></p>'+
+			  '<br></div>'+
+		  '</div>'+
+	  '</div>'+
+  '</div>',
+	// Events
+	on: {
+	  open: function (popup) {
+	   
+	  },
+	  opened: function (popup) {
+		$$('a').on('click',function(){
+		var name = $$(this).attr('name');
+		var opci = $$(this).attr('opci');
+		var opci_name = $$(this).attr('opci_name');
+		if ($$(this).attr('value')=="5")
+		zaya();//router.navigate('/scaner/?id='+jsons[0].id+'#about');
+		else
+		if ($$(this).attr('value')=="6")
+		if (opci=="6")app.dialog.alert('Нету в базе');
+		else
+		router.navigate('/monitoring/?id='+jsons[0].id+'&opci='+opci+'&opci_name='+opci_name);
+		});
+	  },
+	}
+  });
+   dynamicPopup.open();
+}
+else zaya()
+//router.navigate('/scaner/?id='+jsons[0].id+'#about');	
+			},'json');
+
+
+			
+			}
+		},
+		function (error) {
+			app.dialog.alert("Scanning failed: " + error);
+		},
+		 {
+			  "preferFrontCamera" : false,
+			  "showFlipCameraButton" : false,
+			  "formats" : "QR_CODE,RSS_EXPANDED",
+			  "prompt": " ",    //if I remove this line, the prompt shows the result the same way
+			  "orientation" : "portrait",
+			  "resultDisplayDuration": "0"
+		  }
+	 );
+  
+  });
+
+
+  $$('#scaner2').on('click',function(){
+	var scaner2 = cordova.plugins.barcodeScanner.scan(
+		function (result) {
+			var results = result.text;
+			var texts=results[0]+results[1]+results[2]+results[3]+results[4]+results[5];
+			if (texts!="tedeco")
+				app.dialog.alert('QR код не правильный');
+			else{
+			 var textjson="";
+			for (var i =6; i<results.length;i++ )
+				textjson = textjson+results[i];
+			var jsons = JSON.parse(textjson);
+			app.preloader.show('blue');
+			var lists="";
+			app.request.get('https://tedeco.kz/equipment/api/zayavka.php',{zapros:'id',id:app.data.user.id,glav:app.data.user.glav,roles:app.data.user.roles,id_bd:jsons[0].id},function(notifi){                                          							
+  app.preloader.hide();
+  var col_act=0;
+			var ht1 ="",ht2 ="",ht3 ="",ht4 ="",ht5 ="",ht6 ="";
+if (notifi.length>=1){
+	for (var s = 0; s<notifi.length; s++)
+	if (notifi[s].active==="0"){
+	ht1+='<div data-id ="'+notifi[s].id+'" name="'+notifi[s].id_db+'" value="0" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="0" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="red">Новая</font></div>'+
+  '<div data-id ="'+notifi[s].id+'" value="0"name="'+notifi[s].id_db+'"  class="card-content card-content-padding">'+notifi[s].name+'<br>id:'+notifi[s].id_db+'<br>Статус:'+notifi[s].status+'<br>'+notifi[s].company+', '+notifi[s].place+'</div>'+
+'<div data-id ="'+notifi[s].id+'" value="0"name="'+notifi[s].id_db+'"  class="card-footer">'+notifi[s].data+'<div class="right"><a data-id ="'+notifi[s].id+'" value="2" class="button button-fill color-green">Принять</a></div></div></div>';
+col_act++;
+	}
+else
+if (notifi[s].active==="1")
+ht2+='<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="1" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="blue">Активные</font></div>'+
+  '<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-content card-content-padding">'+notifi[s].name+'<br>id:'+notifi[s].id_db+'<br>Статус:'+notifi[s].status+'<br>'+notifi[s].company+', '+notifi[s].place+'</div>'+
+'<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-footer">'+notifi[s].data+'<div class="right"><a name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" value="4" class="button button-fill color-green">Начать ремонт</a></div></div></div>';
+else
+if (notifi[s].active==="7")
+ht3+='<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="1" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="blue">Активные</font></div>'+
+  '<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-content card-content-padding">'+notifi[s].name+'<br>id:'+notifi[s].id_db+'<br>Статус:'+notifi[s].status+'<br>'+notifi[s].company+', '+notifi[s].place+'</div>'+
+'<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-footer">'+notifi[s].data+'<div class="right"><a name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" value="3" class="button button-fill color-green">Завершить</a></div></div></div>';
+else
+if (notifi[s].active==="2")
+ht4+='<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="1" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="blue">Ожидание подтверждения</font></div>'+
+  '<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-content card-content-padding">'+notifi[s].name+'<br>id:'+notifi[s].id_db+'<br>Статус:'+notifi[s].status+'<br>'+notifi[s].company+', '+notifi[s].place+'</div>'+
+'<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-footer">'+notifi[s].data+'<div class="right">Ожидание подтверждения</div></div></div>';
+else
+if (notifi[s].active==="8")
+ht5+='<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="1" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="blue">Ожидание зап. части</font></div>'+
+  '<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-content card-content-padding">'+notifi[s].name+'<br>id:'+notifi[s].id_db+'<br>Статус:'+notifi[s].status+'<br>'+notifi[s].company+', '+notifi[s].place+'</div>'+
+'<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-footer">'+notifi[s].data+'<div class="right"><a name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" value="3" class="button button-fill color-green">Завершить</a></div></div></div>';
+if (ht1=="" && ht2=="" && ht3=="" && ht4=="" && ht5=="" && ht6=="")lists='Ничего нет';
+else
+lists=ht1+ht2+ht3+ht5+ht4+ht6;
+}
+else
+lists = 'Ничего нет';
+var dynamicPopup = app.popup.create({
+	content: '<div class="popup pop-info-action">'+
+	  '<div class="view popup-view">'+
+		  '<div class="page">'+
+			  '<div class="navbar">'+
+				  '<div class="navbar-inner" style="background-color:#222c3c;">'+
+					  '<div class="title">Заявки</div>'+
+					  '<div class="right"><a class="link popup-close" href="#">Закрыть</a></div>'+
+				  '</div>'+
+			  '</div>'+
+			  '<div class="toolbar tabbar toolbar-bottom">'+
+		'<div style="width:100%;height:100%;display: -webkit-flex;'+
+		'display: flex;'+
+		'align-items: center;'+
+		'justify-content: center;" class="button" id="zaya_new"><font size="3%" color="white">Подать заявку</font></div>'+
+	  '</div>'+
+			  '<div class="page-content block"><br><br><p class="row">По данному аппарату имеется '+col_act.toString()+' активные заявки.</p><div id="virt_home2">'+lists+'</div>'+
+			  '<br></div>'+
+		  '</div>'+
+	  '</div>'+
+  '</div>',
+	// Events
+	on: {
+	  open: function (popup) {
+	   
+	  },
+	  opened: function (popup) {
+		$$('#zaya_new').on('click',function(){
+			dynamicPopup.close();
+router.navigate('/scaner/?id='+jsons[0].id+'#about');
+		});
+		$$('#virt_home2').on('click','div,a',function(){
+  var id = $$(this).attr('data-id');
+  var id_db = $$(this).attr('name');
+  var value = $$(this).attr('value');
+  if (id!=null){
+	  //app.dialog.alert(value);
+  if (value=="2")
+  app.dialog.confirm("Вы точно хотите принять?", function(){
+    app.preloader.show('blue');
+      app.request.get("https://tedeco.kz/equipment/api/add_history.php",{zapros:"update",id_db:id,id_user:app.data.user.id,id_sobyt:"16",roles:app.data.user.roles,active:"1"},function (data) {
+      app.preloader.hide();
+      if (data[0].message=="ok"){
+		dynamicPopup.close();
+      app.dialog.alert('Вы приняли заявку: '+data[0].comp+'; '+data[0].place+', '+data[0].status+'.Инициатор '+data[0].vrach,function(){
+      router.refreshPage();
+      });
+      }
+      else
+      app.dialog.alert('Ошибка');
+      },function(){
+      app.preloader.hide();
+      app.dialog.alert('Нет подключения к интернету');
+      },'json');     
+	});
+	else
+	if (value=="3"){
+		var value3 = cordova.plugins.barcodeScanner.scan(
+		function (result) {
+			var results = result.text;
+			var texts=results[0]+results[1]+results[2]+results[3]+results[4]+results[5];
+			if (texts!="tedeco")
+				app.dialog.alert('QR код не правильный');
+			else{
+				dynamicPopup.close();
+			 var textjson="";
+			for (var i =6; i<results.length;i++ )
+				textjson = textjson+results[i];
+			var jsons = JSON.parse(textjson);
+			if (jsons[0].id == id_db)
+			{
+				var dynamicPopup2 = app.popup.create({
+          content: '<div class="popup pop-info-action">'+
+	  '<div class="view popup-view">'+
+		  '<div class="page">'+
+			  '<div class="navbar">'+
+				  '<div class="navbar-inner" style="background-color:#222c3c;">'+
+					  '<div class="title">Завершение</div>'+
+					  '<div class="right"><a class="link popup-close" href="#">Закрыть</a></div>'+
+				  '</div>'+
+			  '</div>'+
+			  '<div class="page-content block"><br>'+
+        '<div style="height:70%; margin-top:20px;"><textarea class="areas" id="zavcom" placeholder="Комментарий"></textarea>'+
+            '</div><br><p class="row"><a class="zaver col button button-fill bg-color-blue">Завершить</a><a class="zapch col button button-fill bg-color-red">Требуются зап.части</a></p><p class="row"><a class="col noproblem button button-fill bg-color-green">Неисправность не выявлена</a></p>'+
+			  '<br></div>'+
+		  '</div>'+
+	  '</div>'+
+  '</div>',
+  on: {
+    open: function (popup) {
+      console.log('Popup open');
+    },
+    opened: function (popup) {
+$$('.zaver').on('click',function(){
+  app.dialog.confirm("Вы точно хотите завершить?", function(){
+		app.preloader.show('blue');
+      app.request.get("https://tedeco.kz/equipment/api/add_history.php",{zapros:"update",id_db:id,id_user:app.data.user.id,id_sobyt:"14",roles:app.data.user.roles,active:"2",comment:$$('#zavcom').val()},function (data) {
+      app.preloader.hide();
+      if (data[0].message=="ok"){
+      app.dialog.alert('Ваша заявка '+data[0].status+' выполнена.<br>Номер аппарата: '+data[0].sn+'<br>Расположение: '+data[0].place+', '+data[0].comp,function(){
+        dynamicPopup2.close();
+      router.refreshPage();
+      });
+      }
+      else
+      app.dialog.alert('Ошибка');
+      },function(){
+      app.preloader.hide();
+      app.dialog.alert('Нет подключения к интернету');
+      },'json');    
+	});  
+});
+$$('.noproblem').on('click',function(){
+  app.dialog.confirm("Вы точно хотите завершить?", function(){
+		app.preloader.show('blue');
+      app.request.get("https://tedeco.kz/equipment/api/add_history.php",{zapros:"update",id_db:id,id_user:app.data.user.id,id_sobyt:"14",roles:app.data.user.roles,active:"2",comment:"Неисправность не выявлена. "+$$('#zavcom').val()},function (data) {
+      app.preloader.hide();
+      if (data[0].message=="ok"){
+      app.dialog.alert('Ваша заявка '+data[0].status+' выполнена.<br>Номер аппарата: '+data[0].sn+'<br>Расположение: '+data[0].place+', '+data[0].comp,function(){
+        dynamicPopup2.close();
+      router.refreshPage();
+      });
+      }
+      else
+      app.dialog.alert('Ошибка');
+      },function(){
+      app.preloader.hide();
+      app.dialog.alert('Нет подключения к интернету');
+      },'json');    
+	});  
+});
+$$('.zapch').on('click',function(){
+  app.dialog.confirm("Вы точно хотите поменять статус на Ожидание запасных частей и/или дополнительного оборудования?", function(){
+		app.preloader.show('blue');
+      app.request.get("https://tedeco.kz/equipment/api/add_history.php",{zapros:"update",id_db:id,id_user:app.data.user.id,id_sobyt:"17",roles:app.data.user.roles,active:"8",comment:$$('#zavcom').val()},function (data) {
+      app.preloader.hide();
+      if (data[0].message=="ok"){
+      app.dialog.alert('Ожидайте запасных частей и/или дополнительного оборудования',function(){
+        dynamicPopup2.close();
+      router.refreshPage();
+      });
+      }
+      else
+      app.dialog.alert('Ошибка');
+      },function(){
+      app.preloader.hide();
+      app.dialog.alert('Нет подключения к интернету');
+      },'json');    
+	});  
+});
+
+    },
+  }
+}); 
+dynamicPopup2.open();
+			}
+			else
+			app.dialog.alert("QR код не правильный");
+			}
+		},
+		function (error) {
+			app.dialog.alert("Scanning failed: " + error);
+		},
+		 {
+			  "preferFrontCamera" : false,
+			  "showFlipCameraButton" : false,
+			  "formats" : "QR_CODE,RSS_EXPANDED",
+			  "prompt": " ",    //if I remove this line, the prompt shows the result the same way
+			  "orientation" : "portrait",
+			  "resultDisplayDuration": "0"
+		  }
+	 );
+
+	}
+  else
+  if (value=="0"){
+	dynamicPopup.close();
+  router.navigate('/history/?id='+id+"&stat=new");
+  }
+  else
+  if (value=="1"){
+	dynamicPopup.close();
+	  router.navigate("/history/?id="+id+"&stat=active&id_db="+id_db);
+  }
+  else
+  if (value=="4"){
+	var value4 = cordova.plugins.barcodeScanner.scan(
+		function (result) {
+			var results = result.text;
+			var texts=results[0]+results[1]+results[2]+results[3]+results[4]+results[5];
+			if (texts!="tedeco")
+				app.dialog.alert('QR код не правильный');
+			else{
+			 var textjson="";
+			for (var i =6; i<results.length;i++ )
+				textjson = textjson+results[i];
+			var jsons = JSON.parse(textjson);
+			if (jsons[0].id == id_db)
+			{
+				app.preloader.show('blue');
+      app.request.get("https://tedeco.kz/equipment/api/add_history.php",{zapros:"update",id_db:id,id_user:app.data.user.id,id_sobyt:"4",roles:app.data.user.roles,active:"7"},function (data) {
+      app.preloader.hide();
+      if (data[0].message=="ok"){
+      app.dialog.alert('Вы начали ремонт',function(){
+		dynamicPopup.close();
+      router.refreshPage();
+      });
+      }
+      else
+      app.dialog.alert('Ошибка');
+      },function(){
+      app.preloader.hide();
+      app.dialog.alert('Нет подключения к интернету');
+      },'json');    
+			}
+			else
+			app.dialog.alert("QR код не правильный");
+			}
+		},
+		function (error) {
+			app.dialog.alert("Scanning failed: " + error);
+		},
+		 {
+			  "preferFrontCamera" : false,
+			  "showFlipCameraButton" : false,
+			  "formats" : "QR_CODE,RSS_EXPANDED",
+			  "prompt": " ",    //if I remove this line, the prompt shows the result the same way
+			  "orientation" : "portrait",
+			  "resultDisplayDuration": "0"
+		  }
+	 );
+  }
+  else  {
+	dynamicPopup.close();
+	  router.navigate("/history/?id="+id+"&stat=active&id_db="+id_db);
+  }
+  }
+  //app.dialog.alert(id);
+
+  });
+
+
+
+	  },
+	}
+  });
+   dynamicPopup.open();	
+ },function(){
+  app.preloader.hide();
+  app.dialog.alert('Нет подключения к интернету');
+  },'json');
+
+			}
+		},
+		function (error) {
+			app.dialog.alert("Scanning failed: " + error);
+		},
+		 {
+			  "preferFrontCamera" : false,
+			  "showFlipCameraButton" : false,
+			  "formats" : "QR_CODE,RSS_EXPANDED",
+			  "prompt": " ",    //if I remove this line, the prompt shows the result the same way
+			  "orientation" : "portrait",
+			  "resultDisplayDuration": "0"
+		  }
+	 );
+  
+  });
+
+
+ 
+
+  $$('.virt_home_').on('click','div,a',function(){
+  var id = $$(this).attr('data-id');
+  var id_db = $$(this).attr('name');
+  var value = $$(this).attr('value');
+  
+  if (id!=null){
+	//app.dialog.alert(value);
+  if (value=="2")
+  app.dialog.confirm("Вы точно хотите принять?", function(){
+    app.preloader.show('blue');
+      app.request.get("https://tedeco.kz/equipment/api/add_history.php",{zapros:"update",id_db:id,id_user:app.data.user.id,id_sobyt:"16",roles:app.data.user.roles,active:"1"},function (data) {
+      app.preloader.hide();
+      if (data[0].message=="ok"){
+      app.dialog.alert('Вы приняли заявку: '+data[0].comp+'; '+data[0].place+', '+data[0].status+'.Инициатор '+data[0].vrach,function(){
+      router.refreshPage();
+      });
+      }
+      else
+      app.dialog.alert('Ошибка');
+      },function(){
+      app.preloader.hide();
+      app.dialog.alert('Нет подключения к интернету');
+      },'json');     
+	});
+	else
+	if (value=="3"){
+		var val3 = cordova.plugins.barcodeScanner.scan(
+		function (result) {
+			var results = result.text;
+			var texts=results[0]+results[1]+results[2]+results[3]+results[4]+results[5];
+			if (texts!="tedeco")
+				app.dialog.alert('QR код не правильный');
+			else{
+			 var textjson="";
+			for (var i =6; i<results.length;i++ )
+				textjson = textjson+results[i];
+			var jsons = JSON.parse(textjson);
+			if (jsons[0].id == id_db)
+			{
+				var dynamicPopup2 = app.popup.create({
+          content: '<div class="popup pop-info-action">'+
+	  '<div class="view popup-view">'+
+		  '<div class="page">'+
+			  '<div class="navbar">'+
+				  '<div class="navbar-inner" style="background-color:#222c3c;">'+
+					  '<div class="title">Завершение</div>'+
+					  '<div class="right"><a class="link popup-close" href="#">Закрыть</a></div>'+
+				  '</div>'+
+			  '</div>'+
+			  '<div class="page-content block"><br>'+
+        '<div style="height:70%; margin-top:20px;"><textarea class="areas" id="zavcom" placeholder="Комментарий"></textarea>'+
+            '</div><br><p class="row"><a class="zaver col button button-fill bg-color-blue">Завершить</a><a class="zapch col button button-fill bg-color-red">Требуются зап.части</a></p><p class="row"><a class="col noproblem button button-fill bg-color-green">Неисправность не выявлена</a></p>'+
+			  '<br></div>'+
+		  '</div>'+
+	  '</div>'+
+  '</div>',
+  on: {
+    open: function (popup) {
+      console.log('Popup open');
+    },
+    opened: function (popup) {
+$$('.zaver').on('click',function(){
+  app.dialog.confirm("Вы точно хотите завершить?", function(){
+		app.preloader.show('blue');
+      app.request.get("https://tedeco.kz/equipment/api/add_history.php",{zapros:"update",id_db:id,id_user:app.data.user.id,id_sobyt:"14",roles:app.data.user.roles,active:"2",comment:$$('#zavcom').val()},function (data) {
+      app.preloader.hide();
+      if (data[0].message=="ok"){
+      app.dialog.alert('Ваша заявка '+data[0].status+' выполнена.<br>Номер аппарата: '+data[0].sn+'<br>Расположение: '+data[0].place+', '+data[0].comp,function(){
+        dynamicPopup2.close();
+      router.refreshPage();
+      });
+      }
+      else
+      app.dialog.alert('Ошибка');
+      },function(){
+      app.preloader.hide();
+      app.dialog.alert('Нет подключения к интернету');
+      },'json');    
+	});  
+});
+$$('.noproblem').on('click',function(){
+  app.dialog.confirm("Вы точно хотите завершить?", function(){
+		app.preloader.show('blue');
+      app.request.get("https://tedeco.kz/equipment/api/add_history.php",{zapros:"update",id_db:id,id_user:app.data.user.id,id_sobyt:"14",roles:app.data.user.roles,active:"2",comment:"Неисправность не выявлена. "+$$('#zavcom').val()},function (data) {
+      app.preloader.hide();
+      if (data[0].message=="ok"){
+      app.dialog.alert('Ваша заявка '+data[0].status+' выполнена.<br>Номер аппарата: '+data[0].sn+'<br>Расположение: '+data[0].place+', '+data[0].comp,function(){
+        dynamicPopup2.close();
+      router.refreshPage();
+      });
+      }
+      else
+      app.dialog.alert('Ошибка');
+      },function(){
+      app.preloader.hide();
+      app.dialog.alert('Нет подключения к интернету');
+      },'json');    
+	});  
+});
+$$('.zapch').on('click',function(){
+  app.dialog.confirm("Вы точно хотите поменять статус на Ожидание запасных частей и/или дополнительного оборудования?", function(){
+		app.preloader.show('blue');
+      app.request.get("https://tedeco.kz/equipment/api/add_history.php",{zapros:"update",id_db:id,id_user:app.data.user.id,id_sobyt:"17",roles:app.data.user.roles,active:"8",comment:$$('#zavcom').val()},function (data) {
+      app.preloader.hide();
+      if (data[0].message=="ok"){
+      app.dialog.alert('Ожидайте запасных частей и/или дополнительного оборудования',function(){
+        dynamicPopup2.close();
+      router.refreshPage();
+      });
+      }
+      else
+      app.dialog.alert('Ошибка');
+      },function(){
+      app.preloader.hide();
+      app.dialog.alert('Нет подключения к интернету');
+      },'json');    
+	});  
+});
+
+    },
+  }
+}); 
+dynamicPopup2.open();
+			}
+			else
+			app.dialog.alert("QR код не правильный");
+			}
+		},
+		function (error) {
+			app.dialog.alert("Scanning failed: " + error);
+		},
+		 {
+			  "preferFrontCamera" : false,
+			  "showFlipCameraButton" : false,
+			  "formats" : "QR_CODE,RSS_EXPANDED",
+			  "prompt": " ",    //if I remove this line, the prompt shows the result the same way
+			  "orientation" : "portrait",
+			  "resultDisplayDuration": "0"
+		  }
+	 );
+
+	}
+  else
+  if (value=="0")
+  router.navigate('/history/?id='+id+"&state=home&id_db="+id_db);
+  else
+  if (value=="1")router.navigate("/history/?id="+id+"&state=home&id_db="+id_db);
+  else
+  if (value=="4"){
+  var val4 = cordova.plugins.barcodeScanner.scan(
+		function (result) {
+			var results = result.text;
+			var texts=results[0]+results[1]+results[2]+results[3]+results[4]+results[5];
+			if (texts!="tedeco")
+				app.dialog.alert('QR код не правильный');
+			else{
+			 var textjson="";
+			for (var i =6; i<results.length;i++ )
+				textjson = textjson+results[i];
+			var jsons = JSON.parse(textjson);
+			if (jsons[0].id == id_db)
+			{
+				app.preloader.show('blue');
+      app.request.get("https://tedeco.kz/equipment/api/add_history.php",{zapros:"update",id_db:id,id_user:app.data.user.id,id_sobyt:"4",roles:app.data.user.roles,active:"7"},function (data) {
+      app.preloader.hide();
+      if (data[0].message=="ok"){
+      app.dialog.alert('Вы начали ремонт',function(){
+      router.refreshPage();
+      });
+      }
+      else
+      app.dialog.alert('Ошибка');
+      },function(){
+      app.preloader.hide();
+      app.dialog.alert('Нет подключения к интернету');
+      },'json');    
+			}
+			else
+			app.dialog.alert("QR код не правильный");
+			}
+		},
+		function (error) {
+			app.dialog.alert("Scanning failed: " + error);
+		},
+		 {
+			  "preferFrontCamera" : false,
+			  "showFlipCameraButton" : false,
+			  "formats" : "QR_CODE,RSS_EXPANDED",
+			  "prompt": " ",    //if I remove this line, the prompt shows the result the same way
+			  "orientation" : "portrait",
+			  "resultDisplayDuration": "0"
+		  }
+	 );
+  }
+  else  router.navigate("/history/?id="+id+"&state=home&id_db="+id_db);
+  }
+  //app.dialog.alert(id);
+
+  });
+
+
+		},
+	  },
+  };
+  </script>

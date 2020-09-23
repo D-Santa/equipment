@@ -1,0 +1,141 @@
+/* iOS Cordova Tweak */
+.device-cordova.device-ios {
+  height: 100vh;
+}
+.timeline-item-divider {
+background:#408ac7;
+}
+.fon{
+  background-image: url(../static/fon5.png);
+  background-color: #d0dae3;
+background-position: center;
+opacity: 0.1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.fon2{
+  background-image: url(../static/fon3.jpg);
+  //background-color: #f4f5f7;
+background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.md .message-received.message-tail .message-bubble:after{
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-bottom: 8px solid #effedd;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  bottom: 0;
+  left: -6px;
+}
+
+.md .message-sent.message-tail .message-bubble:after{
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-bottom: 8px solid #effedd;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  bottom: 0;
+  right: -6px;
+}
+
+.md .message-received.message-tail .message-bubble:before{
+  border-bottom:8px solid #a9b6bf;
+  bottom:-1px;
+}
+
+.md .message-sent.message-tail .message-bubble:before{
+  border-bottom:8px solid #a9b6bf;
+  bottom:-1px;
+}
+/* Custom color theme properties */
+:root {
+  --f7-theme-color: #507da2;
+  --f7-theme-color-rgb: 0, 122, 255;
+  --f7-theme-color-shade: #0066d6;
+  --f7-theme-color-tint: #298fff;
+  --f7-list-chevron-icon-font-size: 12px;
+   
+  --f7-toolbar-bg-color: var(--f7-bars-bg-color);
+  --f7-toolbar-bg-image: var(--f7-bars-bg-image);
+  --f7-toolbar-border-color: var(--f7-bars-border-color);
+  --f7-toolbar-link-color: var(--f7-bars-link-color);
+  --f7-toolbar-text-color: var(--f7-bars-text-color);
+  --f7-tabbar-link-active-color: #ffffff;
+  --f7-message-sent-bg-color: #effedd;
+  --f7-message-received-bg-color: #effedd;
+  --f7-message-sent-text-color: #172b4d;
+  --f7-message-received-text-color: #172b4d;
+  --f7-tabbar-link-active-bg-color: transparent;
+  --f7-tabbar-label-text-transform: none;
+  --f7-toolbar-hide-show-transition-duration: 400ms;
+  --f7-label-font-size: 9px;
+   --f7-navbar-title-text-align: center;
+     --f7-list-font-size: 13px;
+   --f7-list-link-pressed-bg-color: #a9b6bf;
+   --f7-message-name-text-color: rgba(0, 0, 0, 1);
+
+}
+.color-z{
+  --f7-theme-color: #408ac7;
+}
+.text-color-z{
+  --f7-theme-color-text-color: #408ac7;
+}
+
+/* Invert navigation bars to fill style */
+:root,
+:root.theme-dark,
+:root .theme-dark {
+  --f7-bars-bg-color: var(--f7-theme-color);
+  --f7-bars-text-color: #fff;
+  --f7-bars-link-color: #fff;
+  --f7-navbar-subtitle-text-color: rgba(255,255,255,0.85);
+  --f7-bars-border-color: transparent;
+  --f7-tabbar-link-active-color: #fff;
+  --f7-tabbar-link-inactive-color: rgba(255,255,255,0.54);
+  --f7-searchbar-bg-color: var(--f7-bars-bg-color);
+  --f7-searchbar-input-bg-color: #fff;
+  --f7-searchbar-input-text-color: #000;
+  --f7-sheet-border-color: transparent;
+  --f7-tabbar-link-active-border-color: #fff;
+
+}
+.appbar,
+.navbar,
+.toolbar,
+.subnavbar,
+.calendar-header,
+.calendar-footer {
+  --f7-touch-ripple-color: var(--f7-touch-ripple-white);
+  --f7-link-highlight-color: var(--f7-link-highlight-white);
+  --f7-button-text-color: #fff;
+  --f7-button-pressed-bg-color: rgba(255,255,255,0.1);
+}
+
+/* Your app custom styles here */
+
+.swiper-slide{
+  box-sizing: border-box;
+  background: transparent;
+  border-radius: 2px;
+}
+.demo-swiper {
+  margin: 0px 0 35px;
+  min-height: 50px;
+  height: 97%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide {
+  width: 80%;
+}

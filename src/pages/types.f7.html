@@ -1,0 +1,1485 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+<style>
+  .table.data-table {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    text-align: left;
+}
+[class*="sticker"] {
+ position: relative;
+ margin: 10px 0;
+ padding: 20px 0px 10px;
+ background: #fff;
+ border-radius: 6px;
+ box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .64)
+}
+[class*="sticker"]:after {
+ content: attr(data-sticker);
+ position: absolute;
+ top: 0;
+ padding: 3px 7px;
+ font-size: 10px;
+ font-weight: bold;
+ background: #073974;
+ color: #fff
+}
+.sticker-left {
+ border-top-left-radius: 6px
+}
+.sticker-left:after {
+ left: 0;
+ border-radius: 6px 0 6px 0
+}
+.aurora {
+  --f7-dialog-width: 30%;
+  }
+
+  ul li:not(.group):not(.ms-select-all) {
+      margin-left: 7px;
+    }
+
+    input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+</style>
+
+<template>
+<div class="page">
+  <div class="navbar bg-color-blue">
+    <div class="navbar-inner" style="background-color:#222c3c;">
+      <div class="title sliding" style="width:100%;text-align:center;"><font color="white">База данных оборудования</font>(<span class="name_g"></span>)</div>
+	  <div class="right">
+          <a href="#" class="link icon-only panel-open" data-panel="right">
+            <i class="icon f7-icons if-not-md">menu</i>
+            <i class="icon material-icons if-md">menu</i>
+          </a>
+        </div>
+    </div>
+  </div>
+
+  <div class="toolbar tabbar toolbar-bottom toolbar-top-aurora">
+    <div class="toolbar-inner">
+      <a href="#tab-1" class="tab-link tab-link-active">Заявки</a>
+      <a href="#tab-2" class="tab-link">База оборудования</a>
+    </div>
+   </div>
+
+    <div class="tabs">
+      <div id="tab-1" class="page-content tab tab-active">
+        <div style="z-index:300;position:fixed;width: 100%"> 
+          <div class="block accordion-list custom-accordion">
+  <div class="accordion-item items-1">
+    <div class="accordion-item-toggle">
+      <a class="button button-fill color-orange text-color-white" style="width: 25%;">поиск</a>
+    </div>
+    <div class="accordion-item-content">
+            <div class="card">
+          <div class="block">
+        <div class="card-content" style='height: 200px;'>
+          <div class="row" style="z-index: 10000;">
+            <div class="col-100"> 
+
+              <div class="row">
+                <div class="col-33" style="z-index: 10;">
+                  <div class="list no-hairlines-md">
+                      <ul>
+                        <li class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title"><font size="2%">Тип</font></div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                              <div class="item-title item-label">&nbsp;</div>
+                              <div class="item-input-wrap input-dropdown-wrap">
+        <select placeholder="" id="type_optionz" multiple="multiple">
+        </select>
+      </div>
+                            </div>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+                <div class="col-33" style="z-index: 8;">
+                  <div class="list no-hairlines-md">
+                      <ul>
+                        <li class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title"><font size="2%">Расположение</font></div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input item-input-outline">
+                          <div class="item-inner">
+                            <div class="item-title item-label">&nbsp;</div>
+                            <div class="item-input-wrap input-dropdown-wrap">
+        <select placeholder="" id="place_optionz" multiple="multiple">
+        </select>
+      </div>
+                          </div>
+                        </li>
+                        <li class="item-content item-input item-input-outline">
+                          <div class="item-inner">
+                            <div class="item-title item-label">Статус</div>
+                            <div class="item-input-wrap input-dropdown-wrap">
+      <select placeholder="" id="statusz" multiple="multiple">
+      </select>
+    </div>
+                          </div>
+                        </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-33" style="z-index: 10;">
+                <div class="list no-hairlines-md">
+                    <ul>
+                        <li class="item-content">
+                            <div class="item-inner">
+                              <div class="item-title"><font size="2%">Дата подачи заявки</font></div>
+                              </div>
+                          </li>
+                          <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                              <div class="item-title item-label">От</div>
+                              <div class="item-input-wrap input-dropdown-wrap" id="py_optionz_div">
+                                <input type="text" placeholder="Select date" readonly="readonly" id="demo-calendar-modal3"/>
+                              </div>
+                            </div>
+                          </li>
+
+                      <li class="item-content item-input item-input-outline">
+                          <div class="item-inner">
+                            <div class="item-title item-label">До</div>
+                            <div class="item-input-wrap input-dropdown-wrap" id="py_optionzz_div">
+                              <input type="text" placeholder="Select date" readonly="readonly" id="demo-calendar-modal4"/>
+                            </div>
+                          </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+			 </div>
+
+            </div>
+          </div>
+
+     </div>
+        </div>
+        <div class="card-footer">
+            <div class="block right" style="width:25%;">
+                  <button class="button button-fill" @Click = "findz" style="background-color:#073974">Найти</button>&nbsp;
+                </div>
+      </div>
+  </div>
+
+
+
+    </div>
+  </div>
+</div>
+</div>	  
+<div class="card data-table data-table-init" id="list_gemo" style="--f7-card-border-radius: 0px;top:50px;">
+                  <div class="card-header">Список заявок <span id="zaya_name">(Активные заявки)</span><div style="right: 5px;"><font color="gray"><span id="obw_colz"></span></font><font color="red"><span id="obw_chekz"></span></font></div></div>
+                  <div class="card-content card-content-padding scrollable">
+                    <table>
+                      <thead>
+                        <tr>
+						<th class="checkbox-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>
+          <label class="checkbox">
+            <input type="checkbox"/>
+            <i class="icon-checkbox"></i>
+          </label>
+        </th>
+                          <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Place</th>
+                          <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>EType</th>
+						  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Equipment</th>
+						  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Status</th>
+						  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>ID</th>
+						  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Date</th>
+						  <th class="numeric-cell" style='z-index: 50;position: sticky; top: -16px;background: white'><button id="all_buttonz" class="col button dynamic-popoverz" style="height:100%;">:</button></th>
+                        </tr>
+                      </thead>
+                      <tbody id="virt_list_zayavka">
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+      </div>
+      <div id="tab-2" class="page-content tab">  
+        <div style="z-index:300;position:fixed;width: 100%"> 
+  <div class="block accordion-list custom-accordion" >
+  <div class="accordion-item items-2">
+  <p class="segmented segmented-raised">
+                  <button class="button button-fill bg-color-yellow accordion-item-toggle">Поиск</button>&nbsp;
+                  <button class="button button-fill" @Click = "add" style="background-color:#073974">Добавить</button>&nbsp;
+                  <button class="button button-fill" id="per" style="background-color:#073974">Переместить</button>&nbsp;
+                  <button class="button button-fill" style="background-color:#073974">Профилактическая работа</button>&nbsp;
+                  <button class="button button-fill" style="background-color:#073974">Утилизация</button>
+                </p>
+    <div class="accordion-item-content">
+  <!--vodo-->
+  <div class="card vodo">
+    <div class="block">
+  <div class="card-content">
+    <div class="row">
+      <div class="col-50" style="z-index: 10000;"> 
+
+        <div class="row">
+          <div class="col-25" style="z-index: 10;">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input item-input-outline">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Производитель</div>
+                      <div class="item-input-wrap">
+                        <input type="number" placeholder="" id="proizvoditel">
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <div class="col-25" style="z-index: 9;">
+              <div class="list no-hairlines-md">
+                  <ul>
+                    <li class="item-content item-input item-input-outline">
+                      <div class="item-inner">
+                        <div class="item-title item-label">Модель</div>
+                        <div class="item-input-wrap">
+                          <input type="number" placeholder="" id="model">
+                          <span class="input-clear-button"></span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-25" style="z-index: 8;">
+              <div class="list no-hairlines-md">
+                  <ul>
+                    <li class="item-content item-input item-input-outline">
+                      <div class="item-inner">
+                        <div class="item-title item-label">Расположение</div>
+                        <div class="item-input-wrap input-dropdown-wrap">
+    <select placeholder="" id="place_optiong" multiple="multiple">
+    </select>
+  </div>
+                      </div>
+                    </li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-25">
+              <div class="list no-hairlines-md">
+                  <ul>
+                    <li class="item-content item-input item-input-outline">
+                      <div class="item-inner">
+                        <div class="item-title item-label">Серийный номер</div>
+                        <div class="item-input-wrap">
+                          <input type="text" placeholder="" id ="sng">
+                          <span class="input-clear-button"></span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-50">
+        <div class="sticker-left" data-sticker="Теги" style="width:98%">
+            <div class="row" style="margin-top:2%;">
+                <div class="list" style="width:100%;">
+                <ul>
+                    <li class="item-content">
+                <div class="block block-strong" style="width:97%;"> 
+                  <div id="chip_div_glav">
+    
+                  </div>
+    
+                              
+                    </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline">
+                        <div class="item-inner">
+                          <div class="item-title item-label"><span id="ship_text">Поиск</span></div>
+                          <div class="item-input-wrap">
+                            <input type="text" placeholder="" id="find_chip">
+                            <span class="input-clear-button"></span>
+                          </div>
+                          <div class="item-after"><a id="chip_ewe">Еще</a></div>
+                        </div>
+                      </li>
+                    </ul>
+                    </div>
+
+
+        </div>
+        </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  <br>
+  <div class="card-footer" style="width:100%;">
+      <div class="block" style="width:25%; left: 75%; top: 10px;">
+            <button class="button button-fill" @Click = "find" style="background-color:#073974">Найти</button>
+          </div>
+
+</div>
+<br>
+</div>
+
+
+    </div>
+  </div>
+</div>
+        </div>
+
+	  
+	   <div class="card data-table data-table-init" id="list_gemo" style="--f7-card-border-radius: 0px;top:50px;">
+                  <div class="card-header">Список оборудования<div style="right: 5px;"><font color="gray"><span id="obw_col"></span></font><font color="red"><span id="obw_chek"></span></font></div></div>
+                  <div class="card-content card-content-padding scrollable">
+                    <table>
+                      <thead>
+                       
+                        <tr>
+						<th class="checkbox-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>
+          <label class="checkbox">
+            <input type="checkbox" name="demo-checkbox-movies"/>
+            <i class="icon-checkbox"></i>
+          </label>
+        </th>
+                          <th class="label-cell sortable-cell" id="sort_place" style='z-index: 50;position: sticky; top: -16px;background: white'>Расположение</th>
+                          <th class="label-cell sortable-cell" id="sort_etype" style='z-index: 50;position: sticky; top: -16px;background: white'>Производитель</th>
+						  <th class="label-cell sortable-cell" id="sort_equip" style='z-index: 50;position: sticky; top: -16px;background: white'>Модель</th>
+						  <th class="label-cell sortable-cell" id="sort_id" style='z-index: 50;position: sticky; top: -16px;background: white'>ID</th>
+						  <th class="label-cell sortable-cell" id="sort_sn" style='z-index: 50;position: sticky; top: -16px;background: white'>Серийный номер</th>
+						  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'><button id="all_button" class="col button dynamic-popover0" style="height:100%;">:</button></th>
+                        </tr>
+                      </thead>
+                      <tbody id="virt_list">
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+
+                <div class="card data-table data-table-init" id="list" style="--f7-card-border-radius: 0px;top:50px;display: none;">
+                  <div class="card-header">Список оборудования<div style="right: 5px;"><font color="gray"><span id="obw_col"></span></font><font color="red"><span id="obw_chek"></span></font></div></div>
+                  <div class="card-content card-content-padding scrollable">
+                    <table>
+                      <thead>
+                       
+                        <tr>
+						<th class="checkbox-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>
+          <label class="checkbox">
+            <input type="checkbox" name="demo-checkbox-movies"/>
+            <i class="icon-checkbox"></i>
+          </label>
+        </th>
+        <th class="label-cell sortable-cell" id="sort_place" style='z-index: 50;position: sticky; top: -16px;background: white'>Расположение</th>
+        <th class="label-cell sortable-cell" id="sort_etype" style='z-index: 50;position: sticky; top: -16px;background: white'>Производитель</th>
+<th class="label-cell sortable-cell" id="sort_equip" style='z-index: 50;position: sticky; top: -16px;background: white'>Модель</th>
+<th class="label-cell sortable-cell" id="sort_id" style='z-index: 50;position: sticky; top: -16px;background: white'>ID</th>
+<th class="label-cell sortable-cell" id="sort_sn" style='z-index: 50;position: sticky; top: -16px;background: white'>Серийный номер</th>
+						  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'><button id="all_button" class="col button dynamic-popover0" style="height:100%;">:</button></th>
+                        </tr>
+                      </thead>
+                      <tbody id="virt_list">
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+
+
+    </div>
+  </div>
+  
+
+
+
+
+</div>
+
+</template>
+<script>
+export default {
+    methods: {
+	clear: function () {
+	 var app = this.$app;
+	  var $$ = this.$$;
+    var router = this.$router;
+    app.data.peremen.put="clear";
+    router.refreshPage();
+	},
+  findz: function () {
+	var app = this.$app;
+    var $$ = this.$$;
+    var router = this.$router;
+    var chek_item=[];
+    $$('#obw_chek').text("");
+
+    if ($$('#place_optionz').val()!=""){
+    var place_option = ""+$$('#place_optionz').val();
+    place_option = place_option.split(",");
+    }
+    else
+    var place_option=["all"];
+
+    if ($$('#type_optionz').val()!=""){
+    var type_option = ""+$$('#type_optionz').val();
+    type_option = type_option.split(",");
+    }
+    else
+    var type_option=["all"];
+
+    if ($$('#statusz').val()!=""){
+    var statusz = ""+$$('#statusz').val();
+    statusz = statusz.split(",");
+    }
+    else
+    var statusz=["all"];
+
+var s4 = "",s41 = "";
+
+var f4 = $$('#demo-calendar-modal3').val();
+    var f5 = $$('#demo-calendar-modal4').val();
+
+
+    if (f4 != "") s4="data >='"+f4+"'";
+    else s4="id!=0";
+    if (f5 != "") s41=" and data <= '"+f5+"'";
+    else s41="";
+
+
+   // if (app.data.peremen.type.id!=0)type_option=app.data.peremen.type.id;
+    var zapros_sql = s4 + s41;
+    var sql=[];
+    sql.push({
+      zapros_sql:zapros_sql,
+      place_option:place_option,
+      type_option:type_option,
+      sobytie:statusz
+    });
+//console.log(sql);
+	  app.preloader.show('blue');
+    app.request.get('http://tedeco.kz/equipment/api/zayavka.php',{zapros:"admin",zap:"find",sql:JSON.stringify(sql)},function(zapros){
+      app.preloader.hide();
+        $$('#obw_colz').text(zapros.length+" найдено");
+	if (zapros.length>0){
+	var virt_list_zayavka="";
+	for (var s=0;s<zapros.length; s++){
+	virt_list_zayavka+='<tr>'+
+			'<td class="checkbox-cell" id="check_zaya'+s+'"><label class="checkbox"><input type="checkbox"/><i class="icon-checkbox"></i></label></td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].Place+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].EType+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].Equipment+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].status+'</td>'+
+			  '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].id_bd+'</td>'+
+			   '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].data+'</td>'+
+			   '<td class="label-cell"><button name="1" class="col button dynamic-popoverz'+zapros[s].id_bd+'" data-id="'+zapros[s].id_bd+'" style="height:100%;">:</button></td>'+
+            '</tr>';
+}			
+	$$('#virt_list_zayavka').html(virt_list_zayavka);
+
+	}
+  else
+  $$('#virt_list_zayavka').html("");
+  app.accordion.close('.items-1');
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+  },'json');
+	},
+	
+	find: function () {
+	var app = this.$app;
+    var $$ = this.$$;
+    var router = this.$router;
+    var chek_item=[];
+    $$('#obw_chek').text("");
+    var s18="";
+    var f21 = $$('#find_chip').val();
+    if (f21 != "")  s18="tag";
+
+
+
+    if ($$('#place_optiong').val()!=""){
+    var place_option = ""+$$('#place_optiong').val();
+    place_option = place_option.split(",");
+    }
+    else
+    var place_option=["all"];
+    var status=["all"];
+    var equip_option=["all"];
+    var version=["all"];
+    var garant=["all"];
+    var pump=["all"];
+    var hdf=["all"];
+    var zkv=["all"];
+    var adimea=["all"];
+    var akku=["all"];
+    var abpm=["all"];
+    var nexadia=["all"];
+    var cardreader=["all"];
+
+    var s1 = "",s2="",s3="",s4="";
+
+    var f1 = $$('#proizvoditel').val();
+    var f2 = $$('#sng').val();
+    var f3 = $$('#model').val();
+
+    s1="id !=0";
+    if (f2 != "")  s2=" and SN = "+f2;
+    if (f1 != "")  s3=" and proizvoditel = "+f3;
+    if (f3 != "")  s4=" and model ="+f3;
+
+    var type_option=app.data.peremen.type.id;
+    var zapros_sql = s1 + s2 + s3 + s4;
+    var sql=[];
+    sql.push({
+      status:status,
+      zapros_sql:zapros_sql,
+      place_option:place_option,
+      type_option:type_option,
+      equip_option:equip_option,
+      version:version,
+      garant:garant,
+      pump:pump,
+      hdf:hdf,
+      zkv:zkv,
+      adimea:adimea,
+      akku:akku,
+      abpm:abpm,
+      nexadia:nexadia,
+      cardreader:cardreader
+    });
+
+	app.preloader.show('blue');
+	app.request.post('http://tedeco.kz/equipment/api/list.php',{zapros:"find",sql:JSON.stringify(sql),tag:s18,find:f21},function(otvet){
+  app.preloader.hide();
+  //app.dialog.alert(JSON.stringify(otvet));
+  app.accordion.close('.items-2');
+    var virt_list = document.getElementById("virt_list"); 
+    virt_list.innerHTML ="";
+    $$('#obw_col').text(otvet[0].length+" найдено");
+	if (otvet[0].length>0){
+	for (var s=0;s<otvet[0].length; s++){
+    chek_item.push({
+        id:otvet[0][s].id
+      });
+      virt_list.innerHTML  +='<tr>'+
+			'<td class="checkbox-cell"><label class="checkbox"><input type="checkbox" value="'+s+'" id="check'+otvet[0][s].id+'" name="3"/><i class="icon-checkbox"></i></label></td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].place+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].proizvoditel+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].model+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].id+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].sn+'</td>'+ 
+			  '<td class="label-cell"><button name="1" class="col button dynamic-popover'+otvet[0][s].id+'" data-id="'+otvet[0][s].id+'" style="height:100%;">:</button></td>'+
+            '</tr>';	
+			 }
+	
+  }
+},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+	},'json');
+  
+	},
+	add: function () {
+	var app = this.$app;
+	  var $$ = this.$$;
+	  var router = this.$router;
+	router.navigate('/add/');
+	},
+    },
+    on: {
+      pageInit: function () {
+	var app = this.$app;
+  var spisok = [];
+	  var $$ = this.$$;
+	  var router = this.$router;
+    var chek_item=[];
+    var place_div2;
+    var all_chip=[];
+    var status_arr=[];
+  var myHeight = $(document).height();
+  myHeight = myHeight -220;
+$$('.scrollable').css({height:myHeight+'px'});
+$$('.name_g').text(app.data.peremen.type.name);
+    var autocompleteDropdownAjax = app.autocomplete.create({
+  inputEl: '#find_chip',
+  openIn: 'dropdown',
+  preloader: true, //enable preloader
+  /* If we set valueProperty to "id" then input value on select will be set according to this property */
+  valueProperty: 'name', //object's "value" property name
+  textProperty: 'name', //object's "text" property name
+  limit: 20, //limit to 20 results
+  dropdownPlaceholderText: 'варианты',
+  source: function (query, render) {
+    var autocomplete = this;
+    var results = [];
+    if (query.length === 0) {
+      render(results);
+      return;
+    }
+    // Show Preloader
+    autocomplete.preloaderShow();
+
+    // Do Ajax request to Autocomplete data
+    app.request({
+      url: 'http://tedeco.kz/equipment/api/tag.php?type='+app.data.peremen.type.id,
+      method: 'GET',
+      dataType: 'json',
+      //send "query" to server. Useful in case you generate response dynamically
+      data: {
+        query: query,
+      },
+      success: function (data) {
+        // Find matched items
+        for (var i = 0; i < data.length; i++) {
+          if (data[i].name.toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(data[i]);
+        }
+        // Hide Preoloader
+        autocomplete.preloaderHide();
+        // Render items by passing array with result items
+        render(results);
+      }
+    });
+  }
+});
+
+
+var today = new Date();
+var calendarModal = app.calendar.create({
+  inputEl: '#demo-calendar-modal3',
+  openIn: 'customModal',
+  toolbarCloseText: 'Закрыть',
+  header: true,
+  footer: true,
+  value: [today],
+  dateFormat: 'yyyy-mm-dd',
+  monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+  monthNamesShort: ['Янв', 'Фев', 'Мрт', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Нояб', 'Дек'],
+  dayNames: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+  dayNamesShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+  closeOnSelect: true,
+  headerPlaceholder: 'Выбрать дату',
+    firstDay: 1,
+  weekendDays: [0, 6],
+  touchmove: true,
+});
+var calendarModal2 = app.calendar.create({
+  inputEl: '#demo-calendar-modal4',
+  openIn: 'customModal',
+  toolbarCloseText: 'Закрыть',
+  header: true,
+  footer: true,
+  value: [today],
+  dateFormat: 'yyyy-mm-dd',
+  monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+  monthNamesShort: ['Янв', 'Фев', 'Мрт', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Нояб', 'Дек'],
+  dayNames: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+  dayNamesShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+  closeOnSelect: true,
+  headerPlaceholder: 'Выбрать дату',
+    firstDay: 1,
+  weekendDays: [0, 6],
+  touchmove: true,
+});
+
+$$('#demo-calendar-modal3').val('');
+$$('#demo-calendar-modal4').val('');
+
+	  if ( app.data.peremen.put=="add" ||  app.data.peremen.put=="clear"){
+	app.tab.show('#tab-2', false);
+	 app.data.peremen.put="home";
+	//app.accordion.open('.items-2');
+	}
+	else
+	
+	  if ( app.data.peremen.put=="edit"){
+	app.tab.show('#tab-2', false);
+	 app.data.peremen.put="home";
+  }
+  var typid = 1;
+  if (app.data.peremen.type.id!=0)typid=app.data.peremen.type.id;
+	  router.refreshPage();
+	  app.preloader.show('blue');
+	app.request.post('http://tedeco.kz/equipment/api/list.php',{type:typid},function(otvet){
+    spisok = otvet[0];
+	app.preloader.hide();
+		var virt_list = document.getElementById("virt_list"); 
+    virt_list.innerHTML ="";
+    $$('#obw_col').text(otvet[0].length+" найдено");
+	if (otvet[0].length>0){
+	for (var s=0;s<otvet[0].length; s++){
+    chek_item.push({
+        id:otvet[0][s].id
+      });
+    virt_list.innerHTML  +='<tr>'+
+			'<td class="checkbox-cell"><label class="checkbox"><input type="checkbox" value="'+s+'" id="check'+otvet[0][s].id+'" name="3"/><i class="icon-checkbox"></i></label></td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].place+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].proizvoditel+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].model+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].id+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].sn+'</td>'+
+			  '<td class="label-cell"><button name="1" class="col button dynamic-popover'+otvet[0][s].id+'" data-id="'+otvet[0][s].id+'" style="height:100%;">:</button></td>'+
+            '</tr>';	
+			 }
+	
+	}
+	app.request.get('http://tedeco.kz/equipment/api/zayavka.php',{zapros:"admin"},function(zapros){
+	if (zapros.length>0){
+    $$('#obw_colz').text(zapros.length+" найдено");
+	var virt_list_zayavka="";
+	for (var s=0;s<zapros.length; s++){
+    virt_list_zayavka+='<tr>'+
+			'<td class="checkbox-cell" id="check_zaya'+s+'"><label class="checkbox"><input type="checkbox"/><i class="icon-checkbox"></i></label></td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].Place+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].EType+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].Equipment+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].status+'</td>'+
+			  '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].id_bd+'</td>'+
+			   '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].data+'</td>'+
+			   '<td class="label-cell"><button name="1" class="col button dynamic-popoverz'+zapros[s].id_bd+'" data-id="'+zapros[s].id_bd+'" style="height:100%;">:</button></td>'+
+            '</tr>';
+}			
+	$$('#virt_list_zayavka').html(virt_list_zayavka);
+	
+	}
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+  },'json');
+
+		app.preloader.show('blue');
+	app.request.get('http://tedeco.kz/equipment/api/add.php',{Etype:app.data.peremen.type.id},function(otvet2){
+	app.preloader.hide();
+	if (otvet2.length>0){
+    var vers_po="";
+    for (var s=0;s <otvet2[6].length; s++)
+      vers_po +='<option value="'+otvet2[6][s].name_version+'">'+otvet2[6][s].name_version+'</option>';	
+  $$('#versiong').html(vers_po);
+     var place_div = document.getElementById("place_optiong"); 
+     var opti="";
+	for (var s=0;s <otvet2[0].length; s++){
+     opti +='<optgroup label="'+otvet2[0][s].company+'">';
+    var massiv = otvet2[0][s].massiv;
+      for (var s1=0;s1 <massiv.length; s1++){
+   opti+='<option value="'+massiv[s1].id_place+'">'+massiv[s1].name_place+'</option>';	
+    place_div2 += '<option value="'+massiv[s1].id_place+'">'+massiv[s1].name_place+'</option>';	
+      }
+    opti +="</optgroup>";
+  }
+  var statusz="";
+  for (var s=0;s <otvet2[7].length; s++)
+  statusz +='<option value="'+otvet2[7][s].name_sob+'">'+otvet2[7][s].name_sob+'</option>';	
+  $$('#statusz').html(statusz);
+  place_div.innerHTML=opti;
+  var place_divz = document.getElementById("place_optionz"); 
+  place_divz.innerHTML=opti;
+  var type_divz = document.getElementById("type_optionz"); 
+	for (var d=0;d <otvet2[1].length; d++){
+                type_divz.innerHTML  +='<option value="'+otvet2[1][d].id_type+'">'+otvet2[1][d].name_type+'</option>';
+  }
+		 var push_tag="";
+     all_chip = otvet2[5];
+for (var tagi=0; tagi<otvet2[5].length; tagi++)
+if (tagi<=5)
+		  push_tag += '<a class="chip color-orange" id="'+otvet2[5][tagi].id_tag+'" name="'+otvet2[5][tagi].name_tag+'"><div class="chip-label">'+otvet2[5][tagi].name_tag+'</div></a>' ;  
+      else
+      break;
+			
+
+	  $$('#chip_div_glav').html(push_tag);
+    $$('.chip').on('click',function(){
+var name_tag = $$(this).attr('name');
+$$('#find_chip').val(name_tag);
+});
+$(function() {
+      $('select').multipleSelect()
+    });
+	}
+
+  
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+	},'json');
+	
+  },'json');
+
+
+
+  var sdf=0,sdfz=0;
+  $$('#type_list').on('click', 'a', function () {
+    var id=$$(this).attr('data-id');
+    var name=$$(this).attr('name');
+    app.panel.close();
+    if (id=="1"){
+      router.navigate('/glav/',{reloadCurrent:true});
+      clearInterval(timerka);
+    clearInterval(); 
+    }
+      else
+{
+      clearInterval(timerka);
+    clearInterval(); 
+      app.data.peremen.type.id=id;
+    app.data.peremen.type.name=name;
+    router.refreshPage();
+    }
+  });
+    $$('#virt_list').on('click', 'button,td,label', function () {
+	var id=$$(this).attr('data-id');
+  var name=$$(this).attr('name');
+  if (name=="1"){
+		var dynamicPopover = app.popover.create({
+  targetEl: 'button.dynamic-popover'+id,
+  content: '<div class="popover">'+
+              '<div class="popover-inner">'+
+                '<div class="list">'+
+        '<ul>'+
+          '<li><a class="list-button item-link" id="qr">Показать QR-код</a></li>'+
+		  '<li><a class="list-button item-link" id="edit">Посмотреть</a></li>'+
+        '</ul>'+
+      '</div>'+
+              '</div>'+
+            '</div>',
+  // Events
+  on: {
+    open: function (popover) {
+	$$('#qr').on('click',function(){
+	dynamicPopover.close();
+	window.open('http://tedeco.kz/equipment/api/qr.php?id='+id , '_blank');
+	});
+	$$('#edit').on('click',function(){
+	dynamicPopover.close();
+	router.navigate('/edit/?id='+id+'#about');
+	});
+    },
+    opened: function (popover) {
+
+    },
+  }
+});
+  dynamicPopover.open();
+  }
+  else
+  if (name == "2")
+  {
+    var value=$$(this).attr('value');
+  
+    if (sdf==1){
+      if ($$('#check'+id).prop('checked')==false)$$('#check'+id).prop('checked',true);
+      else
+      $$('#check'+id).prop('checked',false);
+sdf=0;
+$$('#obw_chek').text('');
+router.navigate('/edit/?id='+id+'#about');
+    }
+    else{
+    sdf = 1;
+    setTimeout(function(){
+    sdf=0;
+    },200);
+
+    if ($$('#check'+id).prop('checked')==true)
+      $$('#check'+id).prop('checked',false);
+    else
+      $$('#check'+id).prop('checked',true);
+var obw_chek = 0;
+      for(var f = 0; f<chek_item.length; f++)
+  if ($$('#check'+chek_item[f].id).prop('checked')==true)
+  obw_chek++;
+  if (obw_chek==0)$$('#obw_chek').text("");else
+  $$('#obw_chek').text(' (Выбрано: '+obw_chek.toString()+')');
+  }
+    
+      }
+
+
+});
+
+var timerka = setInterval(function(){
+  var opens=[]; 
+  for(var f = 0; f<chek_item.length; f++)
+  if ($$('#check'+chek_item[f].id).prop('checked')==true)
+  opens.push({
+    id:chek_item[f].id
+  });
+  if (opens.length==0)$$('#obw_chek').text("");else
+  $$('#obw_chek').text(' (Выбрано: '+opens.length.toString()+')');
+},200);
+$$('#sort_place').on('click',function(){
+app.preloader.show('blue');
+setTimeout(function(){
+if ($$('#sort_place').hasClass('sortable-desc'))sort("Place ASC");
+else
+if ($$('#sort_place').hasClass('sortable-asc'))sort("Place DESC");
+else{
+$$('#sort_place').addClass('sortable-desc');
+sort("Place ASC");
+}
+},50);
+});
+$$('#sort_etype').on('click',function(){
+app.preloader.show('blue');
+setTimeout(function(){
+if ($$('#sort_etype').hasClass('sortable-desc'))sort("EType ASC");
+else
+if ($$('#sort_etype').hasClass('sortable-asc'))sort("EType DESC");
+else{
+$$('#sort_etype').addClass('sortable-desc');
+sort("EType ASC");
+}
+},50);
+});
+$$('#sort_equip').on('click',function(){
+app.preloader.show('blue');
+setTimeout(function(){
+if ($$('#sort_equip').hasClass('sortable-desc'))sort("Equipment ASC");
+else
+if ($$('#sort_equip').hasClass('sortable-asc'))sort("Equipment DESC");
+else{
+$$('#sort_equip').addClass('sortable-desc');
+sort("Equipment ASC");
+}
+},50);
+});
+$$('#sort_id').on('click',function(){
+app.preloader.show('blue');
+setTimeout(function(){
+if ($$('#sort_id').hasClass('sortable-desc'))sort("id ASC");
+else
+if ($$('#sort_id').hasClass('sortable-asc'))sort("id DESC");
+else{
+$$('#sort_id').addClass('sortable-desc');
+sort("id ASC");
+}
+},50);
+});
+
+$$('#sort_sn').on('click',function(){
+  app.preloader.show('blue');
+setTimeout(function(){
+if ($$('#sort_sn').hasClass('sortable-desc'))sort("SN ASC");
+else
+if ($$('#sort_sn').hasClass('sortable-asc'))sort("SN DESC");
+else{
+$$('#sort_sn').addClass('sortable-desc');
+sort("SN ASC");
+}
+},50);
+});
+
+
+
+function sort(sorts){
+  $$('#obw_chek').text("");
+  var s18="";
+    var f21 = $$('#find_chip').val();
+    if (f21 != "")  s18="tag";
+    if ($$('#place_optiong').val()!=""){
+    var place_option = ""+$$('#place_optiong').val();
+    place_option = place_option.split(",");
+    }
+    else
+    var place_option=["all"];
+    var status=["all"];
+    var equip_option=["all"];
+    var version=["all"];
+    var garant=["all"];
+    var pump=["all"];
+    var hdf=["all"];
+    var zkv=["all"];
+    var adimea=["all"];
+    var akku=["all"];
+    var abpm=["all"];
+    var nexadia=["all"];
+    var cardreader=["all"];
+
+    var s1 = "",s2="",s3="",s4="";
+
+    var f1 = $$('#proizvoditel').val();
+    var f2 = $$('#sng').val();
+    var f3 = $$('#model').val();
+
+    s1="id !=0";
+    if (f2 != "")  s2=" and SN = "+f2;
+    if (f1 != "")  s3=" and proizvoditel = "+f3;
+    if (f3 != "")  s4=" and model ="+f3;
+
+    var type_option=app.data.peremen.type.id;
+    var zapros_sql = s1 + s2 + s3 + s4;
+    var sql=[];
+
+    sql.push({
+      status:status,
+      zapros_sql:zapros_sql,
+      place_option:place_option,
+      type_option:type_option,
+      equip_option:equip_option,
+      version:version,
+      pump:pump,
+      garant:garant,
+      hdf:hdf,
+      zkv:zkv,
+      adimea:adimea,
+      akku:akku,
+      abpm:abpm,
+      nexadia:nexadia,
+      cardreader:cardreader
+    });
+    chek_item=[];
+    //app.dialog.alert(sql[0].zapros_sql);
+
+	  app.preloader.show('blue');
+	app.request.post('http://tedeco.kz/equipment/api/list.php',{zapros:"find",sql:JSON.stringify(sql),tag:s18,find:f21,sort:sorts},function(otvet){
+  app.preloader.hide();
+  //app.dialog.alert(JSON.stringify(otvet));
+    var virt_list = document.getElementById("virt_list"); 
+    virt_list.innerHTML ="";
+    $$('#obw_col').text(otvet[0].length+" найдено");
+	if (otvet[0].length>0){
+	for (var s=0;s<otvet[0].length; s++){
+    chek_item.push({
+        id:otvet[0][s].id
+      });
+      virt_list.innerHTML  +='<tr>'+
+			'<td class="checkbox-cell"><label class="checkbox"><input type="checkbox" value="'+s+'" id="check'+otvet[0][s].id+'" name="3"/><i class="icon-checkbox"></i></label></td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].place+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].proizvoditel+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].model+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].id+'</td>'+
+              '<td class="label-cell noselect" data-id = "'+otvet[0][s].id+'" value="'+s+'" name="2">'+otvet[0][s].sn+'</td>'+
+			  '<td class="label-cell"><button name="1" class="col button dynamic-popover'+otvet[0][s].id+'" data-id="'+otvet[0][s].id+'" style="height:100%;">:</button></td>'+
+            '</tr>';	
+			 }
+	
+  }
+},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+	},'json');
+
+};
+
+$$('#all_button').on('click',function(){
+  var vodos = "";
+  if (app.data.peremen.type.id == 2)
+  vodos='<li><a class="list-button item-link" id="vodo_dow">Скачать данные подачи</a></li>' ;else vodos="";
+	var dynamicPopover = app.popover.create({
+  targetEl: 'button.dynamic-popover0',
+  content: '<div class="popover">'+
+              '<div class="popover-inner">'+
+                '<div class="list">'+
+        '<ul>'+vodos+
+          '<li><a class="list-button item-link" id="all_dow">Скачать все QR</a></li>'+
+        '</ul>'+
+      '</div>'+
+              '</div>'+
+            '</div>',
+  // Events
+  on: {
+    open: function (popover) {
+	$$('#all_dow').on('click',function(){
+	dynamicPopover.close();
+  window.open('http://tedeco.kz/equipment/api/qr.php?zapros=all&etype='+app.data.peremen.type.id  , '_blank');
+  });
+  
+  $$('#vodo_dow').on('click',function(){
+	dynamicPopover.close();
+  window.open('http://tedeco.kz/equipment/new/down_monitoring.php'  , '_blank');
+	});
+    },
+    opened: function (popover) {
+
+    },
+  }
+});
+  dynamicPopover.open();
+});
+
+
+$$('#all_buttonz').on('click',function(){
+	var dynamicPopover = app.popover.create({
+  targetEl: 'button.dynamic-popoverz',
+  content: '<div class="popover">'+
+              '<div class="popover-inner">'+
+                '<div class="list">'+
+        '<ul>'+
+          '<li><a class="list-button item-link" id="all_dow_z">Скачать заявки Excell</a></li>'+
+          '<li><a class="list-button item-link" id="dell_z">Удалить</a></li>'+
+          '<li><a class="list-button item-link" id="all_z">Активные зявки</a></li>'+
+          '<li><a class="list-button item-link" id="pod_z">Ожидание подтв.</a></li>'+
+          '<li><a class="list-button item-link" id="arhiv_z">В архиве</a></li>'+
+        '</ul>'+
+      '</div>'+
+              '</div>'+
+            '</div>',
+  // Events
+  on: {
+    open: function (popover) {
+      $$('#all_dow_z').on('click',function(){
+	dynamicPopover.close();
+  var zai=[];
+  var s = $$('#virt_list_zayavka').find('input').each(function() {
+zai.push({
+id:$$(this).attr('value')
+});
+  });
+if (zai.length<=0)app.dialog.alert('Ничего нет');
+else
+{
+   window.open('http://tedeco.kz/equipment/new/zayavka.php?sql='+JSON.stringify(zai), '_blank');
+}
+ // window.open('http://tedeco.kz/equipment/new/zayavka.php', '_blank');
+	});
+  $$('#all_z').on('click',function(){
+  dynamicPopover.close();
+  $$('#zaya_name').text('Активные заявки');
+  app.preloader.show('blue');
+  app.request.get('http://tedeco.kz/equipment/api/zayavka.php',{zapros:"admin"},function(zapros){
+    app.preloader.hide();
+	if (zapros.length>0){
+    $$('#obw_colz').text(zapros.length+" найдено");
+	var virt_list_zayavka="";
+	for (var s=0;s<zapros.length; s++){
+	virt_list_zayavka+='<tr>'+
+			'<td class="checkbox-cell" value="'+zapros[s].id+'"><label class="checkbox"><input value="'+zapros[s].id+'" id="check_zaya'+zapros[s].id+'" type="checkbox"/><i class="icon-checkbox"></i></label></td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].Place+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].EType+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].Equipment+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].status+'</td>'+
+			  '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].id_bd+'</td>'+
+			   '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].data+'</td>'+
+			   '<td class="label-cell"><button name="1" class="col button dynamic-popoverz'+zapros[s].id_bd+'" data-id="'+zapros[s].id_bd+'" style="height:100%;">:</button></td>'+
+            '</tr>';
+}			
+	$$('#virt_list_zayavka').html(virt_list_zayavka);
+	
+	}
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+  },'json');
+  });
+  $$('#pod_z').on('click',function(){
+  dynamicPopover.close();
+ $$('#zaya_name').text('Ожидание подтверждения');
+  app.preloader.show('blue');
+  app.request.get('http://tedeco.kz/equipment/api/zayavka.php',{zapros:"admin",zap:"pod"},function(zapros){
+    app.preloader.hide();
+	if (zapros.length>0){
+    $$('#obw_colz').text(zapros.length+" найдено");
+	var virt_list_zayavka="";
+	for (var s=0;s<zapros.length; s++){
+	virt_list_zayavka+='<tr>'+
+			'<td class="checkbox-cell" value="'+zapros[s].id+'"><label class="checkbox"><input value="'+zapros[s].id+'" id="check_zaya'+zapros[s].id+'" type="checkbox"/><i class="icon-checkbox"></i></label></td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].Place+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].EType+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].Equipment+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].status+'</td>'+
+			  '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].id_bd+'</td>'+
+			   '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].data+'</td>'+
+			   '<td class="label-cell"><button name="1" class="col button dynamic-popoverz'+zapros[s].id_bd+'" data-id="'+zapros[s].id_bd+'" style="height:100%;">:</button></td>'+
+            '</tr>';
+}			
+	$$('#virt_list_zayavka').html(virt_list_zayavka);
+	
+	}
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+  },'json');
+  });
+  $$('#arhiv_z').on('click',function(){
+  dynamicPopover.close();
+  $$('#zaya_name').text('Архивные');
+  app.preloader.show('blue');
+  app.request.get('http://tedeco.kz/equipment/api/zayavka.php',{zapros:"admin",zap:"arhiv"},function(zapros){
+    app.preloader.hide();
+	if (zapros.length>0){
+    $$('#obw_colz').text(zapros.length+" найдено");
+	var virt_list_zayavka="";
+	for (var s=0;s<zapros.length; s++){
+	virt_list_zayavka+='<tr>'+
+			'<td class="checkbox-cell" value="'+zapros[s].id+'"><label class="checkbox"><input value="'+zapros[s].id+'" id="check_zaya'+zapros[s].id+'" type="checkbox"/><i class="icon-checkbox"></i></label></td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].Place+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].EType+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].Equipment+'</td>'+
+              '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].status+'</td>'+
+			  '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].id_bd+'</td>'+
+			   '<td class="label-cell noselect" value="'+zapros[s].id+'" data-id="'+zapros[s].id_bd+'">'+zapros[s].data+'</td>'+
+			   '<td class="label-cell"><button name="1" class="col button dynamic-popoverz'+zapros[s].id_bd+'" data-id="'+zapros[s].id_bd+'" style="height:100%;">:</button></td>'+
+            '</tr>';
+}			
+	$$('#virt_list_zayavka').html(virt_list_zayavka);
+	
+	}
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+  },'json');
+  });
+  $$('#dell_z').on('click',function(){
+	dynamicPopover.close();
+  var zai=[];
+  var s = $$('#virt_list_zayavka').find('input').each(function() {
+if ($$(this).prop('checked')==true)
+zai.push({
+id:$$(this).attr('value')
+});
+  });
+if (zai.length<=0)app.dialog.alert('Ничего не выбрано');
+else
+{
+  app.preloader.show('blue');
+	app.request.get('http://tedeco.kz/equipment/api/zayavka.php',{zapros:"admin",sql:JSON.stringify(zai),zap:"dell"},function(zai_del){
+  app.preloader.hide();
+if (zai_del[0].message=="ok")app.dialog.alert('Успешно удалено',function(){
+  router.refreshPage();
+});
+  },'json');
+}
+
+	});
+    },
+    opened: function (popover) {
+
+    },
+  }
+});
+  dynamicPopover.open();
+});
+
+$$('#virt_list_zayavka').on('click', 'button,td,label', function () {
+	var name=$$(this).attr('name');
+	var id=$$(this).attr('data-id');
+
+  if (name=="1"){
+    var dynamicPopover = app.popover.create({
+  targetEl: 'button.dynamic-popoverz'+id,
+  content: '<div class="popover">'+
+              '<div class="popover-inner">'+
+                '<div class="list">'+
+        '<ul>'+
+          '<li><a class="list-button item-link" id="arvih">В архив</a></li>'+
+		  '<li><a class="list-button item-link" id="edit">Посмотреть</a></li>'+
+        '</ul>'+
+      '</div>'+
+              '</div>'+
+            '</div>',
+  // Events
+  on: {
+    open: function (popover) {
+	$$('#arvih').on('click',function(){
+	dynamicPopover.close();
+	});
+	$$('#edit').on('click',function(){
+	dynamicPopover.close();
+	router.navigate('/edit/?id='+id+'#about');
+	});
+    },
+    opened: function (popover) {
+
+    },
+  }
+});
+  dynamicPopover.open();
+  }
+  else
+  {
+    var value=$$(this).attr('value');
+    if (sdfz==1){
+sdfz=0;
+router.navigate('/history/?id='+value);
+    }
+    else{
+    sdfz = 1;
+    setTimeout(function(){
+    sdfz=0;
+    },200);
+
+  }
+    
+      }
+
+  
+});
+	
+	$$('.chip').on('click',function(){
+	$$('#find_chip').val($$(this).text());
+	$$('#ship_text').text("");
+	});
+	
+	$$('#company').on('click',function(){
+	router.navigate('/company/',{animate:false});
+	app.panel.close('right');
+	});
+
+
+$$('#per').on('click',function(){
+  var opens=[]; 
+  for(var f = 0; f<chek_item.length; f++)
+  if ($$('#check'+chek_item[f].id).prop('checked')==true)
+  opens.push({
+    id:chek_item[f].id
+  });
+  if (opens.length<=0)
+app.dialog.alert("Ничего не выбрано");
+else
+app.dialog.create({
+ title: '<div style="text-align: center;"><font color="red">Перемещение</font></div>',
+ text:"",
+content:'<div class="list no-hairlines-md">'+
+  '<ul>'+
+                              '<li class="item-content item-input item-input-outline">'+
+                            '<div class="item-inner">'+
+                             ' <div class="item-title">Куда</div>'+
+                                 '                           <div class="item-input-wrap input-dropdown-wrap">'+
+          '<select placeholder="" id="place_option2">'+place_div2+
+         ' </select>'+
+       ' </div>'+
+                           ' </div>'+
+                          '</li>'+
+  '</ul>'+
+'</div>',
+on: {
+    opened: function () {
+    }
+  },
+ buttons: [
+ {
+        text: 'Отмена',
+		 onClick: function() {
+		 }
+      },
+		{
+        text: 'Переместить',
+		onClick: function(){
+    app.preloader.show('blue');
+		app.request.post('http://tedeco.kz/equipment/api/pere_ob.php',{kuda:$$('#place_option2').val(),zapros:"pere",spisok:JSON.stringify(opens),id:app.data.user.id},function(otvet){                                          							
+app.preloader.hide();
+if (otvet[0].message=="ok")
+{
+app.dialog.alert('Перемещено',function(){
+  app.data.peremen.put="edit";
+  app.preloader.show('blue');
+  sort("");
+});
+}
+else
+{
+  app.dialog.alert('Некоторые были не перемещены, так как они уже находятся там',function(){
+  app.data.peremen.put="edit";
+  app.preloader.show('blue');
+  sort("");
+});
+
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+
+		}
+      }
+],
+}).open(); 
+});
+
+$$('[name="demo-checkbox-movies"]').on('change', function (e) {
+  if (e.target.checked) {
+  $$('#obw_chek').text(' (Выбрано: '+chek_item.length.toString()+')');
+  }
+  else
+  $$('#obw_chek').text('');
+  
+});
+
+$$('#chip_ewe').on('click',function(){
+  var tegs ="";
+  for (var s=0;s<all_chip.length; s++)
+  tegs+='<p><a href="#" class="button button-fill color-orange link popup-close" value="5" name="'+all_chip[s].name_tag+'">'+all_chip[s].name_tag+'</a></p>';
+  var dynamicPopup = app.popup.create({
+  content: '<div class="popup pop-info-action">'+
+	'<div class="view popup-view">'+
+		'<div class="page">'+
+			'<div class="navbar">'+
+				'<div class="navbar-inner" style="background-color:#222c3c;">'+
+					'<div class="title">Все теги</div>'+
+					'<div class="right"><a class="link popup-close" href="#">Закрыть</a></div>'+
+				'</div>'+
+			'</div>'+
+			'<div class="page-content block"><br>'+tegs+
+			'<br></div>'+
+		'</div>'+
+	'</div>'+
+'</div>',
+  // Events
+  on: {
+    open: function (popup) {
+     
+    },
+    opened: function (popup) {
+      $$('a').on('click',function(){
+      var name = $$(this).attr('name');
+      if ($$(this).attr('value')=="5")
+        $$('#find_chip').val(name);
+      });
+    },
+  }
+});
+dynamicPopup.open();
+});
+
+
+$$('.accordion-item-toggle').on('click',function(){
+  if ($$('#py_optiong_div').html()=="") {
+            $$('#inst_date_div').html('<select placeholder="" id="inst_date_lv">'+
+              '<option value="0"></option>'+
+              '<option value=">">></option>'+
+              '<option value="<"><</option>'+
+            '</select>');
+
+            $$('#wtcg_div').html('<select placeholder="" id="wtcg_lv">'+
+              '<option value="0"></option>'+
+              '<option value=">">></option>'+
+              '<option value="<"><</option>'+
+              '</select>');
+
+              var py_option_div = document.getElementById("py_option_div"); 
+  py_option_div.innerHTML  ='<select placeholder="" id="py_optiong">'+
+            '<option value="0"></option>'+
+            '<option value="2000">2000</option>';
+          '</select>';
+          }
+});
+
+
+
+
+
+
+      },
+    },
+  };
+  
+</script>

@@ -1,0 +1,744 @@
+<style>
+  .areas{
+  height:100%;
+  width:100%;
+  border:solid 1px orange;
+  }
+  
+  </style>
+  <template>
+    <div class="page" data-name="home">
+      <!-- Top Navbar -->
+      <div class="navbar">
+        <div class="navbar-inner sliding">
+       <div class="left"  @Click="backz">
+            <a href="#" class="link text-color-white">
+              <i class="icon icon-back"></i><span class="ios-only">Назад</span>
+            </a>
+        </div>
+       <div class="title"><font color="white">Заявки</font></div>
+        </div>
+      </div>
+
+      <div class="toolbar tabbar tabbar-labels toolbar-bottom" id="toolbat">
+          <div class="toolbar-inner">
+            <a href="#tab-1" class="tab-link tab-link-active">
+              <!-- Different icons for iOS and MD themes -->
+              <i class="icon material-icons">email</i>
+              <!-- Label text -->
+              <span class="tabbar-label">Мои</span>
+            </a>
+            <a href="#tab-2" class="tab-link">
+              <i class="icon material-icons">today</i>
+              <span class="tabbar-label">Все</span>
+            </a>
+            <a href="#tab-3" class="tab-link">
+              <i class="icon material-icons">person</i>
+              <span class="tabbar-label">Сотруд.</span>
+            </a>
+            <a href="#tab-4" class="tab-link">
+              <i class="icon material-icons">report</i>
+              <span class="tabbar-label">Сервис. служ.</span>
+            </a>
+          </div>
+        </div>
+        <div class="tabs" id ="tabs">
+            <div class="page-content tab tab-active" id="tab-1">
+                    <div class="list accordion-list">
+                        <ul>
+                          <li class="accordion-item"><a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Новые заявки</div>
+                              </div></a>
+                            <div class="accordion-item-content">
+                              <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                          <table>
+                                            <thead>
+                                              <tr>
+                                                <th class="label-cell">№</th>
+                                    <th class="label-cell">Название</th>
+                                                <th class="numeric-cell">Дата подачи.</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody id = "virt_comp">
+                                            </tbody>
+                                          </table>
+                                      </div>
+                            </div>
+                          </li>
+                        <li class="accordion-item"><a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Активные заявки</div>
+                              </div></a>
+                            <div class="accordion-item-content">
+                              <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                          <table>
+                                            <thead>
+                                              <tr>
+                                                <th class="label-cell">№</th>
+                                    <th class="label-cell">Название</th>
+                                                <th class="numeric-cell">Дата подачи.</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody id = "virt_active">
+                                            </tbody>
+                                          </table>
+                                      </div>
+                            </div>
+                          </li>
+                        <li class="accordion-item virt_pod"><a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Ожидание подтверждения</div>
+                              </div></a>
+                            <div class="accordion-item-content">
+                              <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                          <table>
+                                            <thead>
+                                              <tr>
+                                                <th class="label-cell">№</th>
+                                    <th class="label-cell">Название</th>
+                                    <th class="label-cell">ФИО</th>
+                                                <th class="numeric-cell">Дата подачи.</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody id = "virt_pod">
+                                            </tbody>
+                                          </table>
+                                      </div>
+                            </div>
+                          </li>
+                        <li class="accordion-item"><a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Архив</div>
+                              </div></a>
+                            <div class="accordion-item-content">
+                              <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                          <table>
+                                            <thead>
+                                              <tr>
+                                                <th class="label-cell">№</th>
+                                    <th class="label-cell">Название</th>
+                                                <th class="numeric-cell">Дата подачи.</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody id = "virt_arhive">
+                                            </tbody>
+                                          </table>
+                                      </div>
+                            </div>
+                          </li>
+                              </ul>
+                </div>
+              </div>
+              <div class="page-content tab" id="tab-2">
+                  <div class="list accordion-list">
+                      <ul>
+                        <li class="accordion-item"><a href="#" class="item-content item-link">
+                            <div class="item-inner">
+                              <div class="item-title">Новые заявки</div>
+                            </div></a>
+                          <div class="accordion-item-content">
+                            <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                        <table>
+                                          <thead>
+                                            <tr>
+                                              <th class="label-cell">№</th>
+                                  <th class="label-cell">Название</th>
+                                  <th class="label-cell">ФИО</th>
+                                              <th class="numeric-cell">Дата подачи.</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody id = "virt_comp_all">
+                                          </tbody>
+                                        </table>
+                                    </div>
+                          </div>
+                        </li>
+                      <li class="accordion-item"><a href="#" class="item-content item-link">
+                            <div class="item-inner">
+                              <div class="item-title">Активные заявки</div>
+                            </div></a>
+                          <div class="accordion-item-content">
+                            <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                        <table>
+                                          <thead>
+                                            <tr>
+                                              <th class="label-cell">№</th>
+                                  <th class="label-cell">Название</th>
+                                  <th class="label-cell">ФИО</th>
+                                              <th class="numeric-cell">Дата подачи.</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody id = "virt_active_all">
+                                          </tbody>
+                                        </table>
+                                    </div>
+                          </div>
+                        </li>
+                      <li class="accordion-item"><a href="#" class="item-content item-link">
+                            <div class="item-inner">
+                              <div class="item-title">Архив</div>
+                            </div></a>
+                          <div class="accordion-item-content">
+                            <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                        <table>
+                                          <thead>
+                                            <tr>
+                                              <th class="label-cell">№</th>
+                                  <th class="label-cell">Название</th>
+                                  <th class="label-cell">ФИО</th>
+                                              <th class="numeric-cell">Дата подачи.</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody id = "virt_arhive_all">
+                                          </tbody>
+                                        </table>
+                                    </div>
+                          </div>
+                        </li>
+                            </ul>
+              </div>
+                </div>
+                <div class="page-content tab" id="tab-3">
+                    <div class="list accordion-list">
+                        <ul>
+                          <li class="accordion-item"><a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Новые заявки</div>
+                              </div></a>
+                            <div class="accordion-item-content">
+                              <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                          <table>
+                                            <thead>
+                                              <tr>
+                                                <th class="label-cell">№</th>
+                                    <th class="label-cell">Название</th>
+                                    <th class="label-cell">ФИО</th>
+                                                <th class="numeric-cell">Дата подачи.</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody id = "virt_comp_sot">
+                                            </tbody>
+                                          </table>
+                                      </div>
+                            </div>
+                          </li>
+                        <li class="accordion-item"><a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Активные заявки</div>
+                              </div></a>
+                            <div class="accordion-item-content">
+                              <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                          <table>
+                                            <thead>
+                                              <tr>
+                                                <th class="label-cell">№</th>
+                                    <th class="label-cell">Название</th>
+                                    <th class="label-cell">ФИО</th>
+                                                <th class="numeric-cell">Дата подачи.</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody id = "virt_active_sot">
+                                            </tbody>
+                                          </table>
+                                      </div>
+                            </div>
+                          </li>
+                        <li class="accordion-item"><a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Архив</div>
+                              </div></a>
+                            <div class="accordion-item-content">
+                              <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                          <table>
+                                            <thead>
+                                              <tr>
+                                                <th class="label-cell">№</th>
+                                    <th class="label-cell">Название</th>
+                                    <th class="label-cell">ФИО</th>
+                                                <th class="numeric-cell">Дата подачи.</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody id = "virt_arhive_sot">
+                                            </tbody>
+                                          </table>
+                                      </div>
+                            </div>
+                          </li>
+                              </ul>
+                </div>
+                  </div>
+
+                  <div class="page-content tab" id="tab-4">
+                    <div class="list accordion-list">
+                        <ul>
+                          <li class="accordion-item"><a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Новые заявки</div>
+                              </div></a>
+                            <div class="accordion-item-content">
+                              <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                          <table>
+                                            <thead>
+                                              <tr>
+                                                <th class="label-cell">№</th>
+                                    <th class="label-cell">Название</th>
+                                    <th class="label-cell">ФИО</th>
+                                                <th class="numeric-cell">Дата подачи.</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody id = "virt_comp_ing">
+                                            </tbody>
+                                          </table>
+                                      </div>
+                            </div>
+                          </li>
+                        <li class="accordion-item"><a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Активные заявки</div>
+                              </div></a>
+                            <div class="accordion-item-content">
+                              <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                          <table>
+                                            <thead>
+                                              <tr>
+                                                <th class="label-cell">№</th>
+                                    <th class="label-cell">Название</th>
+                                    <th class="label-cell">ФИО</th>
+                                                <th class="numeric-cell">Дата подачи.</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody id = "virt_active_ing">
+                                            </tbody>
+                                          </table>
+                                      </div>
+                            </div>
+                          </li>
+
+                         <!--<li class="accordion-item virt_pod_ing"><a href="#" class="item-content item-link">
+                            <div class="item-inner">
+                              <div class="item-title">Ожидание подтверждения</div>
+                            </div></a>
+                          <div class="accordion-item-content">
+                            <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                        <table>
+                                          <thead>
+                                            <tr>
+                                              <th class="label-cell">№</th>
+                                  <th class="label-cell">Название</th>
+                                  <th class="label-cell">ФИО</th>
+                                              <th class="numeric-cell">Дата подачи.</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody id = "virt_pod_ing">
+                                          </tbody>
+                                        </table>
+                                    </div>
+                          </div>
+                        </li>-->
+                          
+                        <li class="accordion-item"><a href="#" class="item-content item-link">
+                          <div class="item-inner">
+                            <div class="item-title">Архив</div>
+                          </div></a>
+                        <div class="accordion-item-content">
+                          <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                      <table>
+                                        <thead>
+                                          <tr>
+                                            <th class="label-cell">№</th>
+                                <th class="label-cell">Название</th>
+                                <th class="label-cell">ФИО</th>
+                                            <th class="numeric-cell">Дата подачи.</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id = "virt_arhive_ing">
+                                        </tbody>
+                                      </table>
+                                  </div>
+                        </div>
+                      </li>
+                        
+                              </ul>
+                </div>
+                  </div>
+        </div>
+
+      <div class="page-content" id="pages">
+          <div class="list accordion-list">
+              <ul>
+                <li class="accordion-item"><a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title">Новые заявки</div>
+                    </div></a>
+                  <div class="accordion-item-content">
+                    <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                <table>
+                                  <thead>
+                                    <tr>
+                                      <th class="label-cell">№</th>
+                          <th class="label-cell">Название</th>
+                                      <th class="numeric-cell">Дата подачи.</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id = "virt_comp_g">
+                                  </tbody>
+                                </table>
+                            </div>
+                  </div>
+                </li>
+              <li class="accordion-item"><a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title">Активные заявки</div>
+                    </div></a>
+                  <div class="accordion-item-content">
+                    <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                <table>
+                                  <thead>
+                                    <tr>
+                                      <th class="label-cell">№</th>
+                          <th class="label-cell">Название</th>
+                                      <th class="numeric-cell">Дата подачи.</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id = "virt_active_g">
+                                  </tbody>
+                                </table>
+                            </div>
+                  </div>
+                </li>
+              <li class="accordion-item"><a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title">Ожидание подтверждения</div>
+                    </div></a>
+                  <div class="accordion-item-content">
+                    <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                <table>
+                                  <thead>
+                                    <tr>
+                                      <th class="label-cell">№</th>
+                          <th class="label-cell">Название</th>
+                                      <th class="numeric-cell">Дата подачи.</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id = "virt_pod_g">
+                                  </tbody>
+                                </table>
+                            </div>
+                  </div>
+                </li>
+              <li class="accordion-item"><a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title">Архив</div>
+                    </div></a>
+                  <div class="accordion-item-content">
+                    <div class="data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                                <table>
+                                  <thead>
+                                    <tr>
+                                      <th class="label-cell">№</th>
+                          <th class="label-cell">Название</th>
+                                      <th class="numeric-cell">Дата подачи.</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id = "virt_arhive_g">
+                                  </tbody>
+                                </table>
+                            </div>
+                  </div>
+                </li>
+                    </ul>
+      </div>
+      </div>
+
+    </div>
+  </template>
+  <script>
+  export default {
+   methods: {
+    backz: function () {
+      var app = this.$app;
+      var $$ = this.$$;
+      var router = this.$router;
+      app.panel.enableSwipe('left');
+      router.navigate('/',{reloadAll:true});
+    },
+      },
+  on: {
+        pageInit: function () {
+      var app = this.$app;
+      var $$ = this.$$;
+      var router = this.$router;
+      $$(".virt_pod").hide();
+      if (app.data.user.roles=="2") {
+        $$('#toolbat').hide();
+        $$('#tabs').hide();
+        $$('#pages').show();
+      }
+      else
+      {
+      if (app.data.user.roles=="3" && app.data.user.glav=="1")
+      $$(".virt_pod").show();
+      else
+      {
+        $$(".virt_pod").hide();
+        $$('#toolbat').show(); 
+        $$('#tabs').show();
+        $$('#pages').hide();
+      }
+    }
+       app.panel.enableSwipe('');
+       app.preloader.show('blue');
+  app.request.get('https://tedeco.kz/equipment/api/zayavka.php',{zapros:'list',id:app.data.user.id,glav:app.data.user.glav,roles:app.data.user.roles},function(data){                                          							
+  app.preloader.hide();
+  if (app.data.user.roles=="2"){
+    if (data.length>=1){
+  var virt_comp = document.getElementById("virt_comp_g"); 
+  var virt_active = document.getElementById("virt_active_g"); 
+  var virt_arhive= document.getElementById("virt_arhive_g"); 
+  var virt_pod= document.getElementById("virt_pod_g"); 
+  virt_comp.innerHTML="";
+  virt_active.innerHTML="";
+  virt_arhive.innerHTML=""; 
+  virt_pod.innerHTML="";
+    for (var s=0;s<data.length; s++){
+    if (data[s].active==="0"){
+      virt_comp.innerHTML  +='<tr style="height:70px;" data-id="['+data[s].id+','+data[s].id_db+']">'+
+                           '<td class="label-cell">'+data[s].id+'</td>'+
+                            '<td class="label-cell"><font color="gray">ID: </font>'+data[s].id_db+'<br><font color="gray">Версия: </font>'+data[s].name+'<br><font color="gray">Расп.: </font>'+data[s].place+'</td>'+
+                '<td class="numeric-cell">'+data[s].data+'</td>'+
+                          '</tr>';
+              }
+              else
+              if (data[s].active==="5"){
+              virt_arhive.innerHTML  +='<tr style="height:70px;" data-id="['+data[s].id+','+data[s].id_db+']">'+
+                '<td class="label-cell" style="width:10%">'+data[s].id+'</td>'+
+                '<td class="label-cell"><font color="gray">ID: </font>'+data[s].id_db+'<br><font color="gray">Версия: </font>'+data[s].name+'<br><font color="gray">Расп.: </font>'+data[s].place+'</td>'+
+                '<td class="numeric-cell" style="width:50%">'+data[s].data+'</td>'+
+                          '</tr>';
+              }
+              else if(app.data.user.roles==="3" && data[s].active==="2" || app.data.user.roles==="3" && data[s].active==="3" || app.data.user.roles==="2" && data[s].active==="2" || app.data.user.roles==="2" && data[s].active==="3") {
+                virt_pod.innerHTML  +='<tr style="height:70px;" value="'+data[s].comment+'" name="'+data[s].active+'" data-id="['+data[s].id+','+data[s].id_db+']">'+
+                  '<td class="label-cell">'+data[s].id+'</td>'+
+                  '<td class="label-cell"><font color="gray">ID: </font>'+data[s].id_db+'<br><font color="gray">Версия: </font>'+data[s].name+'<br><font color="gray">Расп.: </font>'+data[s].place+'</td>'+
+                '<td class="numeric-cell">'+data[s].data+'</td>'+
+                          '</tr>';
+              }
+              else if (/*app.data.user.roles==="2" && data[s].active==="4" && app.data.user.glav=="1"*/ data[s].active==="4")
+              virt_pod.innerHTML  +='<tr style="height:70px;" value="'+data[s].comment+'" name="'+data[s].active+'" data-id="['+data[s].id+','+data[s].id_db+']">'+
+                '<td class="label-cell">'+data[s].id+'</td>'+
+                '<td class="label-cell"><font color="gray">ID: </font>'+data[s].id_db+'<br><font color="gray">Версия: </font>'+data[s].name+'<br><font color="gray">Расп.: </font>'+data[s].place+'</td>'+
+                '<td class="numeric-cell">'+data[s].data+'</td>'+
+                          '</tr>';
+              else
+              {
+      virt_active.innerHTML  +='<tr style="height:70px;" data-id="['+data[s].id+','+data[s].id_db+']">'+
+        '<td class="label-cell">'+data[s].id+'</td>'+
+        '<td class="label-cell"><font color="gray">ID: </font>'+data[s].id_db+'<br><font color="gray">Версия: </font>'+data[s].name+'<br><font color="gray">Расп.: </font>'+data[s].place+'</td>'+
+                '<td class="numeric-cell">'+data[s].data+'</td>'+
+                          '</tr>';
+              }
+  
+              
+  }
+  }
+   
+  }
+  else
+  {
+  if (data[0].moi.length>=1){
+  var virt_comp = document.getElementById("virt_comp"); 
+  virt_comp.innerHTML="";
+  var virt_active = document.getElementById("virt_active"); 
+  virt_active.innerHTML="";
+  var virt_arhive= document.getElementById("virt_arhive");
+  virt_arhive.innerHTML=""; 
+  var virt_pod = document.getElementById("virt_pod"); 
+  virt_pod.innerHTML="";
+    for (var s=0;s<data[0].moi.length; s++){
+    if (data[0].moi[s].active==="0"){
+      virt_comp.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].moi[s].id+','+data[0].moi[s].id_db+']">'+
+                            '<td class="label-cell">'+data[0].moi[s].id+'</td>'+
+                            '<td class="label-cell"><font color="gray">ID: </font>'+data[0].moi[s].id_db+'<br><font color="gray">Версия: </font>'+data[0].moi[s].name+'<br><font color="gray">Расп.: </font>'+data[0].moi[s].place+'</td>'+
+                '<td class="numeric-cell">'+data[0].moi[s].data+'</td>'+
+                          '</tr>';
+              }
+              else
+              if (data[0].moi[s].active==="5" || data[0].moi[s].active==="4"){
+              virt_arhive.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].moi[s].id+','+data[0].moi[s].id_db+']">'+
+                '<td class="label-cell">'+data[0].moi[s].id+'</td>'+
+                            '<td class="label-cell"><font color="gray">ID: </font>'+data[0].moi[s].id_db+'<br><font color="gray">Версия: </font>'+data[0].moi[s].name+'<br><font color="gray">Расп.: </font>'+data[0].moi[s].place+'</td>'+
+                '<td class="numeric-cell">'+data[0].moi[s].data+'</td>'+
+                          '</tr>';
+              }
+              else if(app.data.user.roles==="3" && data[0].moi[s].active==="2" || app.data.user.roles==="3" && data[0].moi[s].active==="3") {
+                virt_pod.innerHTML  +='<tr style="height:70px;" value="'+data[0].moi[s].comment+'" name="'+data[0].moi[s].active+'" data-id="['+data[0].moi[s].id+','+data[0].moi[s].id_db+']">'+
+                  '<td class="label-cell">'+data[0].moi[s].id+'</td>'+
+                            '<td class="label-cell"><font color="gray">ID: </font>'+data[0].moi[s].id_db+'<br><font color="gray">Версия: </font>'+data[0].moi[s].name+'<br><font color="gray">Расп.: </font>'+data[0].moi[s].place+'</td>'+
+                '<td class="label-cell">'+data[0].moi[s].fio+'</td>'+
+                '<td class="numeric-cell">'+data[0].moi[s].data+'</td>'+
+                          '</tr>';
+              }
+              else
+              if (data[0].moi[s].active!="4" && data[0].moi[s].active!="5"){
+      virt_active.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].moi[s].id+','+data[0].moi[s].id_db+']">'+
+        '<td class="label-cell">'+data[0].moi[s].id+'</td>'+
+                            '<td class="label-cell"><font color="gray">ID: </font>'+data[0].moi[s].id_db+'<br><font color="gray">Версия: </font>'+data[0].moi[s].name+'<br><font color="gray">Расп.: </font>'+data[0].moi[s].place+'</td>'+
+                '<td class="numeric-cell">'+data[0].moi[s].data+'</td>'+
+                          '</tr>';
+              }
+  
+              
+  }
+  }
+  if (data[0].all.length>=1){
+  var virt_comp_all = document.getElementById("virt_comp_all"); 
+  var virt_active_all = document.getElementById("virt_active_all"); 
+  var virt_arhive_all= document.getElementById("virt_arhive_all"); 
+    for (var s=0;s<data[0].all.length; s++){
+    if (data[0].all[s].active==="0"){
+      virt_comp_all.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].all[s].id+','+data[0].all[s].id_db+']">'+
+                            '<td class="label-cell" style="width:10%">'+data[0].all[s].id+'</td>'+
+                            '<td class="label-cell"><font color="gray">ID: </font>'+data[0].all[s].id_db+'<br><font color="gray">Версия: </font>'+data[0].all[s].name+'<br><font color="gray">Расп.: </font>'+data[0].all[s].place+'</td>'+
+                '<td class="label-cell" style="width:25%">'+data[0].all[s].fio+'</td>'+
+                '<td class="numeric-cell" style="width:40%">'+data[0].all[s].data+'</td>'+
+                          '</tr>';
+              }
+              else
+              if (data[0].all[s].active==="5" || data[0].all[s].active==="4"){
+              virt_arhive_all.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].all[s].id+','+data[0].all[s].id_db+']">'+
+                            '<td class="label-cell" style="width:10%">'+data[0].all[s].id_db+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].all[s].name+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].all[s].fio+'</td>'+
+                '<td class="numeric-cell" style="width:40%">'+data[0].all[s].data+'</td>'+
+                          '</tr>';
+              }
+              else
+              if (data[0].all[s].active!="4" && data[0].all[s].active!="5"){
+      virt_active_all.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].all[s].id+','+data[0].all[s].id_db+']">'+
+                            '<td class="label-cell" style="width:10%">'+data[0].all[s].id_db+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].all[s].name+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].all[s].fio+'</td>'+
+                '<td class="numeric-cell" style="width:40%">'+data[0].all[s].data+'</td>'+
+                          '</tr>';
+              }
+  
+              
+  }
+  }
+  if (data[0].sot.length>=1){
+  var virt_comp_sot = document.getElementById("virt_comp_sot"); 
+  var virt_active_sot = document.getElementById("virt_active_sot"); 
+  var virt_arhive_sot= document.getElementById("virt_arhive_sot"); 
+    for (var s=0;s<data[0].sot.length; s++){
+    if (data[0].sot[s].active==="0"){
+      virt_comp_sot.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].sot[s].id+','+data[0].sot[s].id_db+']">'+
+                            '<td class="label-cell" style="width:10%">'+data[0].sot[s].id_db+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].sot[s].name+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].sot[s].fio+'</td>'+
+                '<td class="numeric-cell" style="width:40%">'+data[0].sot[s].data+'</td>'+
+                          '</tr>';
+              }
+              else
+              if (data[0].sot[s].active==="5" || data[0].sot[s].active==="4"){
+              virt_arhive_sot.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].sot[s].id+','+data[0].sot[s].id_db+']">'+
+                            '<td class="label-cell" style="width:10%">'+data[0].sot[s].id_db+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].sot[s].name+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].sot[s].fio+'</td>'+
+                '<td class="numeric-cell" style="width:40%">'+data[0].sot[s].data+'</td>'+
+                          '</tr>';
+              }
+              else
+              if (data[0].sot[s].active!="4" && data[0].sot[s].active!="5"){
+      virt_active_sot.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].sot[s].id+','+data[0].sot[s].id_db+']">'+
+                            '<td class="label-cell" style="width:10%">'+data[0].sot[s].id_db+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].sot[s].name+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].sot[s].fio+'</td>'+
+                '<td class="numeric-cell" style="width:40%">'+data[0].sot[s].data+'</td>'+
+                          '</tr>';
+              }
+  
+              
+  }
+  }
+  if (data[0].ing.length>=1){
+  var virt_comp_ing = document.getElementById("virt_comp_ing"); 
+  var virt_active_ing = document.getElementById("virt_active_ing"); 
+  var virt_pod_ing = document.getElementById("virt_pod"); 
+  var virt_arhive_ing = document.getElementById("virt_arhive_ing");
+    for (var s=0;s<data[0].ing.length; s++){
+    if (data[0].ing[s].active==="0"){
+      virt_comp_ing.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].ing[s].id+','+data[0].ing[s].id_db+']">'+
+                            '<td class="label-cell" style="width:10%">'+data[0].ing[s].id_db+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].ing[s].name+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].ing[s].fio+'</td>'+
+                '<td class="numeric-cell" style="width:40%">'+data[0].ing[s].data+'</td>'+
+                          '</tr>';
+              }
+              else
+              if (data[0].ing[s].active==="5" && data[0].ing[s].active==="4"){
+                virt_arhive_ing.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].ing[s].id+','+data[0].ing[s].id_db+']">'+
+                            '<td class="label-cell" style="width:10%">'+data[0].ing[s].id_db+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].ing[s].name+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].ing[s].fio+'</td>'+
+                '<td class="numeric-cell" style="width:40%">'+data[0].ing[s].data+'</td>'+
+                          '</tr>';
+              }
+              else if(data[0].ing[s].active==="2") {
+                virt_pod_ing.innerHTML  +='<tr style="height:70px;" value="'+data[0].ing[s].comment+'" name="'+data[0].ing[s].active+'" data-id="['+data[0].ing[s].id+','+data[0].ing[s].id_db+']">'+
+                  '<td class="label-cell">'+data[0].ing[s].id+'</td>'+
+                            '<td class="label-cell"><font color="gray">ID: </font>'+data[0].ing[s].id_db+'<br><font color="gray">Версия: </font>'+data[0].ing[s].name+'<br><font color="gray">Расп.: </font>'+data[0].ing[s].place+'</td>'+
+                '<td class="label-cell">'+data[0].ing[s].fio+'</td>'+
+                '<td class="numeric-cell">'+data[0].ing[s].data+'</td>'+
+                          '</tr>';
+              }
+              else
+              if (data[0].ing[s].active!="5" && data[0].ing[s].active!="4"){
+                virt_active_ing.innerHTML  +='<tr style="height:70px;" data-id="['+data[0].ing[s].id+','+data[0].ing[s].id_db+']">'+
+                            '<td class="label-cell" style="width:10%">'+data[0].ing[s].id_db+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].ing[s].name+'</td>'+
+                            '<td class="label-cell" style="width:25%">'+data[0].ing[s].fio+'</td>'+
+                '<td class="numeric-cell" style="width:40%">'+data[0].ing[s].data+'</td>'+
+                          '</tr>';
+              }
+  
+              
+  }
+  }
+  }
+  },function(){
+  app.preloader.hide();
+  app.dialog.alert('Нет подключения к интернету');
+  },'json');
+  
+  $$('#virt_comp_g, #virt_comp, #virt_comp_all, #virt_comp_sot, #virt_comp_ing').on('click','tr',function(){
+    var js = JSON.parse($$(this).attr('data-id'));
+    var id = js[0];
+  var id_db = js[1];
+  router.navigate('/history/?id='+id+"&stat=new&id_db="+id_db);
+  });
+  
+  $$('#virt_active_g, #virt_active, #virt_active_all, #virt_active_sot, #virt_active_ing').on('click','tr',function(){
+    var js = JSON.parse($$(this).attr('data-id'));
+  var id = js[0];
+  var id_db = js[1];
+  router.navigate('/history/?id='+id+"&stat=active&id_db="+id_db);
+  });
+  
+  $$('#virt_pod, #virt_pod_g, #virt_pod_ing').on('click','tr',function(){
+    var js = JSON.parse($$(this).attr('data-id'));
+    var id = js[0];
+  var id_db = js[1];
+  router.navigate('/history/?id='+id+"&stat=pod&id_db="+id_db);
+});
+  
+  $$('#virt_arhive_g, #virt_arhive, #virt_arhive_all, #virt_arhive_sot').on('click','tr',function(){
+    var js = JSON.parse($$(this).attr('data-id'));
+    var id = js[0];
+  var id_db = js[1];
+  router.navigate('/history/?id='+id+"&stat=arhiv&id_db="+id_db);
+  });
+          },
+      },
+  };
+  </script>

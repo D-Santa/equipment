@@ -1,0 +1,326 @@
+<template>
+<div class="page" data-name="company">
+  <div class="navbar">
+    <div class="navbar-inner sliding" style="background-color:#222c3c">
+      <div class="title text-color-white" >Админ панель</div>
+      <div class="right">
+        <a href="#" class="link" id="back">
+          <span class="text-color-white">Закрыть</span>
+        </a>
+      </div>
+    </div>
+  </div>
+   <div class="panel panel-left panel-reveal theme-dark">
+ 		<div class="navbar">
+          <div class="navbar-inner text-color-white" style="background-color:#171717">
+            <div class="title"><a class="link text-color-white">
+			<img src="static/img/log.png" class="avatar">
+                <span class="margin-right-half">&nbsp;Equipment</span>
+                
+              </a></div>
+          </div>
+        </div>
+      <div class="view">
+	  
+        <div class="page"  style="--f7-list-chevron-icon-color:transparent;--f7-list-bg-color: #171717;">
+		
+          <div class="list" >
+            <ul>
+              <li>
+                <a class="item-content item-link company">
+                  <div class="item-media">
+                    <i class="icon f7-icons">data_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Компания</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a class="item-content item-link users">
+                  <div class="item-media">
+                    <i class="icon f7-icons">person</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Пользователи</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a id="sotrud" class="item-content item-link sotrudnik">
+                  <div class="item-media">
+                    <i class="icon f7-icons">list_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Сотрудники</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+<div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">color_filter</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Заявки</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+<div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link sklad">
+                  <div class="item-media">
+                    <i class="icon f7-icons">layers_alt_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Склад</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link sobyt">
+                  <div class="item-media">
+                    <i class="icon f7-icons">check_round</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Событие</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="list">
+            <ul>
+              <li>
+                <a id="post" class="item-content item-link post">
+                  <div class="item-media">
+                    <i class="icon material-icons">mail_outline</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Почта</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+		</div>
+      </div>
+    </div>
+
+
+  <div class="page-content">
+
+					
+<div class="row margin-horizontal">
+
+              <div class="col-100 margin-top">
+			  
+			    <div class="card text-color-black col-100"  style="--f7-card-border-radius:30px;">
+                      <div class="card-content card-content-padding">
+					  <a id="add_company" class="col button button-fill button-round color-red" style="position:absolute;right: 15px;">Добавить новую&nbsp;<i class="icon f7-icons" style="margin-top:-2px;">add</i></a>
+
+<i class="icon f7-icons margin-right-half" style="font-size: 24px; margin-top:-5px;margin-left:10px;opacity:0.6;">color_filter</i><font size="4px" style="opacity:0.6;"><b>Заявки</b></font>
+		</div>
+
+                    </div>
+                <div class="card data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                  <div class="card-header">Список проблем</div>
+                  <div class="card-content card-content-padding scrollable">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="label-cell">№</th>
+                          <th class="label-cell">Название</th>
+						  <th class="label-cell">Редактирование</th>
+                        </tr>
+                      </thead>
+                      <tbody id = "virt_comp">
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+  </div>
+
+
+
+</div>
+</template>
+<script>
+export default {
+
+    on: {
+      pageInit: function () {
+      var app = this.$app;
+	  var $$ = this.$$;
+	  var router = this.$router;  
+	var panel = app.panel.create({
+  el: '.panel-left',
+});
+panel.open();
+
+app.preloader.show('blue');
+app.request.get('http://tedeco.kz/equipment/api/add_problem.php',{zapros:'list'},function(data){                                          							
+app.preloader.hide();
+if (data[0].message=="ok"){
+var virt_comp = document.getElementById("virt_comp"); 
+	for (var s=0;s<data.length; s++){
+    virt_comp.innerHTML  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:80%">'+data[s].name+'</td>'+
+						  '<td class="label-cell" style="width:10%"><button class="col button button-fill" data-id="'+data[s].id+'">Удалить</button></td>'+
+                        '</tr>';
+}
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+
+$$('#virt_comp').on('click','button',function(){
+var id = $$(this).attr('data-id');
+app.dialog.alert('Вы точно хотите удалить?',function(){
+app.preloader.show('blue');
+app.request.get('http://tedeco.kz/equipment/api/add_problem.php',{zapros:'dell',name:id},function(data){                                          							
+app.preloader.hide();
+if (data[0].message=="ok"){
+app.dialog.alert('Удалено',function(){
+ panel.destroy();
+   router.refreshPage();
+});
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+});
+});
+$$('#back').on('click',function(){
+  panel.destroy();
+    router.back({force: true,animate:false});
+});
+		$$('.users').on('click',function(){
+		  panel.destroy();
+router.navigate('/users/',{animate:false,reloadCurrent:true});
+});	
+
+		$$('.company').on('click',function(){
+		  panel.destroy();
+router.navigate('/company/',{animate:false,reloadCurrent:true});
+});	
+
+		$$('.sotrudnik').on('click',function(){
+		  panel.destroy();
+router.navigate('/sot/',{animate:false,reloadCurrent:true});
+});	
+$$('.sklad').on('click',function(){
+		  panel.destroy();
+router.navigate('/sklady/',{animate:false,reloadCurrent:true});
+});	
+$$('.sobyt').on('click',function(){
+		  panel.destroy();
+router.navigate('/sobyt/',{animate:false,reloadCurrent:true});
+});	
+$$('.post').on('click',function(){
+		  panel.destroy();
+router.navigate('/post/',{animate:false,reloadCurrent:true});
+});	
+
+	  window.addEventListener('popstate', function(event) {
+ panel.destroy();
+   router.refreshPage();
+
+}, false);
+
+$$('#add_company').on('click', function(){
+	app.dialog.create({
+ title: '<div style="text-align: center;"><font color="red">Новая заявка</font></div>',
+ text:"",
+content:'<div class="list no-hairlines-md">'+
+  '<ul>'+
+     '<li class="item-content item-input item-input-outline">'+
+                              '<div class="item-inner">'+
+                                '<div class="item-title item-floating-label">Название</div>'+
+                                '<div class="item-input-wrap">'+
+                                  '<input type="text" placeholder="Название" id="name_company">'+
+                                  '<span class="input-clear-button"></span>'+
+                                '</div>'+
+                              '</div>'+
+                            '</li>'+
+                            '<li>'+
+      '<label class="item-checkbox item-content">'+
+        '<input type="checkbox" id="comche" value="0"/>'+
+        '<i class="icon icon-checkbox"></i>'+
+        '<div class="item-inner">'+
+         ' <div class="item-title">Текстовое поле</div>'+
+        '</div>'+
+     ' </label>'+
+    '</li>'+
+  '</ul>'+
+'</div>',
+on: {
+    opened: function () {
+
+    }
+  },
+ buttons: [
+ {
+        text: '<a class="col button button-fill">Отмена</a>',
+		 onClick: function() {
+		 }
+      },
+		{
+        text: '<a class="col button button-fill">Добавить</a>',
+		onClick: function(){
+		app.preloader.show('blue');
+    var glav = "0";
+		if ($$('#comche').prop('checked')==true) glav="1";
+		app.request.get('http://tedeco.kz/equipment/api/add_problem.php',{name:$$('#name_company').val(),comment:glav},function(otvet){                                          							
+app.preloader.hide();
+if (otvet[0].message=="ok")
+app.dialog.alert('Добавлено',function(){
+  panel.destroy();
+router.refreshPage();
+});
+else
+app.dialog.alert('Ошибка');
+},
+function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+		}
+      }
+],
+}).open();   
+
+});
+
+		},
+    },
+  };
+</script>

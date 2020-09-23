@@ -1,0 +1,531 @@
+<template>
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left"  @Click="back">
+        <a href="#" class="link text-color-white">
+          <i class="icon icon-back"></i><span class="ios-only">Назад</span>
+        </a>
+    </div>
+      <div class="title">Подача данных</div>
+    </div>
+  </div>
+  
+	<div class="toolbar tabbar toolbar-bottom">
+    <div style="width:100%;height:100%;display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;" class="button" id="proverka"><font size="3%" color="white">Отправить</font></div>
+    </div>
+
+  <div class="page-content">
+
+      <div class="card">
+        <div class="card-header text-color-black"><font size="4%">{{this.$route.query.opci_name}}</font></div>
+        <div class="card-content card-content-padding">
+          <div class="block">
+      <div class="list no-hairlines-md" style="margin-top:-5px;">
+        <ul>
+          <li class="item-content item-input item-input-outline nn1" style="display: none;">
+            <div class="item-inner">
+              <span class="n1">Расход фильтрата</span>
+              <div class="item-input-wrap">
+              <input type="number" id="n1">
+              </div>
+            </div>
+            </li>
+            <li class="item-content item-input item-input-outline nn2" style="display: none;">
+              <div class="item-inner">
+                <span class="n2">Расход фильтрата</span>
+                <div class="item-input-wrap">
+                <input type="number" id="n2">
+                </div>
+              </div>
+              </li>
+              <li class="item-content item-input item-input-outline nn3" style="display: none;">
+                <div class="item-inner">
+                  <span class="n3">Расход фильтрата</span>
+                  <div class="item-input-wrap">
+                  <input type="number" id="n3">
+                  </div>
+                </div>
+                </li>
+                <li class="item-content item-input item-input-outline nn4" style="display: none;">
+                  <div class="item-inner">
+                   <span class="n4">Расход фильтрата</span>
+                    <div class="item-input-wrap">
+                    <input type="number" id="n4">
+                    </div>
+                  </div>
+                  </li>
+                  <li class="item-content item-input item-input-outline nn5" style="display: none;">
+                    <div class="item-inner">
+                      <span class="n5">Расход фильтрата</span>
+                      <div class="item-input-wrap">
+                      <input type="number" id="n5">
+                      </div>
+                    </div>
+                    </li>
+                    <li class="item-content item-input item-input-outline nn6" style="display: none;">
+                      <div class="item-inner">
+                        <span class="n6">Расход фильтрата</span>
+                        <div class="item-input-wrap">
+                        <input type="number" id="n6">
+                        </div>
+                      </div>
+                      </li>
+                      <li class="item-content item-input item-input-outline nn7" style="display: none;">
+                        <div class="item-inner">
+                          <span class="n7">Расход фильтрата</span>
+                          <div class="item-input-wrap">
+                          <input type="number" id="n7">
+                          </div>
+                        </div>
+                        </li>
+                        <li class="item-content item-input item-input-outline nn8" style="display: none;">
+                          <div class="item-inner">
+                            <span class="n8">n8</span>
+                            <div class="item-input-wrap">
+                            <input type="number" id="n8">
+                            </div>
+                          </div>
+                          </li>
+                          <li class="item-content item-input item-input-outline nn9" style="display: none;">
+                            <div class="item-inner">
+                              <span class="n9">n8</span>
+                              <div class="item-input-wrap">
+                              <input type="number" id="n9">
+                              </div>
+                            </div>
+                            </li>
+                            <li class="item-content item-input item-input-outline nn10" style="display: none;">
+                              <div class="item-inner">
+                                <span class="n10">n8</span>
+                                <div class="item-input-wrap">
+                                <input type="number" id="n10">
+                                </div>
+                              </div>
+                              </li>
+                              <li class="item-content item-input item-input-outline nn11" style="display: none;">
+                                <div class="item-inner">
+                                  <span class="n11">n8</span>
+                                  <div class="item-input-wrap">
+                                  <input type="number" id="n11">
+                                  </div>
+                                </div>
+                                </li>
+                                <li class="item-content item-input item-input-outline nn12" style="display: none;">
+                                  <div class="item-inner">
+                                    <span class="n12">n8</span>
+                                    <div class="item-input-wrap">
+                                    <input type="number" id="n12">
+                                    </div>
+                                  </div>
+                                  </li>
+                                  <li class="item-content item-input item-input-outline nn13" style="display: none;">
+                                    <div class="item-inner">
+                                      <span class="n13">n8</span>
+                                      <div class="item-input-wrap">
+                                      <input type="number" id="n13">
+                                      </div>
+                                    </div>
+                                    </li>
+                                    <li class="item-content item-input item-input-outline nn14" style="display: none;">
+                                      <div class="item-inner">
+                                        <span class="n14">n8</span>
+                                        <div class="item-input-wrap">
+                                        <input type="number" id="n14">
+                                        </div>
+                                      </div>
+                                      </li>
+                                      <li class="item-content item-input item-input-outline nn15" style="display: none;">
+                                        <div class="item-inner">
+                                          <span class="n15">n8</span>
+                                          <div class="item-input-wrap">
+                                          <input type="number" id="n15">
+                                          </div>
+                                        </div>
+                                        </li>
+          </ul>
+          </div>
+
+          
+
+<br>
+                        </div>
+      </div>
+    </div>
+
+  <div class="block"><a class="button button-fill color-red" id="add_photo">добавить фото/видео</a></div>
+    <div id="images" class="block"></div>
+  </div>
+</div>
+</template>
+<script>
+export default {
+  methods: {
+    back: function () {
+      var app = this.$app;
+      var $$ = this.$$;
+      var router = this.$router;
+      app.panel.enableSwipe('left');
+	  router.back();
+    },
+      },
+  on: {
+		pageInit: function () {
+		var app = this.$app;
+		var $$ = this.$$;
+    var router = this.$router;
+    var bd = this.$route.query.id;
+    var opci = this.$route.query.opci;
+    opci = opci -1;
+    var dan1=[];
+    app.preloader.show('blue');
+    app.request.post('https://tedeco.kz/equipment/api/monitoring.php',{zapros:"dan"},function(dan){
+		app.preloader.hide();
+     dan1=dan[0].dan;
+    for (var b=0; b<dan1[opci].length; b++){
+    $$('.n'+(b+1)).text(dan1[opci][b]);
+    $$('.nn'+(b+1)).show();
+    }
+  },'json');
+    var image=[];
+    //app.panel.disableSwipe('left');
+    $$('#proverka').on('click',function(){
+        var uploads = "";
+    if (image.length>=1)
+    {
+      for (var t=0; t<image.length;t++)
+			  if (image[t].name!="dell"){
+      uploads="1";
+      break;
+        }
+
+      }
+      else
+      uploads = "";
+      var go = 0;
+      for (var b=0; b<dan1[opci].length; b++)
+      if ($$('#n'+(b+1)).val()==""){
+        app.dialog.alert('Заполните все поля');
+        go = 1;
+        break;
+      }
+      if (go==0){
+    if (uploads=="")app.dialog.alert('Нужно отправить как минимум 1 фоту');
+    else
+    {
+app.preloader.show('blue');
+app.request.post('https://tedeco.kz/equipment/api/monitoring.php',{user:app.data.user.id,bd:bd,n1:$$('#n1').val(),n2:$$('#n2').val(),n3:$$('#n3').val(),n4:$$('#n4').val(),n5:$$('#n5').val(),n6:$$('#n6').val(),n7:$$('#n7').val(),n8:$$('#n8').val(),n9:$$('#n9').val(),n10:$$('#n10').val(),n11:$$('#n11').val(),n12:$$('#n12').val(),n13:$$('#n13').val(),n14:$$('#n14').val(),n15:$$('#n15').val(),upload:uploads},function(otvet){
+  app.preloader.hide();
+if (otvet[0].message=="ok"){
+  if (uploads=="1"){
+			  var image2=[];
+			  for (var t=0; t<image.length;t++)
+			  if (image[t].name!="dell")
+			image2.push({
+				put:''+image[t].put,
+			name:''+image[t].name,
+			style:""+image[t].style
+			});
+			var progress = (1*100)/image2.length;
+			var t = 0;
+			var s=-1;
+			var dialog = app.dialog.progress('Загрузка', t);
+		if (image2.length>=1)
+			var interval = setInterval(function() {
+			dialog.setProgress(progress);
+			var tes = t+1,tes2 = image2.length;
+			dialog.setText('Вложение '+tes.toString()+' of '+tes2.toString());
+			if (s!=t){
+			s=t;
+		if (image2[t].name=="image"){
+		var imageURI = image2[t].put;
+		var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpeg";
+        var params = new Object();
+        params.value1 = "m";
+        params.value2 = "param";
+
+        options.params = params;
+        options.chunkedMode = false;
+var ft = new FileTransfer();
+ft.upload(imageURI,encodeURI("https://tedeco.kz/equipment/api/upload.php?zapros=1&id="+otvet[0].zaya_id+"&type=image"),function(result) {
+	t++;
+	progress = ((t+1)*100)/image2.length;
+	},
+	function(error) {
+	},
+	options);
+			}
+			else
+			if (image2[t].name=="video")
+			{
+				var path = image2[t].put;
+var ft = new FileTransfer();
+var options         = new FileUploadOptions();
+options.fileKey = "file";
+options.fileName = path.substr(path.lastIndexOf('/')+1);
+options.mimeType    = "video/mp4";
+options.chunkedMode = false;
+ft.upload(path,encodeURI("https://tedeco.kz/equipment/api/upload.php?zapros=1&id="+otvet[0].zaya_id+"&type=video"),function(result) {
+	t++;
+	progress = ((t+1)*100)/image2.length;
+            },
+            function(error) {
+            },options);
+
+			}
+			
+			}
+			if (image2.length-1<=t){
+				clearInterval(interval);
+				dialog.close();
+			  app.dialog.alert('Данные приняты',function(){
+    app.panel.enableSwipe('left');
+	  router.back();
+  });
+			}
+			
+		},100);
+		
+		
+	}
+	else
+	{
+	  app.dialog.alert('Данные приняты',function(){
+    app.panel.enableSwipe('left');
+	  router.back();
+  });
+  }
+  
+
+}
+else
+app.dialog.alert('Данные на сегодня были отправлены, Новые данные можете отправить завтра');
+},'json');
+      }
+    }
+      
+    });
+
+    $$('#add_photo').on('click', function(){
+      capturePhoto();/*
+app.dialog.create({
+    title: 'Добавить фото',
+    buttons: [
+      {
+        text: 'Выбрать файл',
+		 onClick: function() {
+		 getImage();
+		 }
+      },
+      {
+        text: 'Сфотографировать',
+		onClick: function() {
+		capturePhoto();
+		 }
+	  },
+	  {
+        text: 'Снять на видео',
+		onClick: function() {
+			navigator.device.capture.captureVideo(videoSuccess, captureError, {limit: 1});
+		 }
+      },
+	  {
+        text: '<a class="button button-fill color-black">Отмена</a>',
+      },
+    ],
+    verticalButtons: true,
+  }).open();*/
+});	 
+
+function videoSuccess(mediaFiles) {
+        var i, path, len;
+    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+        path = mediaFiles[i].fullPath;
+        // do something interesting with the file
+	}
+image.push({
+		put:''+path,
+		name:'video',
+		style:"get"
+		});
+		var neww="";
+		neww+='<div style="margin-top:10px;" class="swiper-container glav_swipe swiper-init demo-swiper demo-swiper-auto" data-speed="500" data-space-between="10" data-slides-per-view="1.1" data-loop="true" data-centered-slides="true" ><div class="swiper-pagination"></div>'+
+  '<div class="swiper-wrapper" >';
+		for (var s = image.length-1; s>=0; s--){
+	var rot="";
+	if (image[s].style=="cap") rot="rotate(90deg);";
+	if (image[s].name=="image")
+neww+='<div data-id="'+s+'" class="swiper-slide" style="background-image:url(\''+image[s].put+'\');background-position: center;'+rot+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"></div></div>';
+else
+if (image[s].name=="video")
+neww+='<div data-id="'+s+'" class="swiper-slide" background-position: center;'+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"><video width="100" height="150" controls>'+
+   '<source src="'+image[s].put+'" type="video/mp4">'+
+'</video></div></div>';
+}
+neww+='</div></div>';
+$$('#images').html(neww);
+var mySwiper = app.swiper.create('.glav_swipe', {
+slidesPerView: 3,
+spaceBetween: 20,
+slidesOffsetBefore: 10,
+slidesOffsetAfter:10,
+pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+  },
+});
+    }
+
+var captureError = function(error) {
+};
+
+function getImage() {
+        navigator.camera.getPicture(getuploadPhoto, function(message) {
+            app.dialog.alert('файл не выбран');
+        }, {
+            quality: 100,
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        });
+
+    }
+var Put;
+	function getuploadPhoto(imageURI) {
+		image.push({
+		put:''+imageURI,
+		name:'image',
+		style:"get"
+		});
+		var neww="";
+		neww+='<div style="margin-top:10px;" class="swiper-container glav_swipe swiper-init demo-swiper demo-swiper-auto" data-speed="500" data-space-between="10" data-slides-per-view="1.1" data-loop="true" data-centered-slides="true" ><div class="swiper-pagination"></div>'+
+  '<div class="swiper-wrapper" >';
+		for (var s = image.length-1; s>=0; s--){
+	var rot="";
+	if (image[s].style=="cap") rot="rotate(90deg);";
+	if (image[s].name=="image")
+neww+='<div data-id="'+s+'" class="swiper-slide" style="background-image:url(\''+image[s].put+'\');background-position: center;'+rot+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"></div></div>';
+else
+if (image[s].name=="video")
+neww+='<div data-id="'+s+'" class="swiper-slide" background-position: center;'+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"><video width="100" height="150" controls>'+
+   '<source src="'+image[s].put+'" type="video/mp4">'+
+'</video></div></div>';
+}
+neww+='</div></div>';
+$$('#images').html(neww);
+var mySwiper = app.swiper.create('.glav_swipe', {
+slidesPerView: 3,
+spaceBetween: 20,
+slidesOffsetBefore: 10,
+slidesOffsetAfter:10,
+pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+  },
+});
+    
+}
+
+$$('#images').on('click','a',function(){
+var id_news = $$(this).attr('data-id');
+app.dialog.confirm("Вы точно хотите удалить?",function(){
+image[id_news].name="dell";
+var neww="";
+		neww+='<div style="margin-top:10px;" class="swiper-container glav_swipe swiper-init demo-swiper demo-swiper-auto" data-speed="500" data-space-between="10" data-slides-per-view="1.1" data-loop="true" data-centered-slides="true" ><div class="swiper-pagination"></div>'+
+  '<div class="swiper-wrapper" >';
+		for (var s = image.length-1; s>=0; s--){
+	var rot="";
+	if (image[s].style=="cap") rot="rotate(90deg);";
+	if (image[s].name=="image")
+neww+='<div data-id="'+s+'" class="swiper-slide" style="background-image:url(\''+image[s].put+'\');background-position: center;'+rot+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"></div></div>';
+else
+if (image[s].name=="video")
+neww+='<div data-id="'+s+'" class="swiper-slide" background-position: center;'+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"><video width="100" height="150" controls>'+
+   '<source src="'+image[s].put+'" type="video/mp4">'+
+'</video></div></div>';
+}
+neww+='</div></div>';
+$$('#images').html(neww);
+var mySwiper = app.swiper.create('.glav_swipe', {
+slidesPerView: 3,
+spaceBetween: 20,
+slidesOffsetBefore: 10,
+slidesOffsetAfter:10,
+pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+  },
+});
+
+});
+});
+
+	function capturePhoto() {
+      navigator.camera.getPicture(onPhotoDataSuccess, function(message) {
+	  app.dialog.alert('файл не выбран');
+		}, { quality: 100,
+        destinationType: Camera.DestinationType.FILE_URI,
+		});
+    }
+
+	function onPhotoDataSuccess(imageURI) {
+		image.push({
+		put:''+imageURI,
+		name:'image',
+		style:"cap"
+		});
+		var neww="";
+		neww+='<div style="margin-top:10px;" class="swiper-container glav_swipe swiper-init demo-swiper demo-swiper-auto" data-speed="500" data-space-between="10" data-slides-per-view="1.1" data-loop="true" data-centered-slides="true" ><div class="swiper-pagination"></div>'+
+  '<div class="swiper-wrapper" >';
+		for (var s = image.length-1; s>=0; s--){
+	var rot="";
+	if (image[s].style=="cap") rot="rotate(90deg);";
+	if (image[s].name=="image")
+neww+='<div data-id="'+s+'" class="swiper-slide" style="background-image:url(\''+image[s].put+'\');background-position: center;'+rot+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"></div></div>';
+else
+if (image[s].name=="video")
+neww+='<div data-id="'+s+'" class="swiper-slide" background-position: center;'+
+  'background-repeat: no-repeat;'+
+  'background-size: 100% auto;"><div style="position:absolute;right:0px;"><a data-id="'+s+'" class="button button-round button-fill color-red">x</a></div><div data-id="'+s+'" style="width:100%;height:150px;bottom:0px;right:0px;"><video width="100" height="150" controls>'+
+   '<source src="'+image[s].put+'" type="video/mp4">'+
+'</video></div></div>';
+}
+neww+='</div></div>';
+$$('#images').html(neww);
+var mySwiper = app.swiper.create('.glav_swipe', {
+slidesPerView: 3,
+spaceBetween: 20,
+slidesOffsetBefore: 10,
+slidesOffsetAfter:10,
+pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+  },
+});
+    }
+
+
+    },
+  }
+
+};
+</script>

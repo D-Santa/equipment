@@ -1,0 +1,149 @@
+
+<template>
+  <div class="page">
+    <div class="navbar" >
+      <div class="navbar-inner sliding">
+       <div class="title">Equipment</div>
+      </div>
+    </div>
+  
+  
+  	    <div class="toolbar tabbar toolbar-bottom">
+  <div style="width:100%;height:100%;display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;" class="button" @Click="voiti"><font size="3%" color="white">ВОЙТИ</font></div>
+</div>
+
+
+  <div class="page-content">
+  <div class="card" style="--f7-card-border-radius: 8px;">
+
+ <div class="card-content">
+  <div class="login-screen-title"><font style="font-size: 70%;" >Авторизация</div>
+      <div class="list">
+        <ul>
+          <li class="item-content item-input item-input-outline">
+		  <div class="item-inner">
+              <div class="item-title item-floating-label" ><i class="icon f7-icons color-blue size-22">person</i>логин</div>
+              <div class="item-input-wrap">
+                <input id="log" type="text" placeholder="ваш логин"\>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input item-input-outline">
+            <div class="item-inner">
+              <div class="item-title item-floating-label"><i class="icon f7-icons color-blue size-22">unlock</i> пароль</div>
+              <div class="item-input-wrap">
+                <input id="pass" type="password" placeholder="******"\>
+              </div>
+            </div>
+          </li>
+<br>
+        </ul>
+
+		  </div>
+		</div>
+
+      </div>
+  
+			
+			
+        </div>
+	
+	
+    </div>
+</template>
+
+<script>
+
+export default {
+ methods: {
+voiti: function(){
+var app = this.$app;
+var $$ = this.$$;
+var router = this.$router;
+app.preloader.show('blue');
+app.request.post('https://tedeco.kz/equipment/api/vhod.php',{log:$$('#log').val(),pass:$$('#pass').val(),vhod:"app"},function(otvet){
+app.preloader.hide();
+if (otvet[0].message=="ok"){
+  if (app.data.version==otvet[0].version){
+app.data.user.id=otvet[0].id;
+app.form.storeFormData('user', {
+    'token': otvet[0].token
+  });   
+$$('#user').text(otvet[0].fam+" "+otvet[0].name);
+$$('#version').text("Версия "+app.data.version);
+app.data.user.roles=otvet[0].roles;
+		app.data.user.glav=otvet[0].glav;
+ router.navigate('/',{reloadAll:true}); 
+}
+else
+app.dialog.create({
+ title: '<div style="text-align: center;">'+otvet[0].fam+" "+otvet[0].name+'</div>',
+text:'<div style="text-align: center;">У вас старая версия, пожалуйста обновите приложение!</div>',
+ buttons: [
+		{
+        text: 'Обновить',
+		onClick: function(){
+			window.open("market://details?id=tedeco.equipment.app", '_system', 'location=yes');
+		},
+		close:false
+      }
+],
+}).open();
+}
+else
+app.dialog.alert('Не правильный логин или пароль!');
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет подключения к интернету');
+	},'json');
+},
+
+},
+on: {
+      pageInit: function () {
+	  	  var app = this.$app;
+	  var $$ = this.$$;
+	  var router = this.$router;
+	   var log = JSON.parse(localStorage.getItem("f7form-user"));
+		if (log!=null){
+		var mail = log.mail; var token=log.token;
+		app.preloader.show('blue');
+		app.request.post('https://tedeco.kz/equipment/api/vhod.php',{token:token,vhod:"app"},function(data){
+		app.preloader.hide();
+		if (data[0].message=="ok"){
+    if (app.data.version==data[0].version){
+    app.data.user.id=data[0].id;
+    $$('#version').text("Версия "+app.data.version);
+		$$('#user').text(data[0].fam+" "+data[0].name);
+    app.data.user.roles=data[0].roles;
+		app.data.user.glav=data[0].glav;
+    router.navigate('/',{reloadAll:true});
+    }
+    else
+    app.dialog.create({
+ title: '<div style="text-align: center;">'+data[0].fam+" "+data[0].name+'</div>',
+text:'<div style="text-align: center;">У вас старая версия, пожалуйста обновите приложение!</div>',
+ buttons: [
+		{
+        text: 'Обновить',
+		onClick: function(){
+			window.open("market://details?id=tedeco.equipment.app", '_system', 'location=yes');
+		},
+		close:false
+      }
+],
+}).open();
+		}else {
+		app.form.removeFormData("user");
+		app.dialog.alert('Вы вошли через другое устройство');
+		}
+		},'json');
+		}
+ 
+	  },
+	  },
+};
+</script>

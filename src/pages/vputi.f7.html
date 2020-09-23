@@ -1,0 +1,327 @@
+<style>
+.aurora {
+  --f7-dialog-width: 50%;
+  }
+</style>
+<template>
+<div class="page" data-name="company">
+  <div class="navbar">
+    <div class="navbar-inner sliding" style="background-color:#222c3c">
+      <div class="title text-color-white" >Админ панель</div>
+      <div class="right">
+        <a href="#" class="link" id="back">
+          <span class="text-color-white">Закрыть</span>
+        </a>
+      </div>
+    </div>
+  </div>
+   <div class="panel panel-left panel-reveal theme-dark">
+ 		<div class="navbar">
+          <div class="navbar-inner text-color-white" style="background-color:#171717">
+            <div class="title"><a class="link text-color-white">
+			<img src="static/img/log.png" class="avatar">
+                <span class="margin-right-half">&nbsp;Equipment</span>
+                
+              </a></div>
+          </div>
+        </div>
+      <div class="view">
+	  
+        <div class="page"  style="--f7-list-chevron-icon-color:transparent;--f7-list-bg-color: #171717;">
+		
+          <div class="list" >
+            <ul>
+              <li>
+                <a class="item-content item-link company">
+                  <div class="item-media">
+                    <i class="icon f7-icons">data_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Компания</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a class="item-content item-link users">
+                  <div class="item-media">
+                    <i class="icon f7-icons">person</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Пользователи</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a id="sotrud" class="item-content item-link sotrudnik">
+                  <div class="item-media">
+                    <i class="icon f7-icons">list_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Сотрудники</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+<div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link zayavki">
+                  <div class="item-media">
+                    <i class="icon f7-icons">color_filter</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Заявки</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+		  
+		  <div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link sklad">
+                  <div class="item-media">
+                    <i class="icon f7-icons">layers_alt_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Склад</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link sobyt">
+                  <div class="item-media">
+                    <i class="icon f7-icons">check_round</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Событие</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="list">
+            <ul>
+              <li>
+                <a id="post" class="item-content item-link post">
+                  <div class="item-media">
+                    <i class="icon material-icons">mail_outline</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Почта</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+		</div>
+      </div>
+    </div>
+
+
+  <div class="page-content">
+  <br>
+<div class="menu">
+  <div class="menu-inner">
+    <a id="glavka" class="menu-item">
+      <div class="menu-item-content"><i class="icon f7-icons">layers_alt_fill</i>Склад</div>
+    </a>
+	
+	<a id="pere" class="menu-item">
+      <div class="menu-item-content"><i class="icon material-icons">pin_drop</i>Перемещение</div>
+    </a>
+	</div>
+	</div>
+	
+					
+<div class="row margin-horizontal">
+
+              <div class="col-100 margin-top">
+			  
+			    <div class="card text-color-black col-100"  style="--f7-card-border-radius:30px;">
+                      <div class="card-content card-content-padding">
+<i class="icon material-icons margin-right-half" style="font-size: 24px; margin-top:-5px;margin-left:10px;opacity:0.6;">directions_run</i><font size="4px" style="opacity:0.6;"><b><span id="name_places">В пути</span></b></font>
+		</div>
+
+                    </div>
+
+ <div class="card data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                  <div class="card-header">Список в пути</div>
+                  <div class="card-content card-content-padding scrollable">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="label-cell">№</th>
+                          <th class="label-cell">От куда</th>
+						  <th class="label-cell">Куда</th>
+						  <th class="label-cell">Пользователь</th>
+						  <th class="label-cell">Дата</th>
+						  <th class="label-cell">Подробнее</th>
+                        </tr>
+                      </thead>
+                      <tbody id = "virt_comp">
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+
+              </div>
+			  
+			 
+				
+            </div>
+  </div>
+
+
+
+</div>
+</template>
+<script>
+export default {
+
+    on: {
+      pageInit: function () {
+      var app = this.$app;
+	  var $$ = this.$$;
+	  var router = this.$router;  
+	var panel = app.panel.create({
+  el: '.panel-left',
+});
+panel.open();
+
+$$('#back').on('click',function(){
+  panel.destroy();
+    router.back({force: true,animate:false});
+});
+
+		$$('.company').on('click',function(){
+		  panel.destroy();
+router.navigate('/company/',{animate:false,reloadCurrent:true});
+});	
+		$$('.users').on('click',function(){
+		  panel.destroy();
+router.navigate('/users/',{animate:false,reloadCurrent:true});
+});	
+
+$$('#pere').on('click',function(){
+ panel.destroy();
+router.navigate('/pere/',{animate:false,reloadCurrent:true});
+});
+		$$('.zayavki').on('click',function(){
+		  panel.destroy();
+router.navigate('/zayavki/',{animate:false,reloadCurrent:true});
+});		
+	$$('#glavka').on('click',function(){
+		  panel.destroy();
+router.navigate('/sklad/',{animate:false,reloadCurrent:true});
+});
+
+		$$('.sotrudnik').on('click',function(){
+		  panel.destroy();
+router.navigate('/sot/',{animate:false,reloadCurrent:true});
+});	
+$$('.sobyt').on('click',function(){
+		  panel.destroy();
+router.navigate('/sobyt/',{animate:false,reloadCurrent:true});
+});	
+
+	  window.addEventListener('popstate', function(event) {
+ panel.destroy();
+   router.refreshPage();
+
+}, false);
+
+app.preloader.show('blue');
+	app.request.post('http://tedeco.kz/equipment/api/pere_sklad.php',{zapros:'list'},function(data){                                          							
+app.preloader.hide();
+//app.dialog.alert(JSON.stringify(data));
+if (data[0].message=="ok"){
+var virt_comp = document.getElementById("virt_comp"); 
+	for (var s=0;s<data.length; s++){
+    virt_comp.innerHTML  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:25%">'+data[s].ot+'</td>'+
+						  '<td class="label-cell" style="width:25%">'+data[s].dos+'</td>'+
+						  '<td class="label-cell" style="width:15%">'+data[s].user+'</td>'+
+						  '<td class="label-cell" style="width:20%">'+data[s].data+'</td>'+
+						  '<td class="label-cell" style="width:5%"><button class="col button button-fill" data-id="'+data[s].id+'">Посмотреть</button></td>'+
+                        '</tr>';
+}
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+
+$$('#virt_comp').on('click','button',function(){
+var id = $$(this).attr('data-id');
+app.preloader.show('blue');
+	app.request.post('http://tedeco.kz/equipment/api/pere_sklad.php',{zapros:'where',id:id},function(data){                                          							
+app.preloader.hide();
+if (data[0].message=="ok"){
+var spisok = ""; 
+	for (var s=0;s<data.length; s++){
+    spisok  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:30%">'+data[s].name+'</td>'+
+						  '<td class="label-cell" style="width:30%">'+data[s].article+'</td>'+
+						  '<td class="label-cell" style="width:30%">'+data[s].col+'</td>'+
+                        '</tr>';
+}
+app.dialog.create({
+    title: 'Информация',
+    text: ' <div class="data-table data-table-init">'+
+                  '<div class="scrollable">'+
+                  '  <table>'+
+                     ' <thead>'+
+                    '    <tr>'+
+                        '  <th class="label-cell">№</th>'+
+                        '  <th class="label-cell">Название</th>'+
+						 ' <th class="label-cell">Артикул</th>'+
+						 ' <th class="label-cell">Количество</th>'+
+                       ' </tr>'+
+                    '  </thead>'+
+                    '  <tbody>'+spisok+
+                    '  </tbody>'+
+                   ' </table>'+
+                 ' </div>'+
+                '</div>',
+    buttons: [
+      {
+        text: 'Закрыть',
+		onClick: function(){
+						
+		},
+      },
+    ],
+  }).open();
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+  
+});
+
+		},
+    },
+  };
+</script>

@@ -1,0 +1,821 @@
+<style>
+.ms-drop {
+  width: 100%;
+}
+</style>
+<template>
+<div class="page" data-name="users">
+  <div class="navbar">
+    <div class="navbar-inner sliding" style="background-color:#222c3c">
+      <div class="title text-color-white" >Админ панель</div>
+      <div class="right">
+        <a href="#" class="link" id="back">
+          <span class="text-color-white">Закрыть</span>
+        </a>
+      </div>
+    </div>
+  </div> 
+  
+     <div class="panel panel-left panel-reveal theme-dark">
+ 		<div class="navbar">
+          <div class="navbar-inner text-color-white" style="background-color:#171717">
+            <div class="title"><a class="link text-color-white">
+			<img src="static/img/log.png" class="avatar">
+                <span class="margin-right-half">&nbsp;Equipment</span>
+                
+              </a></div>
+          </div>
+        </div>
+      <div class="view">
+	  
+        <div class="page"  style="--f7-list-chevron-icon-color:transparent;--f7-list-bg-color: #171717;">
+		
+          <div class="list" >
+            <ul>
+              <li>
+                <a class="item-content item-link company">
+                  <div class="item-media">
+                    <i class="icon f7-icons">data_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Компания</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a class="item-content item-link users">
+                  <div class="item-media">
+                    <i class="icon f7-icons">person</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Пользователи</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a id="sotrud" class="item-content item-link sotrudnik">
+                  <div class="item-media">
+                    <i class="icon f7-icons">list_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Сотрудники</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+		  <div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link zayavki">
+                  <div class="item-media">
+                    <i class="icon f7-icons">color_filter</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Заявки</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+<div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link sklad">
+                  <div class="item-media">
+                    <i class="icon f7-icons">layers_alt_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Склад</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link sobyt">
+                  <div class="item-media">
+                    <i class="icon f7-icons">check_round</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Событие</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="list">
+            <ul>
+              <li>
+                <a id="post" class="item-content item-link post">
+                  <div class="item-media">
+                    <i class="icon material-icons">mail_outline</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Почта</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+		</div>
+      </div>
+    </div>
+
+ <div class="page-content">
+
+					
+<div class="row margin-horizontal">
+
+              <div class="col-100 margin-top">
+			  
+			    <div class="card text-color-black col-100"  style="--f7-card-border-radius:30px;">
+                      <div class="card-content card-content-padding">
+					  <a id="add_user" class="col button button-fill button-round color-red" style="position:absolute;right: 15px;">Добавить новую&nbsp;<i class="icon f7-icons" style="margin-top:-2px;">add</i></a>
+
+<i class="icon material-icons margin-right-half" style="font-size: 24px; margin-top:-5px;margin-left:10px;opacity:0.6;">mail_outline</i><font size="4px" style="opacity:0.6;"><b>Почта</b></font>
+		</div>
+
+                    </div>
+                <div class="card data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                  <div class="card-header">Список рассылки<div class="right" style="width:300px;z-index: 8;">
+                    <div class="list no-hairlines-md">
+                        <ul>
+                          <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                              <div class="item-title item-label">Фильтрация по расположению</div>
+                              <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="" id="place_sotr" multiple="multiple">
+          </select>
+        </div>
+                            </div>
+                          </li></div></div></div>
+                  <div class="card-content card-content-padding scrollable" style="min-height: 200px;">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="label-cell">№</th>
+                          <th class="label-cell sortable-cell" id="sort_fam">Фамилия</th>
+              <th class="label-cell sortable-cell" id="sort_im">Имя</th>
+              <th class="label-cell sortable-cell" id="sort_center">Центры, которые курирует</th>
+              <th class="label-cell">e-mail</th>
+						  <th class="label-cell">Редактировать</th>
+                        </tr>
+                      </thead>
+                      <tbody id="div_user">
+						
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+  </div>
+
+
+
+</div>
+</template>
+<script>
+export default {
+
+    on: {
+      pageInit: function () {
+      var app = this.$app;
+	  var $$ = this.$$;
+	  var router = this.$router;	
+    var massivy=[],massivy1=[];
+var panel = app.panel.create({
+  el: '.panel-left',
+});
+panel.open();
+
+var place_sotr=["all"];
+$('#place_sotr').on('change',function(){
+  if ($$('#place_sotr').val()!=""){
+    place_sotr = ""+$$('#place_sotr').val();
+    place_sotr = place_sotr.split(",");
+    massivy=[];
+    }
+    else{
+    place_sotr=["all"];
+    massivy = massivy1;
+    }
+//console.log(place_sotr);
+    var virt_comp = document.getElementById("div_user"); 
+    virt_comp.innerHTML="";
+    if (place_sotr[0]!="all")
+	for (var s=0;s<massivy1.length; s++){
+    var sd = JSON.stringify(massivy1[s].place);
+    sd = JSON.parse(sd);
+    if (sd.length>=2) {
+      for (var j=0;j<sd.length; j++){
+      let place_opt = place_sotr.find(item => item == sd[j].id);
+      if (place_opt){
+       massivy.push({
+        fam:massivy1[s].fam,
+        name:massivy1[s].name,
+        glav:massivy1[s].glav,
+        sklad:massivy1[s].sklad,
+        log:massivy1[s].log,
+        pass:massivy1[s].pass,
+        post:massivy1[s].post,
+        id:massivy1[s].id,
+        place:massivy1[s].place
+       });
+      break;
+      }
+    }
+    }
+    else{
+    let place_opt1 = place_sotr.find(item => item == sd[0].id);
+    if (place_opt1)
+    massivy.push({
+        fam:massivy1[s].fam,
+        name:massivy1[s].name,
+        glav:massivy1[s].glav,
+        sklad:massivy1[s].sklad,
+        log:massivy1[s].log,
+        pass:massivy1[s].pass,
+        post:massivy1[s].post,
+        id:massivy1[s].id,
+        place:massivy1[s].place
+       });
+    }
+  }
+  for (var s=0;s<massivy.length; s++){
+    var sd = JSON.stringify(massivy[s].place);
+    sd = JSON.parse(sd);
+    if (sd.length>=2) {
+      var pls ="";
+      for (var j=0;j<sd.length; j++)
+      pls += '<option disabled>'+sd[j].place+'</option>';
+      var place ='<div class="item-input-wrap input-dropdown-wrap">'+
+          '<select placeholder="Несколько" id="place_sotr">'+
+		   '  <option value="0" selected>Несколько</option>'+pls+
+         ' </select>'+
+       ' </div>';
+    }
+    else
+    var place = sd[0].place;
+    virt_comp.innerHTML  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:20%">'+massivy[s].fam+'</td>'+
+						  '<td class="label-cell" style="width:20%">'+massivy[s].name+massivy[s].glav+massivy[s].sklad+'</td>'+
+						  '<td class="label-cell" style="width:10%">'+place+'</td>'+
+						  '<td class="label-cell" style="width:30%">'+massivy[s].post+'</td>'+
+              '<td class="label-cell" style="width:10%"><button class="button button-fill" value="1" data-id="'+massivy[s].id+'">Редактировать</button></td>'+
+						  '<td class="label-cell" style="width:10%"><button class="button button-fill" value="2" data-id="'+massivy[s].id+'">Удалить</button></td>'+
+                        '</tr>';
+}
+
+});
+
+app.preloader.show('blue');
+app.request.post('http://tedeco.kz/equipment/api/add_user.php',{zapros:'list',roles:"4"},function(data){  
+app.request.get('http://tedeco.kz/equipment/api/add.php',{},function(otvet){
+	app.preloader.hide();
+	if (otvet.length>0){	
+		var place_div = document.getElementById("place_sotr"); 
+	for (var s=0;s <otvet[0].length; s++){
+    var massiv = otvet[0][s].massiv;
+      for (var s1=0;s1 <massiv.length; s1++)	
+   place_div.innerHTML  +='<option value="'+massiv[s1].id_place+'">'+massiv[s1].name_place+'<font color="red">('+otvet[0][s].company+')</font></option>';
+  }
+    $(function() {
+      $('#place_sotr').multipleSelect();
+    });
+	}
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+	},'json');
+
+//app.preloader.hide();
+massivy1 = data;
+//console.log(data);
+if (data[0].message=="ok"){
+var virt_comp = document.getElementById("div_user"); 
+	for (var s=0;s<data.length; s++){
+    var sd = JSON.stringify(data[s].place);
+    sd = JSON.parse(sd);
+    if (sd.length>=2) {
+      var pls ="";
+      for (var j=0;j<sd.length; j++)
+      pls += '<option disabled>'+sd[j].place+'</option>';
+      var place ='<div class="item-input-wrap input-dropdown-wrap">'+
+          '<select placeholder="Несколько" id="place_sotr">'+
+		   '  <option value="0" selected>Несколько</option>'+pls+
+         ' </select>'+
+       ' </div>';
+    }
+    else
+    var place = sd[0].place;
+    virt_comp.innerHTML  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:20%">'+data[s].fam+'</td>'+
+						  '<td class="label-cell" style="width:20%">'+data[s].name+'</td>'+
+              '<td class="label-cell" style="width:10%">'+place+'</td>'+
+              '<td class="label-cell" style="width:30%">'+data[s].post+'</td>'+
+              '<td class="label-cell" style="width:10%"><button class="button button-fill" value="1" data-id="'+data[s].id+'">Редактировать</button></td>'+
+						  '<td class="label-cell" style="width:10%"><button class="button button-fill" value="2" data-id="'+data[s].id+'">Удалить</button></td>'+
+                        '</tr>';
+}
+}
+
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+
+
+$$('#back').on('click',function(){
+  panel.destroy();
+    router.back({force: true,animate:false});
+});
+
+		$$('.company').on('click',function(){
+		  panel.destroy();
+router.navigate('/company/',{animate:false,reloadCurrent:true});
+});	
+
+		$$('.zayavki').on('click',function(){
+		  panel.destroy();
+router.navigate('/zayavki/',{animate:false,reloadCurrent:true});
+});	
+
+		$$('.users').on('click',function(){
+		  panel.destroy();
+router.navigate('/users/',{animate:false,reloadCurrent:true});
+});	
+
+$$('.sklad').on('click',function(){
+		  panel.destroy();
+router.navigate('/sklady/',{animate:false,reloadCurrent:true});
+});	
+$$('.sobyt').on('click',function(){
+		  panel.destroy();
+router.navigate('/sobyt/',{animate:false,reloadCurrent:true});
+});	
+$$('.sotrudnik').on('click',function(){
+		  panel.destroy();
+router.navigate('/sot/',{animate:false,reloadCurrent:true});
+});	
+
+
+	  window.addEventListener('popstate', function(event) {
+ panel.destroy();
+   router.refreshPage();
+
+}, false);
+	
+$$('#add_user').on('click', function(){
+
+app.preloader.show('blue');
+app.request.get('http://tedeco.kz/equipment/api/add.php',{},function(otvet){
+	app.preloader.hide();
+	if (otvet.length>0){	
+		var place_div = document.getElementById("place_option"); 
+	for (var s=0;s <otvet[0].length; s++){
+    var massiv = otvet[0][s].massiv;
+      for (var s1=0;s1 <massiv.length; s1++)	
+   place_div.innerHTML  +='<option value="'+massiv[s1].id_place+'">'+massiv[s1].name_place+'<font color="red">('+otvet[0][s].company+')</font></option>';
+  }
+    $(function() {
+      $('#place_option').multipleSelect();
+    });
+	}
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+	},'json');
+	app.dialog.create({
+ title: '<div style="text-align: center;"><font color="red">Новая почта</font></div>',
+ text:"",
+
+content:'<div class="list no-hairlines-md">'+
+  '<ul>'+
+   '<li class="item-content item-input item-input-outline">'+
+                              '<div class="item-inner">'+
+                                '<div class="item-title item-floating-label">Фамилия</div>'+
+                                '<div class="item-input-wrap">'+
+                                  '<input type="text" placeholder="Фамилия" id="fam_user">'+
+                                  '<span class="input-clear-button"></span>'+
+                                '</div>'+
+                              '</div>'+
+                            '</li>'+
+     '<li class="item-content item-input item-input-outline">'+
+                              '<div class="item-inner">'+
+                                '<div class="item-title item-floating-label">Имя</div>'+
+                                '<div class="item-input-wrap">'+
+                                  '<input type="text" placeholder="Имя" id="name_users">'+
+                                  '<span class="input-clear-button"></span>'+
+                                '</div>'+
+                              '</div>'+
+                            '</li>'+
+							'<li class="item-content item-input item-input-outline">'+
+                            '<div class="item-inner">'+
+                             ' <div class="item-title item-label"></div>'+
+                                 '                           <div class="item-input-wrap input-dropdown-wrap">'+
+          '<select placeholder="Центры, которые обслуживает" id="place_option" multiple="multiple">'+
+         ' </select>'+
+       ' </div>'+
+                           ' </div>'+
+                          '</li>'+
+                          '<li class="item-content item-input item-input-outline">'+
+                              '<div class="item-inner">'+
+                                '<div class="item-title item-floating-label">Почта</div>'+
+                                '<div class="item-input-wrap">'+
+                                  '<input type="text" placeholder="Логин" id="post_user">'+
+                                  '<span class="input-clear-button"></span>'+
+                                '</div>'+
+                              '</div>'+
+                            '</li>'+
+    '</li>'+
+  '</ul><br><br><br><br>'+
+'</div>',
+on: {
+    opened: function () {
+
+    }
+  },
+ buttons: [
+ {
+        text: '<a class="col button button-fill">Отмена</a>',
+		 onClick: function() {
+		 }
+      },
+		{
+        text: '<a class="col button button-fill">Добавить</a>',
+		 close:false,
+		onClick: function(){
+		
+    var sklad = "0";
+    var glav = "0";
+    if ($$('#sklad-checkbox').prop('checked')==true) sklad="1";
+    if ($$('#glav-checkbox').prop('checked')==true) glav="1";
+		if ($$('#place_option').val()=="")$$('#place_option').addClass('bg-color-red');
+		else
+		{
+      app.dialog.close();
+      var res = ""+$$('#place_option').val();
+       res = res.split(",");
+     // app.dialog.alert(JSON.stringify(res));
+      
+		app.preloader.show('blue');
+		app.request.post('http://tedeco.kz/equipment/api/add_user.php',{place:JSON.stringify(res),fam:$$('#fam_user').val(),name:$$('#name_users').val(),log:$$('#post_user').val(),roles:'4'},function(otvet){                                          							
+app.preloader.hide();
+if (otvet[0].message=="ok"){
+app.dialog.close();
+app.dialog.alert('Добавлено',function(){
+panel.destroy();
+router.refreshPage();
+});
+}
+else
+if (otvet[0].message=="nolog"){
+var toastCenter = app.toast.create({
+  text: 'Такая почта уже есть в системе',
+  position: 'center',
+  closeTimeout: 1000,
+});
+toastCenter.open();
+}
+else
+app.dialog.alert('Ошибка');
+},
+function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+		}
+		}
+      }
+],
+
+}).open();   
+$$('#place_option').change(function(){
+$$('#place_option').removeClass('bg-color-red');
+});
+});
+
+
+
+$$('#div_user').on('click','button',function(){
+  var value = $$(this).attr('value');
+var id = $$(this).attr('data-id');
+if (value=="2")
+app.dialog.confirm('Вы точно хотите удалить?',function(){
+app.preloader.show('blue');
+app.request.post('http://tedeco.kz/equipment/api/add_user.php',{zapros:'dell',name:id},function(data){                                          							
+app.preloader.hide();
+if (data[0].message=="ok"){
+app.dialog.alert('Удалено',function(){
+ panel.destroy();
+   router.refreshPage();
+});
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+//app.dialog.alert(selcs);
+});
+else{
+  app.preloader.show('blue');
+app.request.post('http://tedeco.kz/equipment/api/add_user.php',{zapros:'user',id:id},function(user){  
+  var places = user[0].place;                                   							
+app.preloader.hide();
+if (user[0].message=="ok"){
+  var glav="",sklad="";
+if (user[0].glav=="1")glav="checked";
+if (user[0].sklad=="1")sklad="checked";
+  app.dialog.create({
+ title: '<div style="text-align: center;"><font color="red">Редактирование сотрудника</font></div>',
+ text:"",
+
+content:'<div class="list no-hairlines-md">'+
+  '<ul>'+
+   '<li class="item-content item-input item-input-outline item-input-with-value">'+
+                              '<div class="item-inner">'+
+                                '<div class="item-title item-floating-label">Фамилия</div>'+
+                                '<div class="item-input-wrap">'+
+                                  '<input type="text" placeholder="Фамилия" id="fam_user" value="'+user[0].fam+'" class="input-with-value">'+
+                                  '<span class="input-clear-button"></span>'+
+                                '</div>'+
+                              '</div>'+
+                            '</li>'+
+     '<li class="item-content item-input item-input-outline item-input-with-value">'+
+                              '<div class="item-inner">'+
+                                '<div class="item-title item-floating-label">Имя</div>'+
+                                '<div class="item-input-wrap">'+
+                                  '<input type="text" placeholder="Имя" id="name_users" value="'+user[0].name+'" class="input-with-value">'+
+                                  '<span class="input-clear-button"></span>'+
+                                '</div>'+
+                              '</div>'+
+                            '</li>'+
+                            '<li class="item-content item-input item-input-outline">'+
+                            '<div class="item-inner">'+
+                             ' <div class="item-title item-label"></div>'+
+                                 '                           <div class="item-input-wrap input-dropdown-wrap">'+
+          '<select placeholder="" id="place_options" multiple="multiple">'+
+         ' </select>'+
+       ' </div>'+
+                           ' </div>'+
+                          '</li>'+
+	'<li class="item-content item-input item-input-outline item-input-with-value">'+
+                              '<div class="item-inner">'+
+                                '<div class="item-title item-floating-label">Почта</div>'+
+                                '<div class="item-input-wrap">'+
+                                  '<input type="text" placeholder="Логин" id="post_user" value="'+user[0].post+'" class="input-with-value">'+
+                                  '<span class="input-clear-button"></span>'+
+                                '</div>'+
+                              '</div>'+
+                            '</li>'+
+    '</li>'+
+  '</ul>'+
+'</div>',
+on: {
+    opened: function () {
+
+    }
+  },
+ buttons: [
+ {
+        text: '<a class="col button button-fill">Отмена</a>',
+		 onClick: function() {
+		 }
+      },
+		{
+        text: '<a class="col button button-fill">Сохранить</a>',
+		 close:false,
+		onClick: function(){
+		
+    var sklad = "0";
+    var glav = "0";
+    if ($$('#sklad-checkbox').prop('checked')==true) sklad="1";
+    if ($$('#glav-checkbox').prop('checked')==true) glav="1";
+		if ($$('#place_options').val()=="")$$('#place_options').addClass('bg-color-red');
+		else
+		{
+      app.dialog.close();
+      var res = ""+$$('#place_options').val();
+       res = res.split(",");
+      //app.dialog.alert(JSON.stringify(res));
+      
+		app.preloader.show('blue');
+		app.request.post('http://tedeco.kz/equipment/api/add_user.php',{zapros:"update",id:id,place:JSON.stringify(res),fam:$$('#fam_user').val(),name:$$('#name_users').val(),log:$$('#post_user').val(),roles:'4'},function(otvet){                                          							
+app.preloader.hide();
+
+if (otvet[0].message=="ok"){
+app.dialog.close();
+app.dialog.alert('Сохранено',function(){
+panel.destroy();
+router.refreshPage();
+});
+}
+else
+if (otvet[0].message=="nolog"){
+var toastCenter = app.toast.create({
+  text: 'Такой логин уже есть в системе',
+  position: 'center',
+  closeTimeout: 1000,
+});
+toastCenter.open();
+}
+else
+app.dialog.alert('Ошибка');
+},
+function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+		}
+		}
+      }
+],
+
+}).open(); 
+	app.preloader.show('blue');
+  app.request.get('http://tedeco.kz/equipment/api/add.php',{},function(otvet){
+	app.preloader.hide();
+	if (otvet.length>0){	
+		var place_div = document.getElementById("place_options"); 
+	for (var s=0;s <otvet[0].length; s++){
+    var massiv = otvet[0][s].massiv;
+      for (var s1=0;s1 <massiv.length; s1++)	{
+      let plas1 = places.find(item => item.place == massiv[s1].name_place);
+  if (plas1)
+   place_div.innerHTML  +='<option value="'+massiv[s1].id_place+'" selected>'+massiv[s1].name_place+'<font color="red">('+otvet[0][s].company+')</font></option>';
+   else
+   place_div.innerHTML  +='<option value="'+massiv[s1].id_place+'">'+massiv[s1].name_place+'<font color="red">('+otvet[0][s].company+')</font></option>';
+      }
+  }
+    $(function() {
+      $('#place_options').multipleSelect();
+    });
+  }
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+	},'json');
+
+
+    
+
+} 
+},'json');
+
+
+}
+});
+
+$$('#sort_fam').on('click',function(){
+  app.preloader.show('blue');
+setTimeout(function(){
+if ($$('#sort_fam').hasClass('sortable-desc'))sort("fam ASC");
+else
+if ($$('#sort_fam').hasClass('sortable-asc'))sort("fam DESC");
+else{
+$$('#sort_fam').addClass('sortable-desc');
+sort("fam ASC");
+}
+},50);
+});
+
+$$('#sort_im').on('click',function(){
+  app.preloader.show('blue');
+setTimeout(function(){
+if ($$('#sort_im').hasClass('sortable-desc'))sort("name ASC");
+else
+if ($$('#sort_im').hasClass('sortable-asc'))sort("name DESC");
+else{
+$$('#sort_im').addClass('sortable-desc');
+sort("name ASC");
+}
+},50);
+});
+
+$$('#sort_center').on('click',function(){
+  app.preloader.show('blue');
+setTimeout(function(){
+if ($$('#sort_center').hasClass('sortable-desc'))sort("center ASC");
+else
+if ($$('#sort_center').hasClass('sortable-asc'))sort("center DESC");
+else{
+$$('#sort_center').addClass('sortable-desc');
+sort("center ASC");
+}
+},50);
+});
+
+function sort(sorts){
+  app.preloader.hide();
+  if (place_sotr[0]=="all")massivy=massivy1;
+  if (sorts=="fam DESC")massivy.sort(function (a, b) {
+  if (a.fam < b.fam) {
+    return 1;
+  }
+  if (a.fam > b.fam) {
+    return -1;
+  }
+  return 0;
+});
+else
+if (sorts=="fam ASC")massivy.sort(function (a, b) {
+  if (a.fam > b.fam) {
+    return 1;
+  }
+  if (a.fam < b.fam) {
+    return -1;
+  }
+  return 0;
+});
+
+if (sorts=="name DESC")massivy.sort(function (a, b) {
+  if (a.name < b.name) {
+    return 1;
+  }
+  if (a.name > b.name) {
+    return -1;
+  }
+  return 0;
+});
+else
+if (sorts=="name ASC")massivy.sort(function (a, b) {
+  if (a.name > b.name) {
+    return 1;
+  }
+  if (a.name < b.name) {
+    return -1;
+  }
+  return 0;
+});
+
+if (sorts=="center DESC")massivy.sort(function (a, b) {
+  if (a.place[0].place < b.place[0].place) {
+    return 1;
+  }
+  if (a.place[0].place > b.place[0].place) {
+    return -1;
+  }
+  return 0;
+});
+else
+if (sorts=="center ASC")massivy.sort(function (a, b) {
+  if (a.place[0].place > b.place[0].place) {
+    return 1;
+  }
+  if (a.place[0].place < b.place[0].place) {
+    return -1;
+  }
+  return 0;
+});
+  if (massivy.length>=2){
+var virt_comp = document.getElementById("div_user"); 
+virt_comp.innerHTML ="";
+	for (var s=0;s<massivy.length; s++){
+    var sd = JSON.stringify(massivy[s].place);
+    sd = JSON.parse(sd);
+    if (sd.length>=2) {
+      var pls ="";
+      for (var j=0;j<sd.length; j++)
+      pls += '<option disabled>'+sd[j].place+'</option>';
+      var place ='<div class="item-input-wrap input-dropdown-wrap">'+
+          '<select placeholder="Несколько" id="place_sotr">'+
+		   '  <option value="0" selected>Несколько</option>'+pls+
+         ' </select>'+
+       ' </div>';
+    }
+    else
+    var place = sd[0].place;
+    virt_comp.innerHTML  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:20%">'+massivy[s].fam+'</td>'+
+						  '<td class="label-cell" style="width:20%">'+massivy[s].name+massivy[s].glav+massivy[s].sklad+'</td>'+
+						  '<td class="label-cell" style="width:10%">'+place+'</td>'+
+						  '<td class="label-cell" style="width:20%">'+massivy[s].post+'</td>'+
+              '<td class="label-cell" style="width:10%"><button class="button button-fill" value="1" data-id="'+massivy[s].id+'">Редактировать</button></td>'+
+						  '<td class="label-cell" style="width:10%"><button class="button button-fill" value="2" data-id="'+massivy[s].id+'">Удалить</button></td>'+
+                        '</tr>';
+}
+}
+}
+		},
+    },
+  };
+</script>

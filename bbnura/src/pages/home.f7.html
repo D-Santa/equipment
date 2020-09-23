@@ -1,0 +1,191 @@
+<style>
+  .highcharts-figure, .highcharts-data-table table {
+      min-width: 100%; 
+      max-width: 660px;
+      max-height: 100%;
+      margin: 1em auto;
+  }
+
+  .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #EBEBEB;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+  }
+  .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+  }
+  .highcharts-data-table th {
+      font-weight: 600;
+      padding: 0.5em;
+  }
+  .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+      padding: 0.5em;
+  }
+  .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+  }
+  .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+  }
+</style>
+<template>
+  <div class="page" data-name="home">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <div class="left">
+          <a class="link panel-open icon-only" data-panel="left">
+            <i class="icon f7-icons">bars</i>
+          </a>
+        </div>
+        <div class="title">Главная</div>
+        <div class="right">
+          <a class="link popover-open" data-popover=".profile-popover">
+            <span class="margin-right-half">Добро пожалоавть, <b>Администратор</b></span>
+            <img src="https://i.pravatar.cc/56?u=9" class="avatar">
+          </a>
+        </div>
+        <div class="title-large">
+          <div class="title-large-text display-flex align-items-center">
+            <i class="icon f7-icons margin-right-half" style="font-size: 24px">square_grid_2x2_fill</i>
+            <span>Главная</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popover profile-popover">
+      <div class="popover-inner">
+        <h3 class="text-align-center">Администратор</h3>
+        <div class="list no-hairlines no-hairlines-between">
+          <ul>
+          </ul>
+        </div>
+
+        <div class="list no-hairlines no-hairlines-between margin-bottom">
+          <ul>
+            <li>
+              <a href="#" class="item-link item-content">
+                <div class="item-media">
+                  <i class="icon f7-icons">square_arrow_left_fill</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Logout</div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="dashboard-cards">
+        <div class="row margin-horizontal">
+          <div class="col-100 tablet-66 margin-top charts-col">
+            <div class="row">
+              <div class="col-50">
+                <div class="card">
+                  <div class="card-header">Количество клиентов</div>
+                  <div class="card-content card-content-padding text-align-center">
+                    <div
+                      class="gauge gauge-init"
+                      data-type="circle"
+                      data-value="0.20"
+                      data-value-text="20"
+                      data-label-text="из 100"
+                      data-value-text-color="#f44336"
+                      data-border-color="#f44336"
+                      data-border-width="20"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-50">
+                <div class="card">
+                  <div class="card-header">Количестов заявок</div>
+                  <div class="card-content card-content-padding text-align-center">
+                    <div
+                      class="gauge gauge-init"
+                      data-type="circle"
+                      data-value="0.75"
+                      data-value-text="75"
+                      data-label-text="из 100"
+                      data-value-text-color="#ff9800"
+                      data-border-color="#ff9800"
+                      data-border-width="20"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-100 tablet-66 margin-top charts-col">
+            <figure class="highcharts-figure">
+              <div id="container"></div>
+          </figure>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</template>
+<script>
+  export default {
+    on: {
+      pageInit:function(){
+        var app = this.$app;
+    var router = this.$router;
+    Highcharts.chart('container', {
+    chart: {
+        type: 'line'
+    },
+    exporting: {
+                        enabled: false
+                    },
+                    credits:{
+                        enabled: false
+                    },
+    title: {
+        text: 'График'
+    },
+    subtitle: {
+        text: 'за 2020 год'
+    },
+    xAxis: {
+        categories: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+    },
+    yAxis: {
+        title: {
+            text: 'Количество'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        name: 'Заявки',
+        data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+    }, {
+        name: 'Регистрация',
+        data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+    }]
+});
+   
+      }
+    },
+  }
+</script>

@@ -1,0 +1,618 @@
+<template>
+<div class="page" data-name="form">
+  <div class="navbar">
+    <div class="navbar-inner sliding" style="background-color:#222c3c">
+
+      <div class="title text-color-white">Добавление оборудование TDC</div>
+      <div class="right">
+        <a href="#" class="link back">
+          <span class="text-color-white">Закрыть</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="page-content">
+       <div class="card" style="width: 70%;left:15%;">
+          <div class="block">
+        <div class="card-content" style="height: 100%;">
+          <div class="row">
+            <div class="col-100"> 
+
+              <div class="row">
+                <div class="col-25">
+                    <div class="list no-hairlines-md">
+                        <ul>
+                          <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                              <div class="item-title item-floating-label">Статус</div>
+                              <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id="status">
+            <option value="1">Работает</option>
+            <option value="2">Работает - ограниченная функциональность</option>
+			<option value="3">Не работает</option>
+          </select>
+        </div>
+                            </div>
+                          </li>
+                          <li class="item-content item-input item-input-outline">
+                              <div class="item-inner">
+                                <div class="item-title item-floating-label">Тип</div>
+                                                            <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id="type_option">
+		   <option value="0"></option>
+          </select>
+        </div>
+                              </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-25">
+                    <div class="list no-hairlines-md">
+                        <ul>
+                          <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                              <div class="item-title item-floating-label">Компания</div>
+                              <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id="company_option">
+		<option value="0"></option>
+          </select>
+        </div>
+                            </div>
+                          </li>
+                          <li class="item-content item-input item-input-outline gemo" style="display: none;">
+                              <div class="item-inner">
+                                <div class="item-title item-floating-label">Наименование</div>
+                                <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id="equip_option">
+		     <option value="0"></option>
+          </select>
+        </div>
+                              </div>
+                            </li>
+                            <li class="item-content item-input item-input-outline vodo" style="display: none;">
+                              <div class="item-inner">
+                                <div class="item-title item-floating-label">Производитель</div>
+                                <div class="item-input-wrap">
+                                  <input type="text" placeholder="Производитель" id = "proizvoditeladd">
+                                  <span class="input-clear-button"></span>
+                                </div>
+                              </div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-25">
+                    <div class="list no-hairlines-md">
+                        <ul>
+                          <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                              <div class="item-title item-floating-label">Расположение</div>
+                                                            <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id="place_option">
+		     <option value="0"></option>
+          </select>
+        </div>
+                            </div>
+                          </li>
+                          <li class="item-content item-input item-input-outline gemo" style="display: none;">
+                              <div class="item-inner">
+                                <div class="item-title item-floating-label">Артикул</div>
+                                <div class="item-input-wrap">
+                                  <input type="text" placeholder="Article" id = "article">
+                                  <span class="input-clear-button"></span>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="item-content item-input item-input-outline vodo" style="display: none;">
+                              <div class="item-inner">
+                                <div class="item-title item-floating-label">Модель</div>
+                                <div class="item-input-wrap">
+                                  <input type="text" placeholder="Модель" id = "modeladd">
+                                  <span class="input-clear-button"></span>
+                                </div>
+                              </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-25">
+                    <div class="list no-hairlines-md">
+                        <ul>
+                          <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                              <div class="item-title item-floating-label">Серийный номер</div>
+                              <div class="item-input-wrap">
+                                <input type="text" placeholder="SN" id ="sn">
+                                <span class="input-clear-button"></span>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item-content item-input item-input-outline gemo" style="display: none;">
+                              <div class="item-inner">
+                                <div class="item-title item-floating-label">Версия ПО</div>
+                                <div class="item-input-wrap">
+                                  <input type="text" placeholder="SW_version" id ="version">
+                                  <span class="input-clear-button"></span>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="item-content item-input item-input-outline vodo1">
+                              <div class="item-inner">
+                                <div class="item-title item-floating-label">Тип системы</div>
+                                                            <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id="type_opci">
+		   <option value="0"></option>
+          </select>
+        </div>
+                              </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="row gemo" style="display: none;">
+            <div class="col-100">
+                <div class="sticker-left" data-sticker="Опции" style="width:97%;left:1.5%;">
+                    <div class="row">
+                    <div class="col-10">
+                        <div class="list no-hairlines-md">
+                            <ul>
+                              <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                  <div class="item-title item-floating-label">PUMP</div>
+                                                                <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id="pump">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+                                </div>
+                              </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-15">
+                        <div class="list no-hairlines-md">
+                            <ul>
+                              <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                  <div class="item-title item-floating-label">DF/HDF</div>
+                                                                                                  <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id = "hdf">
+            <option value="0"></option>
+            <option value="НЕТ">НЕТ</option>
+            <option value="DF">DF</option>
+			<option value="HDF">HDF</option>
+          </select>
+        </div>
+                                </div>
+                              </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                      <p>ZKV <label class="checkbox"><input type="checkbox" id ="chek1"><i class="icon-checkbox"></i></label></p>
+                    </div>
+                    <div class="col-10">
+                        <p>ADIMEA <label class="checkbox"><input type="checkbox" id ="chek2"><i class="icon-checkbox"></i></label></p>
+                    </div>
+                    <div class="col-10">
+                        <p>AKKU <label class="checkbox"><input type="checkbox" id ="chek3"><i class="icon-checkbox"></i></label></p>
+                    </div>
+                    <div class="col-10">
+                        <p>ABPM <label class="checkbox"><input type="checkbox" id ="chek4"><i class="icon-checkbox"></i></label></p>
+                    </div>
+                    <div class="col-15">
+                        <p>NEXADIA <label class="checkbox"><input type="checkbox" id="chek6"><i class="icon-checkbox"></i></label></p>
+                    </div>
+                    <div class="col-15">
+                      <p>Cardreader <label class="checkbox"><input type="checkbox" id="chek7"><i class="icon-checkbox"></i></label></p>
+                  </div>
+                </div>
+                </div>
+            </div>
+          </div>
+          <div class="row gemo" style="display: none;">
+              <div class="col-100"> 
+  
+                <div class="row">
+                  <div class="col-33">
+                      <div class="list no-hairlines-md">
+                          <ul>
+                              <li class="item-content">
+                                  <div class="item-inner">
+                                    <div class="item-title"><font size="2%">Год производства</font></div>
+                                    </div>
+                                </li>
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                  <div class="item-title item-floating-label">PY</div>
+                                  <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id="py_option">
+            <option value="2000">2000</option>
+          </select>
+        </div>
+                                </div>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="col-33">
+                      <div class="list no-hairlines-md">
+                          <ul>
+                              <li class="item-content">
+                                  <div class="item-inner">
+                                    <div class="item-title"><font size="2%">Дата ввода в эксплуатацию</font></div>
+                                    </div>
+                                </li>
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                  <div class="item-title item-floating-label">Inst_date</div>
+                                  <div class="item-input-wrap">
+                                     <input type="text" placeholder="Select date" readonly="readonly" id="demo-calendar-modal"/>
+                                  </div>
+                                </div>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="col-33">
+                      <div class="list no-hairlines-md">
+                          <ul>
+                              <li class="item-content">
+                                  <div class="item-inner">
+                                    <div class="item-title"><font size="2%">Время наработки</font></div>
+                                    </div>
+                                </li>
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                  <div class="item-title item-floating-label">WTC</div>
+                                  <div class="item-input-wrap">
+                                    <input type="number" placeholder="WTC" id="wtc" value="0" min="0">
+                                  </div>
+                                </div>
+                              </li>
+
+                          </ul>
+                      </div>
+                  </div>
+
+                </div>
+  
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-100"> 
+  
+                <div class="row">
+                    <div class="col-50">
+                        <div class="list no-hairlines-md">
+                            <ul>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                      <div class="item-title"><font size="2%">Гарантийное оборудование</font></div>
+                                      </div>
+                                  </li>
+                              <li class="item-content">
+                                  <div class="item-inner">
+                                    <div class="item-title"><p><label class="checkbox"><input type="checkbox" id ="chek5"><i class="icon-checkbox"></i></label></p></div>
+                                  </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                  <div class="col-50" id="data_g">
+                      <div class="list no-hairlines-md">
+                          <ul>
+                              <li class="item-content">
+                                  <div class="item-inner">
+                                    <div class="item-title"><font size="2%">Дата гарантий</font></div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-input item-input-outline">
+                                    <div class="item-inner">
+                                      <div class="item-title item-floating-label">Дата</div>
+                                      <div class="item-input-wrap">
+                                         <input type="text" placeholder="Select date" readonly="readonly" id="demo-calendar-modal2"/>
+                                      </div>
+                                    </div>
+                                  </li>
+                          </ul>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-100">
+                  <div class="sticker-left" data-sticker="Теги" style="width:97%;left:1.5%;">
+                      <div class="row" style="margin-top:2%;">
+                          <div class="list" style="width:100%;">
+                          <ul>
+                              <li class="item-content">
+                          <div class="block block-strong" style="width:97%;"> 
+						  <div id="chip_div">
+              
+                              </div>
+                              </div>
+                              </li>
+                              <li class="item-content item-input item-input-outline">
+							  <div style="width:80%;">
+                                  <div class="item-inner">
+                                    <div class="item-title item-floating-label">Новый тег</div>
+                                    <div class="item-input-wrap">
+                                      <input type="text" id="chip_in" placeholder="пишите тег">
+                                      <span class="input-clear-button"></span>
+                                    </div>
+
+                                  </div>
+								  </div>
+								  
+								  <div style="width:20%;">
+								  <div class="block">
+                <button class="button color-red button-fill" id="add_chip">Добавить</button>
+                </div>
+								  </div>
+                                </li>
+                              </ul>
+                              </div>
+
+
+                  </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+            <div class="block" style="width:20%;">
+                  <button class="button color-yellow button-fill text-color-black" id="add_tdc">Добавить</button>
+
+                </div>
+      </div>
+  </div>
+
+
+
+
+  </div>
+</div>
+</template>
+<script>
+export default {
+    on: {
+      pageInit: function () {
+
+     var app = this.$app;
+	  var $$ = this.$$;
+	  var router = this.$router;
+	  var schet=1;
+	   var today = new Date();
+	   app.data.peremen.put="add";
+	   if (app.data.peremen.type.id==="1"){
+       $$('.gemo').show();
+       $$('.vodo').hide();
+       $$('.vodo1').hide();
+     }
+     else
+     {
+      if (app.data.peremen.type.id==="2")
+       $$('.vodo1').show();
+       else
+       $$('.vodo1').hide();
+      $$('.gemo').hide();
+       $$('.vodo').show(); 
+     }
+	   var autocompleteDropdownAjax = app.autocomplete.create({
+  inputEl: '#chip_in',
+  openIn: 'dropdown',
+  preloader: true, //enable preloader
+  /* If we set valueProperty to "id" then input value on select will be set according to this property */
+  valueProperty: 'name', //object's "value" property name
+  textProperty: 'name', //object's "text" property name
+  limit: 20, //limit to 20 results
+  dropdownPlaceholderText: 'варианты',
+  source: function (query, render) {
+    var autocomplete = this;
+    var results = [];
+    if (query.length === 0) {
+      render(results);
+      return;
+    }
+    // Show Preloader
+    autocomplete.preloaderShow();
+
+    // Do Ajax request to Autocomplete data
+    app.request({
+      url: 'http://tedeco.kz/equipment/api/tag.php?type='+app.data.peremen.type.id,
+      method: 'GET',
+      dataType: 'json',
+      //send "query" to server. Useful in case you generate response dynamically
+      data: {
+        query: query,
+      },
+      success: function (data) {
+        // Find matched items
+        for (var i = 0; i < data.length; i++) {
+          if (data[i].name.toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(data[i]);
+        }
+        // Hide Preoloader
+        autocomplete.preloaderHide();
+        // Render items by passing array with result items
+        render(results);
+      }
+    });
+  }
+});
+ var calendarModal = app.calendar.create({
+  inputEl: '#demo-calendar-modal',
+  openIn: 'customModal',
+  toolbarCloseText: 'Закрыть',
+  header: true,
+  footer: true,
+  value: [today],
+  dateFormat: 'yyyy-mm-dd',
+  monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+  monthNamesShort: ['Янв', 'Фев', 'Мрт', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Нояб', 'Дек'],
+  dayNames: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+  dayNamesShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+  closeOnSelect: true,
+  headerPlaceholder: 'Выбрать дату',
+    firstDay: 1,
+  weekendDays: [0, 6],
+  touchmove: true,
+});
+var calendarModal2 = app.calendar.create({
+  inputEl: '#demo-calendar-modal2',
+  openIn: 'customModal',
+  toolbarCloseText: 'Закрыть',
+  header: true,
+  footer: true,
+  value: [today],
+  dateFormat: 'yyyy-mm-dd',
+  monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+  monthNamesShort: ['Янв', 'Фев', 'Мрт', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Нояб', 'Дек'],
+  dayNames: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+  dayNamesShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+  closeOnSelect: true,
+  headerPlaceholder: 'Выбрать дату',
+    firstDay: 1,
+  weekendDays: [0, 6],
+  touchmove: true,
+});
+	  var item=[];
+	app.preloader.show('blue');
+	app.request.get('http://tedeco.kz/equipment/api/add.php',{},function(otvet){
+	app.preloader.hide();
+	if (otvet.length>0){
+	var company_div = document.getElementById("company_option"); 
+	for (var s=0;s <otvet[3].length; s++)
+    company_div.innerHTML  +='<option value="'+otvet[3][s].id_company+'">'+otvet[3][s].name_company+'</option>';	
+		//var place_div = document.getElementById("place_option"); 
+	//for (var s=0;s <otvet[0].length; s++)
+    //place_div.innerHTML  +='<option value="'+otvet[0][s].id_place+'">'+otvet[0][s].name_place+'</option>';	
+  var type_div = document.getElementById("type_option"); 
+	for (var d=0;d <otvet[1].length; d++){
+    if (app.data.peremen.type.id===otvet[1][d].id_type)
+    type_div.innerHTML  +='<option selected value="'+otvet[1][d].id_type+'">'+otvet[1][d].name_type+'</option>';
+    //else
+    //type_div.innerHTML  +='<option value="'+otvet[1][d].id_type+'">'+otvet[1][d].name_type+'</option>';
+  }
+	var type_div = document.getElementById("equip_option"); 
+
+  var type_opci = document.getElementById("type_opci"); 
+	for (var d=0;d <otvet[8].length; d++)
+  type_opci.innerHTML  +='<option value="'+otvet[8][d].id_type+'">'+otvet[8][d].name_type+'</option>';
+
+	for (var d=0;d <otvet[2].length; d++)
+    type_div.innerHTML  +='<option value="'+otvet[2][d].id_eqip+'">'+otvet[2][d].name_eqip+'</option>';
+	var type_div = document.getElementById("py_option"); 
+	for (var d=1;d <20; d++)
+	if (d<10)
+    type_div.innerHTML  +='<option value="200'+d+'">200'+d+'</option>';
+	else
+	type_div.innerHTML  +='<option  value="20'+d+'">20'+d+'</option>';
+	}
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+	},'json');
+	  
+		$$('#add_chip').on('click',function(){
+		if ($$('#chip_in').val()=="")app.dialog.alert('Пустое поле!!!');else{
+		var chip_div = document.getElementById("chip_div");
+		 var pushreb="";
+     var namechip=$$('#chip_in').val();
+     namechip = namechip.replace(/\s/g, '');
+		  pushreb = '<a class="chip color-orange" id="'+namechip+schet+'" name="'+namechip+'" data-id="'+schet+'"><div class="chip-label">'+$$('#chip_in').val()+'</div></a>' ;  
+			
+
+	  chip_div.innerHTML += pushreb;
+	  item.push({
+	  name:$$('#chip_in').val(),
+	  id:schet,
+	  status:"add"
+	  });
+	  		$$('#chip_in').val("");
+				schet++;
+		}
+		});
+
+    $$('#company_option').change(function(){
+      app.request.get('http://tedeco.kz/equipment/api/add_place.php',{zapros:'list',id_place:$$('#company_option').val()},function(data){                                          							
+app.preloader.hide();
+var types = document.getElementById("place_option"); 
+var equip = "";
+types.innerHTML = ' <option value="0"></option>';
+for (var s=0;s<data.length; s++)
+equip  +='<option value="'+data[s].id+'">'+data[s].name+'</option>';	
+types.innerHTML  +=equip;
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+
+    });
+    
+	   $$('#chip_div').on('click', 'a', function () {
+		var id=$$(this).attr('data-id');
+		var name=$$(this).attr('name');
+		app.dialog.confirm('Вы точно хотите удалить тег <font color="red">"'+name+'"</font>', function () {
+		$$('#'+name+id).hide();
+		item[id-1].status="dell";
+		});
+		});
+		
+    $$('#data_g').hide();
+    $$("#chek5").click(function(){
+   if ($$("#chek5").prop('checked')==true)
+   $$('#data_g').show();
+   else
+   $$('#data_g').hide();
+    });
+
+		 $$('#add_tdc').on('click', function () {
+		 var items=[];
+		 for (var s=0; s<item.length; s++)
+		 if (item[s].status=="add")
+		 items.push({name:item[s].name});
+     var data_g;
+		 //if (items.length==0)app.dialog.alert('no');else
+		 //app.dialog.alert($$('#status').val()+" "+$$("#place_option").val()+" "+$$("#sn").val()+" "+$$("#type_option").val()+" "+$$("#equip_option").val()+" "+$$("#article").val()+" "+$$("#version").val()
+		 //+" "+$$("#pump").val()+" "+$$("#hdf").val()+" "+$$("#chek1").prop('checked')+" "+$$("#py_option").val()+" "+$$("#demo-calendar-modal").val()+" "+$$("#wtc").val()+JSON.stringify(items));
+		//app.dialog.alert(JSON.stringify(items));
+		if ($$("#chek5").prop('checked')==true)
+data_g = $$("#demo-calendar-modal2").val();
+		app.preloader.show('blue');
+    if (app.data.peremen.type.id==="1")
+app.request.get('http://tedeco.kz/equipment/api/new.php',{company:$$('#company_option').val(),place:$$('#place_option').val(),etype:app.data.peremen.type.id,equip:$$('#equip_option').val(),sn:$$("#sn").val(),article:$$("#article").val(),py:$$("#py_option").val(),inst_date:$$("#demo-calendar-modal").val(),wtc:$$("#wtc").val(),sw_version:$$("#version").val(),pump:$$("#pump").val(),hdf:$$("#hdf").val(),zkv:$$("#zkv").val(),zkv:$$("#chek1").prop('checked'),adimea:$$("#chek2").prop('checked'),akku:$$("#chek3").prop('checked'),abpm:$$("#chek4").prop('checked'),nexadia:$$("#chek6").prop('checked'),cardreader:$$("#chek7").prop('checked'),status:$$('#status').val(),id:app.data.user.id,tag:JSON.stringify(items),data_g:data_g},function(otvet){                                          							
+app.preloader.hide();
+if (otvet[0].message=="ok")
+app.dialog.alert('Добавлено',function(){
+router.back({force:true});
+});
+else
+if (otvet[0].message=="sn")
+app.dialog.alert('Такой серийный номер есть в базе, поменяйте!');
+},'json');
+else
+app.request.get('http://tedeco.kz/equipment/api/new.php',{company:$$('#company_option').val(),place:$$('#place_option').val(),etype:app.data.peremen.type.id,proizvoditel:$$('#proizvoditeladd').val(),sn:$$("#sn").val(),model:$$("#modeladd").val(),status:$$('#status').val(),id:app.data.user.id,tag:JSON.stringify(items),data_g:data_g},function(otvet){                                          							
+  app.preloader.hide();
+if (otvet[0].message=="ok")
+app.dialog.alert('Добавлено',function(){
+router.back({force:true});
+});
+else
+if (otvet[0].message=="sn")
+app.dialog.alert('Такой серийный номер есть в базе, поменяйте!');
+},'json');
+		});
+		},
+    },
+  };
+</script>

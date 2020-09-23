@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="theme-color" content="#007aff">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>Equipment</title>
+</head>
+<body class="bg-color-black">
+  <div id="app" style="width: 414px;margin-left: auto;margin-right: auto;">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar"></div>
+    <!-- Left panel with cover effect-->
+    <div class="panel panel-left panel-cover">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner" style="background-color: #5a8fbc;">
+              <div class="title" style="width:100%;text-align:center"><span id="user">sdf</span></div>
+            </div>
+          </div>
+          <div class="toolbar tabbar toolbar-bottom bg-color-white">
+            <div class="toolbar-inner">
+              <div style="width:100%;text-align:center;"><font color="#5a8fbc"><span id="version">Версия 1.0.4</span></font></div>
+            </div>
+          </div>
+          <div class="page-content">
+		  <div class="list">
+              <ul>
+			  <li id="history">
+                  <a href="#" class="item-content item-link" id="zayvki">
+				  <div class="item-media text-color-gray"><i class="f7-icons" >list</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Заявки</div>
+                    </div>
+                  </a>
+                </li>
+                <li id="formss" style="display: none">
+                  <a href="#" class="item-content item-link" id="forum">
+				  <div class="item-media"><i class="f7-icons" >chat</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Форум</div>
+                    </div>
+                  </a>
+                </li>
+                <li id="voda">
+                  <a href="#" class="item-content item-link" id="vodo_b">
+				  <div class="item-media text-color-gray"><i class="f7-icons" >card</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Мониторинг сис.водоочистки</div>
+                    </div>
+                  </a>
+                </li>
+                <li id="sklad">
+                  <a href="#" class="item-content item-link" id="sklad_b">
+				  <div class="item-media text-color-gray"><i class="material-icons" >format_align_center</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Склад</div>
+                    </div>
+                  </a>
+                </li>
+			  <li>
+                  <a class="item-content item-link vyhod">
+				  <div class="item-media text-color-gray"><i class="f7-icons" >undo</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Выход</div>
+                    </div>
+                  </a>
+                </li>
+				
+                </ul>
+				</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main view-init safe-areas" data-url="/author/"></div>
+
+  
+  </div>
+  <% if (process.env.TARGET === 'cordova') { %>
+  <script src="cordova.js"></script>
+  <% } %>
+  <!-- built script files will be auto injected -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</body>
+</html>

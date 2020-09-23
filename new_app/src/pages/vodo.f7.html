@@ -1,0 +1,64 @@
+<template>
+	<div class="page" data-name="vodo">
+	  <!-- Top Navbar -->
+	  <div class="navbar">
+		<div class="navbar-inner">
+		  <div class="left"  @Click="backvodo">
+            <a href="#" class="link text-color-white">
+              <i class="icon icon-back"></i><span class="ios-only">Назад</span>
+            </a>
+        </div>
+		  <div class="title sliding">Мониторинг сис.водоочистки</div>
+		</div>
+	  </div>
+	  <!-- Scrollable page content-->
+	  <div class="page-content">
+		  <div class="block" id="virt_vodo">
+
+		  </div>
+	  </div>
+	</div>
+  </template>
+  <script>
+  export default {
+	methods: {
+    backvodo: function () {
+      var app = this.$app;
+      var $$ = this.$$;
+      var router = this.$router;
+      app.panel.enableSwipe('left');
+	  router.back();
+	  if (app.data.url=="/"){
+      app.methods.home.users();
+      app.methods.home.timers();
+      }
+    },
+      },
+  on: {
+		pageInit: function () {
+		var app = this.$app;
+		var $$ = this.$$;
+		var router = this.$router;
+		app.panel.disableSwipe('left');
+		app.preloader.show('blue');
+		app.request.get('https://tedeco.kz/equipment/api/monitoring.php',{id:app.data.user.id},function(notifi){
+			app.preloader.hide();
+			var ht ="";
+if (notifi.length>=1){
+	for (var s = 0; s<notifi.length; s++)
+	ht+='<div class="card" data-id="'+notifi[s].id+'"><div class="card-header"></div>'+
+'<div name="'+notifi[s].id_bd+'" data-id="'+notifi[s].id_zaya+'" class="card-content card-content-padding">'+notifi[s].fio+' изменил статус <font color="blue">'+notifi[s].status+'</font></div>'+
+'<div name="'+notifi[s].id_bd+'" data-id="'+notifi[s].id_zaya+'" class="card-footer">'+notifi[s].data+'</div></div>';
+$$('#virt_notifi').html(ht);
+}
+else
+$$('#virt_vodo').html('У вас ничего нету');
+ },function(){
+  app.preloader.hide();
+  app.dialog.alert('Нет подключения к интернету');
+  },'json');
+
+		},
+	  },
+  };
+  </script>

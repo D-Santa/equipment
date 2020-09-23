@@ -1,0 +1,517 @@
+<template>
+<div class="page" data-name="company">
+  <div class="navbar">
+    <div class="navbar-inner sliding" style="background-color:#222c3c">
+      <div class="title text-color-white" >Админ панель</div>
+      <div class="right">
+        <a href="#" class="link" id="back">
+          <span class="text-color-white">Закрыть</span>
+        </a>
+      </div>
+    </div>
+  </div>
+   <div class="panel panel-left panel-reveal theme-dark">
+ 		<div class="navbar">
+          <div class="navbar-inner text-color-white" style="background-color:#171717">
+            <div class="title"><a class="link text-color-white">
+			<img src="static/img/log.png" class="avatar">
+                <span class="margin-right-half">&nbsp;Equipment</span>
+                
+              </a></div>
+          </div>
+        </div>
+      <div class="view">
+	  
+        <div class="page"  style="--f7-list-chevron-icon-color:transparent;--f7-list-bg-color: #171717;">
+		
+          <div class="list" >
+            <ul>
+              <li>
+                <a class="item-content item-link company">
+                  <div class="item-media">
+                    <i class="icon f7-icons">data_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Компания</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a class="item-content item-link users">
+                  <div class="item-media">
+                    <i class="icon f7-icons">person</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Пользователи</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a id="sotrud" class="item-content item-link sotrudnik">
+                  <div class="item-media">
+                    <i class="icon f7-icons">list_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Сотрудники</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+<div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link zayavki">
+                  <div class="item-media">
+                    <i class="icon f7-icons">color_filter</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Заявки</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+		  
+		  <div class="list">
+            <ul>
+              <li>
+                <a id="zvayz" class="item-content item-link sklad">
+                  <div class="item-media">
+                    <i class="icon f7-icons">layers_alt_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Склад</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+		</div>
+      </div>
+    </div>
+
+
+  <div class="page-content">
+  <br>
+<div class="menu">
+  <div class="menu-inner">
+    <a id="glavka" class="menu-item">
+      <div class="menu-item-content"><i class="icon f7-icons">layers_alt_fill</i>Склад</div>
+    </a>
+	<a id="vputi" class="menu-item">
+      <div class="menu-item-content"><i class="icon material-icons">directions_run</i>В пути</div>
+    </a>
+	</div>
+	</div>
+	
+					
+<div class="row margin-horizontal">
+
+              <div class="col-100 margin-top">
+			  
+			    <div class="card text-color-black col-100"  style="--f7-card-border-radius:30px;">
+                      <div class="card-content card-content-padding">
+<i class="icon material-icons margin-right-half" style="font-size: 24px; margin-top:-5px;margin-left:10px;opacity:0.6;">pin_drop</i><font size="4px" style="opacity:0.6;"><b><span id="name_places">Перемещение</span></b></font>
+		</div>
+
+                    </div>
+
+              </div>
+            </div>
+			
+			<div class="row margin-horizontal">
+
+              <div class="col-50 margin-top">
+<div class="block">
+<div class="list no-hairlines-md">
+  <ul>
+  <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                              <div class="item-title item-floating-label">От</div>
+                                                          <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id="place_option">
+		     <option value="0"></option>
+          </select>
+        </div>
+                           </div>
+                          </li>
+  </ul>
+  </div>
+
+</div>
+
+<div class="card data-table" style="min-height:250px;">
+ <div class="card-content card-content-padding scrollable1">
+  <table>
+    <thead>
+      <tr>
+                          <th class="label-cell">№</th>
+                          <th class="label-cell">Название</th>
+						  <th class="label-cell">Артикул</th>
+						  <th class="label-cell">Количество</th>
+						  <th class="label-cell">Перемещение</th>
+                        </tr>
+    </thead>
+    <tbody  id ="list_place1">
+    </tbody>
+  </table>
+  </div>
+  <div class="data-table-footer">
+
+  </div>
+</div>
+              </div>
+			  <i class="material-icons" style="position:absolute;left:49.4%;top:65%;">forward</i>
+			  <div class="col-50 margin-top">
+<div class="block">
+<div class="list no-hairlines-md">
+  <ul>
+  <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                              <div class="item-title item-floating-label">До</div>
+                                                          <div class="item-input-wrap input-dropdown-wrap">
+          <select placeholder="Выберите" id="place_option2">
+		     <option value="0"></option>
+          </select>
+        </div>
+                           </div>
+                          </li>
+  </ul>
+  </div>
+  
+
+</div>
+<div class="card data-table" style="min-height:250px;">
+ <div class="card-content card-content-padding scrollable1">
+  <table>
+    <thead>
+     <tr>
+                          <th class="label-cell">№</th>
+                          <th class="label-cell">Название</th>
+						  <th class="label-cell">Артикул</th>
+						  <th class="label-cell">Количество</th>
+						  <th class="label-cell">Перемещение</th>
+                        </tr>
+    </thead>
+    <tbody id ="list_place2">
+
+    </tbody>
+  </table>
+  </div>
+  <div class="data-table-footer">
+<a class="button button-fill color-blue text-color-white" id ="podv">Подтвердить</a>
+  </div>
+</div>
+  </div>
+
+            </div>
+  </div>
+
+
+
+</div>
+</template>
+<script>
+export default {
+
+    on: {
+      pageInit: function () {
+      var app = this.$app;
+	  var $$ = this.$$;
+	  var router = this.$router;  
+	var panel = app.panel.create({
+  el: '.panel-left',
+});
+panel.open();
+var item_pere=[];
+var item_pere2=[];
+$$('#place_option').change(function(){
+var id = $$('#place_option').val();
+app.preloader.show('blue');
+app.request.get('http://tedeco.kz/equipment/api/add_sklad.php',{zapros:'list',id_place:id},function(data){                                          							
+app.preloader.hide();
+var list_place1 = document.getElementById("list_place1");
+ list_place1.innerHTML  ="";
+ var list_place2 = document.getElementById("list_place2");
+list_place2.innerHTML = "";
+ item_pere=[];
+item_pere2=[];
+if (data[0].message=="ok"){
+var ss =0;
+	for (var s=0;s<data.length; s++){
+	if (data[s].col!="0"){
+    list_place1.innerHTML  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(ss+1)+'</td>'+
+                          '<td class="label-cell" style="width:30%">'+data[s].name+'</td>'+
+						  '<td class="label-cell" style="width:30%">'+data[s].article+'</td>'+
+						  '<td class="label-cell" style="width:20%">'+data[s].col+'</td>'+
+						  '<td class="label-cell" style="width:10%"><button class="col button button-fill" name="'+(ss+1)+'" data-id="'+data[s].id+'">переместить</button></td>'+
+                        '</tr>';
+						ss++;
+						item_pere.push({
+						sos:'yes',
+nom:ss+1,
+name:data[s].name,
+article:data[s].article,
+col:data[s].col,
+id:data[s].id
+});
+}
+}
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+});
+
+$$('#list_place1').on('click','button',function(){
+var ids = $$(this).attr('data-id');
+var nom = $$(this).attr('name');
+//if ($$('#place_option2').val()=="0")app.dialog.alert('Выберите куда надо переместить...');
+//else
+//{
+  app.dialog.create({
+    title: 'Количество?',
+    text: '<div class="list no-hairlines-md">'+
+  '<ul>'+
+   '<li class="item-content item-input item-input-outline">'+
+                              '<div class="item-inner">'+
+                                '<div class="item-input-wrap">'+
+                                  '<input id="col_place" type="number" min="1" value="1" max="'+item_pere[nom-1].col+'">'+
+                                '</div>'+
+                              '</div>'+
+                            '</li></ul></div>',
+    buttons: [
+      {
+        text: 'Отмена',
+      },
+      {
+        text: 'Переместить',
+		onClick: function(){
+		if (parseInt($$('#col_place').val())>parseInt(item_pere[nom-1].col))app.dialog.alert('Максимальное количество на складе '+item_pere[nom-1].col);
+		else
+		if (parseInt($$('#col_place').val())<=0)app.dialog.alert('Нельзя переместить 0 и ниже');
+		else
+		{
+		item_pere[nom-1].sos="yes";
+		item_pere[nom-1].col=parseInt(item_pere[nom-1].col)-parseInt($$('#col_place').val());
+		var ss =0;
+		    list_place1.innerHTML="";
+	for (var s=0;s<item_pere.length; s++){
+	if (item_pere[s].col!="0"){
+    list_place1.innerHTML  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(ss+1)+'</td>'+
+                          '<td class="label-cell" style="width:30%">'+item_pere[s].name+'</td>'+
+						  '<td class="label-cell" style="width:30%">'+item_pere[s].article+'</td>'+
+						  '<td class="label-cell" style="width:20%">'+item_pere[s].col+'</td>'+
+						  '<td class="label-cell" style="width:10%"><button class="col button button-fill" name="'+(s+1)+'" data-id="'+item_pere[s].id+'">переместить</button></td>'+
+                        '</tr>';
+						ss++;
+						}
+						}
+					
+						var yes=0;
+for (var s=0;s<item_pere2.length; s++)
+if (item_pere2[s].id==item_pere[nom-1].id && item_pere2[s].sos=="yes"){
+item_pere2[s].col=parseInt(item_pere2[s].col)+parseInt($$('#col_place').val());
+yes = 1;
+break;
+}
+
+if (yes==0)
+item_pere2.push({
+sos:'yes',
+name:item_pere[nom-1].name,
+article:item_pere[nom-1].article,
+col:$$('#col_place').val(),
+id:item_pere[nom-1].id
+});
+var s=0;
+var list_place2 = document.getElementById("list_place2");
+list_place2.innerHTML = "";
+for (var d = 0; d <item_pere2.length; d++){
+if (item_pere2[d].sos == "yes"){
+ list_place2.innerHTML  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(s+1)+'</td>'+
+                          '<td class="label-cell" style="width:30%">'+item_pere2[d].name+'</td>'+
+						  '<td class="label-cell" style="width:30%">'+item_pere2[d].article+'</td>'+
+						  '<td class="label-cell" style="width:20%">'+item_pere2[d].col+'</td>'+
+						  '<td class="label-cell" style="width:10%"><button class="col button color-red button-fill" name = "'+(d+1)+'" data-id="'+item_pere2[d].id+'">удалить</button></td>'+
+                        '</tr>';
+						s++;
+						}
+				}
+						}
+						
+		
+		},
+      },
+    ],
+  }).open();
+
+						
+//}
+
+
+});
+
+$$('#list_place2').on('click','button',function(){
+var ids = $$(this).attr('data-id');
+var nom = $$(this).attr('name');
+var list_place2 = document.getElementById("list_place2");
+list_place2.innerHTML = "";
+item_pere2[nom-1].sos = "no";
+var ss=0;
+list_place1.innerHTML ="";
+for (var d = 0; d <item_pere.length; d++){
+if (item_pere[d].id==ids){
+item_pere[d].col = parseInt(item_pere[d].col)+parseInt(item_pere2[nom-1].col);
+}
+	if (item_pere[d].col!="0"){
+    list_place1.innerHTML  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(ss+1)+'</td>'+
+                          '<td class="label-cell" style="width:30%">'+item_pere[d].name+'</td>'+
+						  '<td class="label-cell" style="width:30%">'+item_pere[d].article+'</td>'+
+						  '<td class="label-cell" style="width:20%">'+item_pere[d].col+'</td>'+
+						  '<td class="label-cell" style="width:10%"><button class="col button button-fill" name="'+(d+1)+'" data-id="'+item_pere[d].id+'">переместить</button></td>'+
+                        '</tr>';
+						ss++;
+					}
+}
+
+
+
+
+var sss = 0;
+for (var d = 0; d <item_pere2.length; d++){
+if (item_pere2[d].sos == "yes"){
+ list_place2.innerHTML  +='<tr style="height:70px;">'+
+                          '<td class="label-cell" style="width:10%">'+(d+1)+'</td>'+
+                          '<td class="label-cell" style="width:30%">'+item_pere2[d].name+'</td>'+
+						  '<td class="label-cell" style="width:30%">'+item_pere2[d].article+'</td>'+
+						  '<td class="label-cell" style="width:20%">'+item_pere2[d].col+'</td>'+
+						  '<td class="label-cell" style="width:10%"><button class="col button color-red button-fill" name="'+(d+1)+'" data-id="'+item_pere2[d].id+'">удалить</button></td>'+
+                        '</tr>';
+						sss++;
+						}
+				}
+				
+		
+});
+
+var do_id="";
+$$('#place_option2').change(function(){
+ do_id = $$('#place_option2').val();
+});
+
+
+$$('#back').on('click',function(){
+  panel.destroy();
+    router.back({force: true,animate:false});
+});
+
+		$$('.company').on('click',function(){
+		  panel.destroy();
+router.navigate('/company/',{animate:false,reloadCurrent:true});
+});	
+
+		$$('.users').on('click',function(){
+		  panel.destroy();
+router.navigate('/users/',{animate:false,reloadCurrent:true});
+});	
+
+
+		$$('.zayavki').on('click',function(){
+		  panel.destroy();
+router.navigate('/zayavki/',{animate:false,reloadCurrent:true});
+});		
+	$$('#glavka').on('click',function(){
+		  panel.destroy();
+router.navigate('/sklad/',{animate:false,reloadCurrent:true});
+});
+
+		$$('.sotrudnik').on('click',function(){
+		  panel.destroy();
+router.navigate('/sot/',{animate:false,reloadCurrent:true});
+});	
+$$('#vputi').on('click',function(){
+ panel.destroy();
+router.navigate('/vputi/',{animate:false,reloadCurrent:true});
+});
+
+	  window.addEventListener('popstate', function(event) {
+ panel.destroy();
+   router.refreshPage();
+
+}, false);
+
+app.preloader.show('blue');
+app.request.get('http://tedeco.kz/equipment/api/add.php',{},function(otvet){
+	app.preloader.hide();
+	if (otvet.length>0){	
+		var place_div = document.getElementById("place_option"); 
+		var place_div2 = document.getElementById("place_option2"); 
+	for (var s=0;s <otvet[0].length; s++){
+    place_div.innerHTML  +='<option value="'+otvet[0][s].id_place+'">'+otvet[0][s].name_place+'</option>';	
+	  place_div2.innerHTML  +='<option value="'+otvet[0][s].id_place+'">'+otvet[0][s].name_place+'</option>';
+	  }
+	}
+	},function(){
+	app.preloader.hide();
+	app.dialog.alert('Нет ответа от сервера!');
+	},'json');
+
+$$('#podv').on('click',function(){
+var itemka = [];
+if ($$('#place_option2').val()=="0")app.dialog.alert('Выберите куда отправить...');
+else
+if ($$('#place_option2').val()==$$('#place_option').val())app.dialog.alert('Нельзя отправлять сам себе');
+else
+{
+for (var d = 0; d <item_pere2.length; d++)
+if (item_pere2[d].sos == "yes"){
+itemka.push({
+id:item_pere2[d].id,
+name:item_pere2[d].name,
+article:item_pere2[d].article,
+col:item_pere2[d].col
+});
+
+				}
+				if (itemka.length!=0)
+				{
+				app.preloader.show('blue');
+				app.request.post('http://tedeco.kz/equipment/api/pere_sklad.php',{zapros:"pere",spisok:JSON.stringify(itemka),user:"1",group_place:$$('#place_option').val(),do_group_place:$$('#place_option2').val(),ostatok:JSON.stringify(item_pere)},function(otvet){
+				app.preloader.hide();
+				app.dialog.alert('Отправлено',function(){
+				 panel.destroy();
+				router.navigate('/vputi/',{animate:false,reloadCurrent:true});
+				});
+				},function(){
+				app.preloader.hide();
+				app.dialog.alert('Нет ответа от сервера!');
+				},'json');
+				}
+				else
+				app.dialog.alert('Нечего переместить');
+				}
+});
+
+
+		},
+    },
+  };
+</script>

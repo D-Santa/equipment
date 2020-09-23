@@ -1,0 +1,8 @@
+cordova build --release android
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore equipment.keystore ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk equipment
+
+/Users/dastan_ermaganbet/Library/Android/sdk/build-tools/28.0.3/zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk equipment.apk
+pass: Dastan47
+
+7f11e15a71b80beee515e12e1fdc9686
