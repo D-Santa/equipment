@@ -29,7 +29,7 @@ var app = new Framework7({
       },
       token:"",
     url:"",
-    version:"1.0.7"
+    version:"1.0.9"
     };
   },
   // App root methods
@@ -45,7 +45,7 @@ var app = new Framework7({
         users();
         },10000);*/
       //console.log(notifi);
-      var bad_new=0,bad_active=0,bad_pod=0,bad_pod_admin=0;
+      var bad_new=0,bad_active=0,bad_pod=0,bad_pod_admin=0,bad_zap=0;
           var ht1 ="",ht2 ="",ht3 ="",ht4 ="",ht5 ="",ht6 ="",types="";
     if (notifi.length>=1){
       for (var s = 0; s<notifi.length; s++)
@@ -81,7 +81,7 @@ var app = new Framework7({
     ht5+='<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="1" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="#408ac7">Ожидание зап. части</font></div>'+
     '<div data-id ="'+notifi[s].id+'" value="0"name="'+notifi[s].id_db+'"  class="card-content card-content-padding"><div style="position:absolute;right:10px;margin-top:-18px">'+types+'</div><center><b>'+notifi[s].name+'</b></center><br><b>id: </b> '+notifi[s].id_db+'<br><b>Вид неисправности: </b> '+notifi[s].status+'<br><b>Расположение: </b> '+notifi[s].company+', '+notifi[s].place+'<br><b>Инициатор: </b> '+notifi[s].vrach+'<br><b>Инженер: </b>'+notifi[s].ispol+'</div>'+
     '<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card-footer"><font color="black">'+notifi[s].data+'</font><div class="right">Куратор: '+notifi[s].kurator+'</div><div class="right" style="display:none"><a name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" value="3" class="button button-fill color-green">Завершить</a></div></div></div>';
-    bad_active++;
+    bad_zap++;
     }else
     if (notifi[s].active==="4"){
     ht6+='<div value="1" name="'+notifi[s].id_db+'" data-id ="'+notifi[s].id+'" class="card"><div class="card-header" name="'+notifi[s].id_db+'" value="1" data-id ="'+notifi[s].id+'">Заявка № '+notifi[s].id+'<font color="#408ac7">Ожидание</font></div>'+
@@ -94,9 +94,12 @@ var app = new Framework7({
     $$('#virt_home_new').html(ht1);
     if (bad_new==0)$$("#bad_new").hide(); else $$("#bad_new").show();
     $$("#bad_new").text(bad_new);
-    $$('#virt_home_active').html(ht2+ht3+ht5);
+    $$('#virt_home_active').html(ht2+ht3);
     if (bad_active==0)$$("#bad_active").hide(); else $$("#bad_active").show();
+    $$('#virt_home_zap').html(ht5);
+    if (bad_zap==0)$$("#bad_zap").hide(); else $$("#bad_zap").show();
     $$("#bad_active").text(bad_active);
+    $$("#bad_zap").text(bad_zap);
     $$('#virt_home_pod').html(ht4);
     if (bad_pod==0)$$("#bad_pod").hide(); else $$("#bad_pod").show();
     $$("#bad_pod").text(bad_pod);

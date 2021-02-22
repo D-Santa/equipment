@@ -620,7 +620,7 @@
                 '<td class="numeric-cell" style="width:40%">'+data[0].all[s].data+'</td>'+
                           '</tr>';
               }
-              else if(app.data.user.roles==="3" && data[0].all[s].active==="2" || app.data.user.roles==="3" && data[0].moi[s].active==="3") {
+              else if(app.data.user.roles==="3" && data[0].all[s].active==="2" || app.data.user.roles==="3" && data[0].all[s].active==="3") {
                 virt_pod.innerHTML  +='<tr style="height:70px;" value="'+data[0].all[s].comment+'" name="'+data[0].all[s].active+'" data-id="['+data[0].all[s].id+','+data[0].all[s].id_db+']">'+
                   '<td class="label-cell">'+data[0].all[s].id+'</td>'+
                             '<td class="label-cell"><font color="gray">ID: </font>'+data[0].all[s].id_db+'<br><font color="gray">Версия: </font>'+data[0].all[s].name+'<br><font color="gray">Расп.: </font>'+data[0].all[s].place+'</td>'+

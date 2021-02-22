@@ -1,0 +1,1005 @@
+<template>
+  <div class="page" data-name="registration">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <div class="left">
+          <a class="link panel-open icon-only" data-panel="left">
+            <i class="icon f7-icons">bars</i>
+          </a>
+        </div>
+        <div class="title">Администрация</div>
+        <div class="right">
+          <a class="link popover-open" data-popover=".profile-popover">
+            <span class="margin-right-half">Добро пожалоавть, <b>Администратор</b></span>
+            <img src="" class="avatar">
+          </a>
+        </div>
+        <div class="title-large row">
+          <div class="col-50 title-large-text display-flex align-items-center">
+            <i class="icon f7-icons margin-right-half" style="font-size: 24px">person_badge_plus_fill</i>
+            <span>Администрация</span>
+          </div>
+          <div class="col-50"><span id="table_name" style="display: none;">Таблица не выбрана</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="toolbar tabbar toolbar-bottom">
+      <div class="toolbar-inner">
+        <a href="#tab-1" id="tab1" class="tab-link tab-link-active">Группы</a>
+        <a href="#tab-2" id="tab2" class="tab-link">Таблицы</a>
+        <a href="#tab-3" id="tab3" class="tab-link">Фикс. столбец</a>
+        <a href="#tab-4" id="tab4" class="tab-link">QR код</a>
+      </div>
+    </div>
+    <div class="tabs-animated-wrap">
+      <div class="tabs">
+        <div id="tab-1" class="page-content tab tab-active">
+          <div class="svyaz fab fab-extended fab-right-bottom color-teal">
+            <a id="add_group">
+              <i class="icon material-icons">add</i>
+              <div class="fab-text">Создать</div>
+            </a>
+          </div>
+          <div class="block">
+
+            <div class="treeview">
+
+            </div>
+
+          </div>
+        </div>
+        <div id="tab-2" class="page-content tab">
+          <div class="popover popover-links">
+            <div class="popover-inner">
+              <div class="list">
+                <ul>
+                  <li><a class="list-button item-link popover-close del_row" href="#">Удалить выбранные</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row no-gap">
+            <div class="col-25 bg-color-white">
+              <form class="searchbar">
+                <div class="searchbar-inner">
+                  <div class="searchbar-input-wrap">
+                    <input type="search" placeholder="Поиск...">
+                    <i class="searchbar-icon"></i>
+                    <span class="input-clear-button"></span>
+                  </div>
+                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+                </div>
+              </form>
+              <div class="block searchbar-not-found">
+                <div class="block-inner">Ничего не найдено</div>
+              </div>
+              <div class="list_tables list scrollable">
+                <a value="new" class="button new_table">Новая таблица</a>
+                <ul class="table_list"></ul>
+              </div>
+            </div>
+            <div class="col-75">
+              <div style="display: none;" class="fab_table fab fab-right-bottom color-yellow fab-opened">
+                <a href="#">
+                  <i class="icon material-icons">add</i>
+                  <i class="icon material-icons">close</i>
+                </a>
+                <!-- FAB speed dial actions -->
+                <div class="fab-buttons fab-buttons-left color-teal">
+                  <a class="tooltip-init popover-open" data-popover=".popover-links" data-tooltip="Изменить"><i class="icon material-icons">edit</i></a>
+                  <a class="tooltip-init sort_col color-gray sortable-toggle" data-sortable=".sortable" data-tooltip="Упорядочить столбцы"><i class="icon material-icons"><span class="sort_icon">sort</span></i></a>
+                  <a class="tooltip-init add_col" data-tooltip="Добавить столбец"><i class="icon material-icons">tab_unselected</i></a>
+                  <a class="tooltip-init add_row color-gray" data-tooltip="Добавить строку"><i class="icon material-icons">system_update_alt</i></a>
+                  <a class="tooltip-init download_table color-gray" data-tooltip="Скачать шаблон"><i class="icon material-icons">vertical_align_bottom</i></a>
+                  <a class="tooltip-init save_table color-gray" data-tooltip="Сохранить все"><i class="icon material-icons">save</i></a>
+                  <a class="tooltip-init line_table color-gray" data-tooltip="Звязать с группой"><i class="icon material-icons">swap_calls</i></a>
+                </div>
+              </div>
+              <div class="data-table card scrollable" style="background-color: transparent;">
+                <table>
+                  <thead class="card">
+                    <tr id="col_table">
+                    </tr>
+                  </thead>
+                  <tbody style="background-color: transparent;" id="row_table">
+                  </tbody>
+                </table>
+                <br>
+              </div>
+              <div class="list scrollable sortable sortable-opposite block " style="display:none;">
+                <ul id="sortable_list">
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">1 Jenna Smith</div>
+                        <div class="item-after">CEO</div>
+                      </div>
+                    </div>
+                    <div class="sortable-handler"></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab-3" class="page-content tab">
+          <div class="popover popover-links">
+            <div class="popover-inner">
+              <div class="list">
+                <ul>
+                  <li><a class="list-button item-link popover-close del_fic_row" href="#">Удалить выбранные</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row no-gap">
+            <div class="col-25 bg-color-white">
+              <form class="searchbar">
+                <div class="searchbar-inner">
+                  <div class="searchbar-input-wrap">
+                    <input type="search" placeholder="Поиск...">
+                    <i class="searchbar-icon"></i>
+                    <span class="input-clear-button"></span>
+                  </div>
+                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+                </div>
+              </form>
+              <div class="block searchbar-not-found">
+                <div class="block-inner">Ничего не найдено</div>
+              </div>
+              <div class="list_tables list scrollable">
+                <a value="new" class="button new_fic_table">Новый столбец</a>
+                <ul class="fic_table_list"></ul>
+              </div>
+            </div>
+            <div class="col-75">
+              <div style="display: none;" class="fab_fic_table fab fab-right-bottom color-yellow fab-opened">
+                <a href="#">
+                  <i class="icon material-icons">add</i>
+                  <i class="icon material-icons">close</i>
+                </a>
+                <!-- FAB speed dial actions -->
+                <div class="fab-buttons fab-buttons-left color-teal">
+                  <a class="tooltip-init popover-open" data-popover=".popover-links" data-tooltip="Изменить"><i class="icon material-icons">edit</i></a>
+                  <a class="tooltip-init add_fic_row" data-tooltip="Добавить строку"><i class="icon material-icons">system_update_alt</i></a>
+                  <a class="tooltip-init save_fic_table" data-tooltip="Сохранить все"><i class="icon material-icons">save</i></a>
+                </div>
+              </div>
+              <div class="data-table card scrollable" style="background-color: transparent;">
+                <table>
+                  <thead class="card">
+                    <tr id="col_fic_table">
+                      
+                    </tr>
+                  </thead>
+                  <tbody style="background-color: transparent;" id="row_fic_table">
+                  </tbody>
+                </table>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab-4" class="page-content tab">
+          <div class="card scrollable">
+            <br>
+          <div class="block">
+            <div class="row col-100">
+              <div class="col-33"><input id="qr_col" placeholder="до"></div>
+              <div class="col-33"><a class="button qr_add">Скачать</a></div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</template>
+<script>
+  export default {
+    on: {
+      pageInit: function () {
+        var app = this.$app;
+        var $$ = this.$$;
+        var router = this.$router;
+        var group = [], schet = 0, num = 0;
+        var col = [], row = [],row_fic = [],tabrow_id=[],line_table="",svyaz=0,fic_col=[];
+        var tables=null,fic_table=null;
+        var searchbar = app.searchbar.create({
+          el: '.searchbar',
+          searchContainer: '.list_tables',
+          searchIn: '.item-content',
+          on: {
+            search(sb, query, previousQuery) {
+             // console.log(query, previousQuery);
+            }
+          }
+        });
+
+        $$('.qr_add').on('click',function(){
+          window.open('http://bbnura.tedeco.kz/api/qr.php?zapros='+$$('#qr_col').val(), '_blank');
+        });
+
+        $$('.add_row').on('click', function () {
+          add_row();
+        });
+
+        $$('.add_fic_row').on('click', function () {
+          add_fic_row();
+        });
+
+        $$('.add_col').on('click', function () {
+          add_col();
+        });
+
+        $$('.del_row').on('click',function(){
+  var del_tabrow_id=[],s=0;
+  var del = $$('.chek_row').find('input').each(function() {
+    var isChecked = $$(this).prop('checked');
+  if (isChecked){
+var tab_id = $$(this).attr('tabrow_id');
+del_tabrow_id[s]=tab_id;
+s++
+  }
+});
+if (del_tabrow_id.length>=1){
+  delete_row(del_tabrow_id);
+}
+else
+ app.dialog.alert('ничего не выбрано');
+});
+
+
+$$('.del_fic_row').on('click',function(){
+  var del_tabrow_id=[],s=0;
+  var del = $$('.chek_fic_row').find('input').each(function() {
+    var isChecked = $$(this).prop('checked');
+  if (isChecked){
+var tab_id = $$(this).attr('fic_table_row_id');
+del_tabrow_id[s]=tab_id;
+s++
+  }
+});
+if (del_tabrow_id.length>=1){
+  delete_fic_row(del_tabrow_id);
+}
+else
+ app.dialog.alert('ничего не выбрано');
+});
+
+        $$('.table_list').on('click', 'a', function () {
+          line_table="";
+          line_table = $$(this).attr('line_table');
+          var id = $$(this).attr('value');
+          var name = $$(this).attr('name');
+if (id!="delete"){
+          if ($$(this).hasClass('bg-color-gray'));
+          else
+          {
+          $$('.table_list,a').removeClass('bg-color-gray');
+          $$(this).addClass('bg-color-gray');
+
+          list_col_row(id,"open");
+          tables=id;
+          $$('.fab_table').show();
+          $$('#table_name').text(name);
+          }
+        }
+        });
+
+
+        $$('.fic_table_list').on('click', 'a', function () {
+          var id = $$(this).attr('value');
+          var name = $$(this).attr('name');
+if (id!="delete"){
+          if ($$(this).hasClass('bg-color-gray'));
+          else
+          {
+          $$('.table_list,a').removeClass('bg-color-gray');
+          $$(this).addClass('bg-color-gray');
+          list_row(id,"open");
+          fic_table=id;
+          $$('.fab_fic_table').show();
+          $$('#table_name').text(name);
+          }
+        }
+        });
+
+        $$('.new_table').on('click',function(){
+          new_table();
+        });
+
+        $$('.new_fic_table').on('click',function(){
+          new_fic_table();
+        });
+
+        $$('.sort_col').on('click',function(){
+          if (col.length>=1){
+          if ( $$('.sort_icon').text()=="home"){
+            $$('.sortable').hide();
+          $$('.data-table').show();
+          $$('.sort_icon').text('sort');
+          col=[]; 
+          var row2=[];
+          var s = $$('.sortable').find('li').each(function() {
+var id = $$(this).attr('data-id');
+var name = $$(this).attr('name');
+col.push({
+  id:id,
+  name:name
+});
+});
+for (var s=0; s<row.length; s++){
+row2[s]=[];
+for (var a=0; a<row[s].length; a++)
+row2[s][a] = row[s][col[a].id];
+}
+row = row2;
+re_table("open");
+          }
+          else{
+          $$('.sortable').show();
+          $$('.data-table').hide();
+          $$('.sort_icon').text('home');
+          }
+          var list_table="";
+          for (var d=0; d<col.length; d++)
+          list_table+='<li data-id="'+d+'" name="'+col[d].name+'" class="swipeout">'+
+          '<div class="item-content swipeout-content">'+
+            '<div class="item-media"><i class="icon icon-f7"></i></div>'+
+            '<div class="item-inner">'+
+              '<div class="item-title">'+col[d].name+'</div>'+
+              '</div>'+
+              '<div class="swipeout-actions-right">'+
+                '<a href="#" data-confirm="Вы точно хотите удалить?" class="swipeout-delete">Delete</a>'+
+      '</div>'+
+            '</div>'+
+          '<div class="sortable-handler"></div>'+
+        '</li>';
+          $$('#sortable_list').html(list_table);
+              }
+        });
+
+        $$('#tab2').on('click', function () {
+         if ( tables==null) list_table();
+          $$('#table_name').show();
+        });
+
+        $$('#tab1').on('click', function () {
+          $$('#table_name').hide();
+          //lists("load");
+        });
+
+        $$('#tab3').on('click', function () {
+          $$('#table_name').show();
+          if ( fic_table==null)list_fic_table();
+          //lists("load");
+        });
+
+        $$('#tab4').on('click', function () {
+          $$('#table_name').hide();
+          //lists("load");
+        });
+
+        $$('.save_table').on('click',function(){
+          save_col_row();
+        });
+
+        $$('.save_fic_table').on('click',function(){
+          save_row();
+        });
+
+        $$('#add_group').on('click', function () {
+          add(0, 0);
+        });
+
+        $$('.line_table').on('click',function(){
+          table_group();
+        });
+
+        lists("load");
+
+
+        ////////////fic////////////////
+        function delete_fic_row(tabrows_id){
+          app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_fic_table.php', { zapros: 'delete_row',fic_table_row_id:tabrows_id}, function (otvet) {
+                app.preloader.hide();
+                if (otvet.length>=1){
+                  list_row(fic_table,"open");
+                }
+          });    
+
+        }
+
+        function add_fic_row() {
+           row_fic.push({
+             id:1,
+              name:"new",
+              table_id:fic_table
+           });
+          save_row("row_new");
+          //re_table("row_new");
+        }
+
+        function save_row(news){
+          app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_fic_table.php', { zapros: 'save_row',row:row_fic,fic_table_id:fic_table}, function (otvet) {
+                app.preloader.hide();
+                if (otvet.length>=1){
+                  list_row(fic_table,news);
+                }
+          });   
+
+        }
+
+        function new_fic_table(){
+          app.dialog.prompt('Напишите название таблицы?', function (name) {
+            app.dialog.confirm('Вы точно хотите создать таблицу ' + name + '?', function () {
+              app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_fic_table.php', { zapros: 'new', name: name}, function (otvet) {
+                app.preloader.hide();
+                list_fic_table();
+          });
+            });
+        });
+      }
+
+      function list_fic_table(){
+          app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_fic_table.php', { zapros: 'list'}, function (otvet) {
+                app.preloader.hide();
+                if (otvet.length>=1){
+                  var fic_table_list = "";
+          for (var l = 0; l < otvet.length; l++)
+            fic_table_list += '<li value="'+otvet[l].id+'" class="swipeout deleted-callback">' +
+              '<a name="'+otvet[l].name+'" value="' + otvet[l].id + '" class="item-link item-content swipeout-content">' +
+              '<div class="item-media">' + (l+1)+ '</div>' +
+              '<div class="item-inner">'+ otvet[l].name + '</div>' +
+              '</a><div class="swipeout-actions-right">'+
+                '<a value="delete" data-confirm="Вы точно хотите удалить таблицу '+ otvet[l].name + ' ?" class="del_table swipeout-delete">Delete</a>'+
+      '</div>' +
+              '</li>';
+          $$('.fic_table_list').html(fic_table_list);
+                }
+                $$('.deleted-callback').on('swipeout:deleted', function () {
+                  app.request.postJSON('http://bbnura.tedeco.kz/api/add_fic_table.php', { zapros: 'delete',fic_table_id:$$(this).attr('value')}, function (otvet) {     
+                    list_fic_table();
+                  });
+});
+          });
+        }
+        
+        function list_row(id,news){
+          app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_fic_table.php', { zapros: 'list_row',fic_table_id:id}, function (otvet) {
+                app.preloader.hide();
+                row_fic=[];
+                if (otvet.length>=1){
+                  row_fic=otvet;
+          } 
+          re_row_fic(news);    
+          }); 
+
+        }
+
+        function re_row_fic(news) {
+          var table_row = "",table_col="";
+          table_col = '<th class="checkbox-cell" style="z-index: 50;position: sticky; top: 0px;background: white">' +
+            '<label class="checkbox">' +
+            '<input name="demo-checkbox-movies_fic" type="checkbox"/>' +
+            '<i class="icon-checkbox"></i>' +
+            '</label>' +
+            '</th><th style="z-index: 50;position: sticky; top: 0px;background:white" class="label-cell">Название</th>';
+            for (var c = 0; c < row_fic.length; c++) {
+            table_row += '<tr><td class="checkbox-cell"><label class="checkbox chek_fic_row"><input fic_table_row_id="'+row_fic[c].id+'" name="demo-checkbox-movie_fic" type="checkbox"/><i class="icon-checkbox"></i></label></td>';
+              if (row_fic[c])
+              table_row += '<td class="label-cell"><input num1="'+c+'" class="row_input_fic" value="' + row_fic[c].name + '"/></td>';
+              else
+              table_row += '<td class="label-cell"><input num1="'+c+'" class="row_input_fic" placeholder="new"/></td>';
+            table_row += "</tr>";
+          }
+          $$('#col_fic_table').html(table_col);
+          $$('#row_fic_table').html(table_row);
+            if (news == "row_new") $$('.data-table').scrollTop(9999, 200);
+            $$('[name="demo-checkbox-movie_fic"]').on('change', function (e) {
+  var totalChecked = $$('[name="demo-checkbox-movie_fic"]:checked').length;
+  if (totalChecked === 0) {
+    $$('[name="demo-checkbox-movies_fic"]').prop('checked', false);
+  } else if (totalChecked === 2) {
+    $$('[name="demo-checkbox-movies_fic"]').prop('checked', true);
+  }
+  if (totalChecked === 1) {
+    $$('[name="demo-checkbox-movies_fic"]').prop('indeterminate', true);
+  } else {
+    $$('[name="demo-checkbox-movies_fic"]').prop('indeterminate', false);
+  }
+});
+
+$$('.row_input_fic').on('change',function(){
+var num1 = $$(this).attr('num1');
+row_fic[num1].name=$$(this).val();
+});
+
+// Parent checkbox change
+$$('[name="demo-checkbox-movies_fic"]').on('change', function (e) {
+  if (e.target.checked) {
+    $$('[name="demo-checkbox-movie_fic"]').prop('checked', true);
+  } else {
+    $$('[name="demo-checkbox-movie_fic"]').prop('checked', false);
+  }
+});
+
+        }
+
+//////////svyaz/////////////////
+        function table_group(tabrows_id){
+          if (line_table==""){
+          svyaz=1;
+          app.tab.show('#tab-1');
+$$('.svyaz').hide();
+$$('.treeview-item-content').addClass('link');
+          app.dialog.alert("Выберите группу с которой надо связать");
+          }
+          else
+          {
+        app.dialog.confirm('Таблица имеет связь с группой '+group[line_table-1].name+', Вы точно хотите связать с другой группой ?',function(){
+          svyaz=1;
+          app.tab.show('#tab-1');
+$$('.svyaz').hide();
+$$('.treeview-item-content').addClass('link');
+          app.dialog.alert("Выберите группу с которой надо связать");
+        });
+
+          }
+        }
+
+  //////////tables/////////////////////////
+
+        function delete_row(tabrows_id){
+          app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_table.php', { zapros: 'delete_row',tabrow_id:tabrows_id}, function (otvet) {
+                app.preloader.hide();
+                if (otvet.length>=1){
+                  list_col_row(tables,"open");
+                }
+          });    
+
+        }
+
+        function save_col_row(news){
+          app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_table.php', { zapros: 'save_col_row',col:col,row:row,tables_id:tables}, function (otvet) {
+                app.preloader.hide();
+                if (otvet.length>=1){
+                  list_col_row(tables,news);
+                }
+          });   
+
+        }
+        
+        function list_table(){
+          app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_table.php', { zapros: 'list'}, function (otvet) {
+                app.preloader.hide();
+                if (otvet.length>=1){
+                  var table_list = "";
+          for (var l = 0; l < otvet.length; l++)
+            table_list += '<li value="'+otvet[l].id+'" class="swipeout deleted-callback">' +
+              '<a name="'+otvet[l].name+'" line_table="'+otvet[l].group_id+'" value="' + otvet[l].id + '" class="item-link item-content swipeout-content">' +
+              '<div class="item-media">' + (l+1)+ '</div>' +
+              '<div class="item-inner">'+ otvet[l].name + '</div>' +
+              '</a><div class="swipeout-actions-right">'+
+                '<a value="delete" data-confirm="Вы точно хотите удалить таблицу '+ otvet[l].name + ' ?" class="del_table swipeout-delete">Delete</a>'+
+      '</div>' +
+              '</li>';
+          $$('.table_list').html(table_list);
+                }
+                $$('.deleted-callback').on('swipeout:deleted', function () {
+                  app.request.postJSON('http://bbnura.tedeco.kz/api/add_table.php', { zapros: 'delete',tables_id:$$(this).attr('value')}, function (otvet) {     
+                    list_table();
+                  });
+});
+          });
+        }
+        
+        function new_table(){
+          app.dialog.prompt('Напишите название таблицы?', function (name) {
+            app.dialog.confirm('Вы точно хотите создать таблицу ' + name + '?', function () {
+              app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_table.php', { zapros: 'new', name: name}, function (otvet) {
+                app.preloader.hide();
+                list_table();
+          });
+            });
+        });
+      }
+
+        function add_col() {
+          col.push({
+            id: col.length,
+            name: "Название "+col.length
+          });
+          enable_fab();
+          save_col_row("col_new");
+        }
+
+        function enable_fab(){
+          if (col.length>=1){
+          $$('.add_row').removeClass('color-gray');
+          $$('.download_table').removeClass('color-gray');
+          $$('.save_table').removeClass('color-gray');
+          $$('.sort_col').removeClass('color-gray');
+          }
+          else
+          {
+          $$('.add_row').addClass('color-gray');
+          $$('.download_table').addClass('color-gray');
+          $$('.save_table').addClass('color-gray');
+          $$('.sort_col').addClass('color-gray');
+          }
+          if (line_table=="")$$('.line_table').removeClass('color-gray');
+          else $$('.line_table').addClass('color-gray');
+
+        }
+
+        function add_row() {
+          if (col.length <= 0) toastnorow.open();
+          else{
+            row[row.length]=[];
+          for (var m=0; m<col.length; m++)
+           row[row.length-1][m]="";
+          }
+          save_col_row("row_new");
+          //re_table("row_new");
+        }
+
+        function re_table(news) {
+          var table_col = "", table_row = "";
+          table_col = '<th class="checkbox-cell" style="z-index: 50;position: sticky; top: 0px;background: white">' +
+            '<label class="checkbox">' +
+            '<input name="demo-checkbox-movies" type="checkbox"/>' +
+            '<i class="icon-checkbox"></i>' +
+            '</label>' +
+            '</th>';
+            for (var s1 = 0; s1 < fic_col.length; s1++) 
+            table_col += '<th style="z-index: 50;position: sticky; top: 0px;background:white" class="label-cell"><input class="col_input" value="'+fic_col[s1].name + '" disabled/></th>';
+          for (var s = 0; s < col.length; s++) {
+            table_col += '<th style="z-index: 50;position: sticky; top: 0px;background:white" class="label-cell"><input class="col_input" data-id="'+s+'" value="' + col[s].name + '"/></th>';
+          }
+          for (var c = 0; c < row.length; c++) {
+            table_row += '<tr><td class="checkbox-cell"><label class="checkbox chek_row"><input tabrow_id="'+tabrow_id[c]+'" name="demo-checkbox-movie" type="checkbox"/><i class="icon-checkbox"></i></label></td>';
+            for (var s = 0; s < col.length+fic_col.length; s++) {
+              if (s>=fic_col.length){
+              if (row[c][s])
+              table_row += '<td class="label-cell"><input num1="'+c+'" num2="'+s+'" class="row_input" value="' + row[c][s] + '"/></td>';
+              else
+              table_row += '<td class="label-cell"><input num1="'+c+'" num2="'+s+'" class="row_input" placeholder="new"/></td>';
+            }else{
+            table_row += '<td class="label-cell"> <div class="list"><ul><li style="padding-left:0;" class="item-content item-input item-input-outline">'+
+                              '<div class="item-inner" style="padding-right:0;padding-top:0;padding-bottom:0;">'+
+                                '<div class="item-input-wrap input-dropdown-wrap">'+
+              '<select fic_table_id="'+fic_col[s].id+'" tabrow_id="'+tabrow_id[c]+'" class="select_fic select'+fic_col[s].id+'-'+tabrow_id[c]+'">'+
+            '</select>'+
+        '</div></div></li></ul></div></td>';
+            }
+          }
+            table_row += "</tr>";
+          }
+          $$('#col_table').html(table_col);
+          $$('#row_table').html(table_row);
+          if (news == "col_new") $$('.data-table').scrollLeft(9999, 200); else
+            if (news == "row_new") $$('.data-table').scrollTop(9999, 200);
+
+            $$('[name="demo-checkbox-movie"]').on('change', function (e) {
+  var totalChecked = $$('[name="demo-checkbox-movie"]:checked').length;
+  if (totalChecked === 0) {
+    $$('[name="demo-checkbox-movies"]').prop('checked', false);
+  } else if (totalChecked === 2) {
+    $$('[name="demo-checkbox-movies"]').prop('checked', true);
+  }
+  if (totalChecked === 1) {
+    $$('[name="demo-checkbox-movies"]').prop('indeterminate', true);
+  } else {
+    $$('[name="demo-checkbox-movies"]').prop('indeterminate', false);
+  }
+});
+
+$$('.select_fic').on('click',function(){
+var tabrow_id = $$(this).attr('tabrow_id');
+var fic_table_id = $$(this).attr('fic_table_id');
+app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_fic_table.php', { zapros: 'list_row',fic_table_id:fic_table_id}, function (otvet) {
+                app.preloader.hide();
+                if (otvet.length>=1){
+                  var list_option=""; 
+                 for (var g=0; g<otvet.length;g++)
+                 list_option +='<option value="'+otvet[g].id+'">'+otvet[g].name+'</option>';
+                 $$('.select'+fic_table_id+'-'+tabrow_id).html(list_option);
+          }  
+          }); 
+});
+
+$$('.col_input').on('change',function(){
+var num = $$(this).attr('data-id');
+col[num].name=$$(this).val();
+});
+
+$$('.row_input').on('change',function(){
+var num1 = $$(this).attr('num1');
+var num2 = $$(this).attr('num2');
+row[num1][num2]=$$(this).val();
+});
+
+// Parent checkbox change
+$$('[name="demo-checkbox-movies"]').on('change', function (e) {
+  if (e.target.checked) {
+    $$('[name="demo-checkbox-movie"]').prop('checked', true);
+  } else {
+    $$('[name="demo-checkbox-movie"]').prop('checked', false);
+  }
+});
+            /*$$('.all_chek').on('click',function(){
+              var isChecked = $$('.all_chek').prop('checked');
+             $$('.checkbox').prop('checked',isChecked);
+            })*/
+        }
+
+        function list_col_row(id,news){
+          app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_table.php', { zapros: 'list_col_row',tables_id:id}, function (otvet) {
+                app.preloader.hide();
+                col=[],row=[],tabrow_id=[],fic_col=[];
+                if (otvet.length>=1){
+                if (otvet[0].col){
+                 for (var t=0; t<otvet[0].col.length; t++)
+                 col.push({
+                  id:t,
+                  name:otvet[0].col[t].name
+                 });
+                }
+                if (otvet[0].row){
+                 var tabrow=[];
+                 for (var t1=0; t1<otvet[0].row.length; t1++){
+                tabrow = JSON.parse(otvet[0].row[t1].array);
+                tabrow_id[t1] = otvet[0].row[t1].id;
+                row[t1]=[];
+                for (var b=0; b<tabrow.length; b++)
+                 row[t1][b]=tabrow[b]
+                }
+              }
+              if (otvet[0].fic)fic_col = otvet[0].fic;
+              
+              
+            }
+                re_table(news);
+                enable_fab();
+                
+          }); 
+
+        }
+
+
+        ////////group////////////////////////////
+        function lists(toasts) {
+          if (toasts == "load") app.preloader.show('blue');
+          app.request.postJSON('http://bbnura.tedeco.kz/api/add_group.php', { zapros: 'list' }, function (otvet) {
+            app.preloader.hide();
+            //     console.log(JSON.stringify(otvet));
+            if (otvet.length >= 1)
+              if (otvet[0].message == "ok") {
+                if (toasts == "add") toastadd.open();
+                else
+                  if (toasts == "remove") toastremove.open();
+                group = [];
+                for (var h = 0; h < otvet.length; h++)
+                  group.push({
+                    num: parseInt(otvet[h].id),
+                    id: parseInt(otvet[h].chet),
+                    name: otvet[h].name,
+                    group_id: parseInt(otvet[h].group_id),
+                    treeview: otvet[h].treeview,
+                    toogle: otvet[h].toogle,
+                    group: otvet[h].group,
+                    add: "add"
+                  });
+                schet = parseInt(otvet[otvet.length - 1].chet);
+                num = parseInt(otvet[otvet.length - 1].num);
+                var t = "", ch = "";
+                $$('.treeview').html("");
+                for (var f = 0; f < group.length; f++) {
+                  if (group[f].add == "add") {
+                    if (group[f].group_id == 0) {
+                      if (f != 0) t = $$('.treeview').html();
+                      t += '<div class="treeview-item ' + group[f].treeview + ' treeview' + group[f].id + '">' +
+                        '<div class="treeview-item-root">' + group[f].toogle +
+                        '<div class="treeview-item-content" num = "' + group[f].num + '" name="'+ group[f].name +'">' +
+                        '<font color="#094c9a"><i class="icon f7-icons">folder_fill</i></font>' +
+                        '<div class="treeview-item-label"><input value="' + group[f].name + '" disabled/></div><div class="fab svyaz" style="position:relative;--f7-fab-size: 21px;--f7-fab-extended-text-font-size: 12px;"><a num = "' + group[f].num + '" value="' + group[f].id + '" class="add button color-teal"><div class="fab-text">+</div></a></div><button num = "' + group[f].num + '" value="' + group[f].id + '" class="svyaz remove color-red button-round button">-</button>' +
+                        '</div>' +
+                        '</div><div class="treeview-item-children children' + group[f].id + '"></div></div>';
+                      $$('.treeview').html(t);
+                    }
+                    else {
+                      ch = $$('.children' + group[f].group_id).html();
+                      ch += '<div class="treeview-item ' + group[f].treeview + ' treeview' + group[f].id + '">' +
+                        '<div class="treeview-item-root">' + group[f].toogle +
+                        '<div class="treeview-item-content" num = "' + group[f].num + '" name="'+ group[f].name +'">' +
+                        '<font color="#094c9a"><i class="icon f7-icons">folder_fill</i></font>' +
+                        '<div class="treeview-item-label"><input value="' + group[f].name + '" disabled/></div><div class="fab svyaz" style="position:relative;--f7-fab-size: 21px;--f7-fab-extended-text-font-size: 12px;"><a num = "' + group[f].num + '" value="' + group[f].id + '" class="add button color-teal"><div class="fab-text">+</div></a></div><button num = "' + group[f].num + '" value="' + group[f].id + '" class="svyaz remove color-red button-round button">-</button>' +
+                        '</div>' +
+                        '</div><div class="treeview-item-children children' + group[f].id + '"></div></div>';
+                      $$('.children' + group[f].group_id).html(ch);
+                    }
+                  }
+
+                }
+                $$('.treeview-item-content').on('click',function(){
+                  if (svyaz==1){
+                    var nums = $$(this).attr('num');
+                    app.dialog.confirm('Вы точно хотите связать с группой '+$$(this).attr('name')+'?', function () {
+                    svyaz=0;
+                    app.tab.show('#tab-2');
+                    $$('.svyaz').show();
+                    $$('.treeview-item-content').removeClass('link');
+                    line_table = nums;
+                    enable_fab();
+                    app.preloader.show('blue');
+              app.request.postJSON('http://bbnura.tedeco.kz/api/add_table.php', { zapros: 'svyaz',groups_id:line_table,tables_id:tables}, function (otvet) {
+                app.preloader.hide();
+                if (otvet.length>=1){
+                  toastsvyaz.open();
+                }
+          });    
+          });
+                  }
+                });
+               
+
+                $$('.add').on('click', function () {
+                  var value = $$(this).attr('value');
+                  var nums = $$(this).attr('num');
+                  add(parseInt(value), parseInt(nums));
+                });
+
+                $$('.remove').on('click', function () {
+                  var value = $$(this).attr('value');
+                  var nums = $$(this).attr('num');
+                  remove(parseInt(value), parseInt(nums));
+                });
+              }
+          }, 'json');
+        }
+
+        function re_group(toasts) {
+          var add_groups = [], line_group = [];
+          for (var f = 0; f < group.length; f++) {
+            if (group[f].add == "add") {
+              add_groups.push({
+                num: group[f].num,
+                id: group[f].id,
+                name: group[f].name,
+                group_id: group[f].group_id,
+                treeview: group[f].treeview,
+                toogle: group[f].toogle,
+                group: group[f].group,
+              });
+              if (group[f].group != "") {
+                var res = group[f].group.split(",");
+                for (var g = 1; g < res.length; g++)
+                  line_group.push({
+                    chet: group[f].id,
+                    group: res[g]
+                  });
+              }
+            }
+
+          }
+          app.request.postJSON('http://bbnura.tedeco.kz/api/add_group.php', { zapros: 'save', sql: add_groups, line: line_group }, function (otvet) {
+            lists(toasts);
+          });
+        }
+
+        var toastnorow = app.toast.create({
+          text: 'Надо добавит сперва столбец',
+          position: 'center',
+          closeTimeout: 2000,
+        });
+
+        var toastremove = app.toast.create({
+          cssClass: 'toast-red',
+          icon: '<i class="f7-icons">clear_fill</i>',
+          text: 'Удалено',
+          position: 'center',
+          closeTimeout: 2000,
+        });
+
+        var toastadd = app.toast.create({
+          cssClass: 'toast-green',
+          icon: '<i class="f7-icons">checkmark_seal_fill</i>',
+          text: 'Добавлено',
+          position: 'center',
+          closeTimeout: 2000,
+        });
+
+        var toastsvyaz = app.toast.create({
+          cssClass: 'toast-green',
+          icon: '<i class="f7-icons">checkmark_seal_fill</i>',
+          text: 'Связ прошла успешно',
+          position: 'center',
+          closeTimeout: 2000,
+        });
+
+        function add(group_id, nums) {
+          app.dialog.prompt('Напишите название группы?', function (name) {
+            app.dialog.confirm('Вы точно хотите создать группу ' + name + '?', function () {
+              app.preloader.show('blue');
+              schet++;
+              group.push({
+                num: group.length + 1,
+                id: schet,
+                name: name,
+                group_id: group_id,
+                treeview: "",
+                toogle: '',
+                group: '',
+                add: "add"
+              });
+
+              if (group_id != 0) {
+                group[nums - 1].treeview = "treeview-item-opened";
+                group[nums - 1].toogle = '<div class="treeview-toggle"></div>';
+                if (group[nums - 1].group == "") group[group.length - 1].group = "," + group[nums - 1].id;
+                else group[group.length - 1].group = group[nums - 1].group + "," + group[nums - 1].id;
+              }
+              app.preloader.show('blue');
+              re_group("add");
+            });
+          });
+        }
+
+        function remove(group_id, nums) {
+          app.dialog.confirm('Вы точно хотите удалить группу ?' + group_id, function () {
+            var prov = 0;
+            var group2 = [];
+            var cs = 0;
+            for (var f = 0; f < group.length; f++) {
+              if (group[f].id == group_id) group[f].add = "remove";
+              else {
+                if (group[f].group != "") {
+                  var res = group[f].group.split(",");
+                  for (var g = 1; g < res.length; g++)
+                    if (res[g] == group_id) {
+                      group[f].add = "remove";
+                      break;
+                    }
+                }
+              }
+              if (group[nums - 1].group_id != 0) {
+                if (group[f].id == group[nums - 1].group_id) cs = group[f].num;
+                if (group[f].group_id == group[nums - 1].group_id && prov == 0 && group[f].id != group[nums - 1].id)
+                  prov = 1;
+              }
+
+
+            }
+            if (prov == 0 && cs != 0) {
+              group[cs - 1].treeview = "";
+              group[cs - 1].toogle = "";
+            }
+            app.preloader.show('blue');
+            re_group("remove");
+          });
+        }
+
+
+
+
+      },
+    },
+
+  };
+</script>

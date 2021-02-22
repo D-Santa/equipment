@@ -47,7 +47,7 @@
         <div class="title">Главная</div>
         <div class="right">
           <a class="link popover-open" data-popover=".profile-popover">
-            <span class="margin-right-half">Добро пожалоавть, <b>Администратор</b></span>
+            <span class="margin-right-half">Добро пожалоавть, <b>{{$app.data.user.name}}</b></span>
             <img src="https://i.pravatar.cc/56?u=9" class="avatar">
           </a>
         </div>
@@ -61,7 +61,7 @@
     </div>
     <div class="popover profile-popover">
       <div class="popover-inner">
-        <h3 class="text-align-center">Администратор</h3>
+        <h3 class="text-align-center">{{$app.data.user.name}}</h3>
         <div class="list no-hairlines no-hairlines-between">
           <ul>
           </ul>
@@ -134,13 +134,29 @@
 
       </div>
 
-    </div>
-
+</div>
   </div>
 </template>
 <script>
   export default {
     on: {
+      pageMounted:function(){
+
+        var app = this.$app;
+    var router = this.$router;
+    var $$ = this.$$;
+    var panel = app.panel.get('.panel-left');
+    panel.disableCollapsedBreakpoint();
+        app.methods.auth(function(otvet){
+if (otvet === false)setTimeout(() => {
+  router.navigate('/',{reloadAll:true});
+}, 10);
+else{
+$$('.pages').show();
+panel.enableCollapsedBreakpoint();
+}
+        });
+      },
       pageInit:function(){
         var app = this.$app;
     var router = this.$router;

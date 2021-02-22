@@ -29,6 +29,10 @@
   .md {
     --f7-panel-collapsed-width: 60px;
   }
+  .ms-drop input[type=radio], .ms-drop input[type=checkbox] {
+    vertical-align: middle;
+    margin-left: -25px;
+  }
   
   /*@media (min-width: 1024px) {
     .panel-open[data-panel="left"] {

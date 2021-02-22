@@ -10,7 +10,7 @@ import Moi from '../pages/moi.f7.html';
 import Otvet from '../pages/otvet.f7.html';
 import Monitoring from '../pages/monitoring.f7.html';
 import Vodo from '../pages/vodo.f7.html';
-import Vodo_his from '../pages/vodo_his1.f7.html';
+import Vodo_his from '../pages/vodo_his.f7.html';
 import Sklad from '../pages/sklad.f7.html';
 var routes = [
   {

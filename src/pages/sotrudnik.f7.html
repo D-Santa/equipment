@@ -484,6 +484,24 @@ content:'<div class="list no-hairlines-md">'+
         '</div>'+
      ' </label>'+
      '<li>'+
+      '<li>'+
+      '<label class="item-checkbox item-content">'+
+        '<input type="checkbox" id="ahc-checkbox" value="0"/>'+
+        '<i class="icon icon-checkbox"></i>'+
+        '<div class="item-inner">'+
+         ' <div class="item-title">АХЧ</div>'+
+        '</div>'+
+     ' </label>'+
+     '<li>'+
+      '<li>'+
+      '<label class="item-checkbox item-content">'+
+        '<input type="checkbox" id="inj-checkbox" value="0"/>'+
+        '<i class="icon icon-checkbox"></i>'+
+        '<div class="item-inner">'+
+         ' <div class="item-title">Инженер</div>'+
+        '</div>'+
+     ' </label>'+
+     '<li>'+
       '<label class="item-checkbox item-content">'+
         '<input type="checkbox" id="glav-checkbox" value="0"/>'+
         '<i class="icon icon-checkbox"></i>'+
@@ -513,9 +531,13 @@ on: {
     var sklad = "0";
     var glav = "0";
     var vodo = "0";
+    var ahc = "0";
+    var inj = "0";
     if ($$('#sklad-checkbox').prop('checked')==true) sklad="1";
     if ($$('#glav-checkbox').prop('checked')==true) glav="1";
     if ($$('#vodo-checkbox').prop('checked')==true) vodo="1";
+    if ($$('#ahc-checkbox').prop('checked')==true) ahc="1";
+    if ($$('#inj-checkbox').prop('checked')==true) inj="1";
 		if ($$('#place_option').val()=="")$$('#place_option').addClass('bg-color-red');
 		else
 		{
@@ -525,7 +547,7 @@ on: {
      // app.dialog.alert(JSON.stringify(res));
       
 		app.preloader.show('blue');
-		app.request.post('http://tedeco.kz/equipment/api/add_user.php',{place:JSON.stringify(res),glav:glav,fam:$$('#fam_user').val(),name:$$('#name_users').val(),log:$$('#log_user').val(),pass:$$('#pass_user').val(),roles:'2',sklad:sklad,vodo:$$('#vodo').val()},function(otvet){                                          							
+		app.request.post('http://tedeco.kz/equipment/api/add_user.php',{place:JSON.stringify(res),glav:glav,fam:$$('#fam_user').val(),name:$$('#name_users').val(),log:$$('#log_user').val(),pass:$$('#pass_user').val(),roles:'2',sklad:sklad,vodo:vodo,ahc:ahc,inj:inj},function(otvet){                                          							
 app.preloader.hide();
 if (otvet[0].message=="ok"){
 app.dialog.close();
@@ -589,10 +611,12 @@ app.request.post('http://tedeco.kz/equipment/api/add_user.php',{zapros:'user',id
   var places = user[0].place;                                   							
 app.preloader.hide();
 if (user[0].message=="ok"){
-  var glav="",sklad="",vodo;
+  var glav="",sklad="",vodo,ahc,inj;
 if (user[0].glav=="1")glav="checked";
 if (user[0].sklad=="1")sklad="checked";
 if (user[0].vodo=="1")vodo="checked";
+if (user[0].ahc=="1")ahc="checked";
+if (user[0].inj=="1")inj="checked";
   app.dialog.create({
  title: '<div style="text-align: center;"><font color="red">Редактирование сотрудника</font></div>',
  text:"",
@@ -663,6 +687,24 @@ content:'<div class="list no-hairlines-md">'+
         '</div>'+
      ' </label>'+
      '<li>'+
+      '<li>'+
+      '<label class="item-checkbox item-content">'+
+        '<input type="checkbox" id="ahc-checkbox" '+ahc+' value="0"/>'+
+        '<i class="icon icon-checkbox"></i>'+
+        '<div class="item-inner">'+
+         ' <div class="item-title">АХЧ</div>'+
+        '</div>'+
+     ' </label>'+
+     '<li>'+
+      '<li>'+
+      '<label class="item-checkbox item-content">'+
+        '<input type="checkbox" id="inj-checkbox" '+inj+' value="0"/>'+
+        '<i class="icon icon-checkbox"></i>'+
+        '<div class="item-inner">'+
+         ' <div class="item-title">Инженер</div>'+
+        '</div>'+
+     ' </label>'+
+     '<li>'+
       '<label class="item-checkbox item-content">'+
         '<input type="checkbox" id="glav-checkbox" '+glav+' value="0"/>'+
         '<i class="icon icon-checkbox"></i>'+
@@ -692,9 +734,13 @@ on: {
     var sklad = "0";
     var glav = "0";
     var vodo = "0";
+    var ahc = "0";
+    var inj = "0";
     if ($$('#sklad-checkbox').prop('checked')==true) sklad="1";
     if ($$('#glav-checkbox').prop('checked')==true) glav="1";
     if ($$('#vodo-checkbox').prop('checked')==true) vodo="1";
+    if ($$('#ahc-checkbox').prop('checked')==true) ahc="1";
+    if ($$('#inj-checkbox').prop('checked')==true) inj="1";
 		if ($$('#place_options').val()=="")$$('#place_options').addClass('bg-color-red');
 		else
 		{
@@ -704,7 +750,7 @@ on: {
       //app.dialog.alert(JSON.stringify(res));
       
 		app.preloader.show('blue');
-		app.request.post('http://tedeco.kz/equipment/api/add_user.php',{zapros:"update",id:id,place:JSON.stringify(res),glav:glav,fam:$$('#fam_user').val(),name:$$('#name_users').val(),log:$$('#log_user').val(),pass:$$('#pass_user').val(),roles:'2',sklad:sklad,vodo:vodo},function(otvet){                                          							
+		app.request.post('http://tedeco.kz/equipment/api/add_user.php',{zapros:"update",id:id,place:JSON.stringify(res),glav:glav,fam:$$('#fam_user').val(),name:$$('#name_users').val(),log:$$('#log_user').val(),pass:$$('#pass_user').val(),roles:'2',sklad:sklad,vodo:vodo,ahc:ahc,inj:inj},function(otvet){                                          							
 app.preloader.hide();
 
 if (otvet[0].message=="ok"){

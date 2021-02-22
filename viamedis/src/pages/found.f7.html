@@ -1,0 +1,172 @@
+<template>
+<div class="page" data-name="registration">
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner">
+      <div class="left">
+        <a class="link panel-open icon-only" data-panel="left">
+          <i class="icon f7-icons">bars</i>
+        </a>
+      </div>
+      <div class="title">Поиск подходящих вакансий и содействие в трудоустройстве</div>
+      <div class="right">
+        <a class="link popover-open" data-popover=".profile-popover">
+          <span class="margin-right-half">Добро пожалоавть, <b>Администратор</b></span>
+          <img src="https://i.pravatar.cc/56?u=9" class="avatar">
+        </a>
+      </div>
+      <div class="title-large">
+        <div class="title-large-text display-flex align-items-center">
+          <i class="icon f7-icons margin-right-half" style="font-size: 24px">search</i>
+          <span>Поиск подходящих вакансий и содействие в трудоустройстве</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="card data-table data-table-init" id="list_gemo" style="--f7-card-border-radius: 0px;">
+      <div class="card-header">Список заявок<div style="right: 5px;"><font color="gray"><span id="found_colz"></span></font><font color="red"><span id="found_chekz"></span></font></div></div>
+      <div class="card-content card-content-padding scrollable">
+        <table>
+          <thead>
+            <tr>
+<th class="checkbox-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>
+<label class="checkbox">
+<input type="checkbox"/>
+<i class="icon-checkbox"></i>
+</label>
+</th>
+              <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Уд. личности</th>
+              <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Телефон</th>
+              <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Почта</th>
+  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Образование</th>
+  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Трудовая</th>
+  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Заявление</th>
+  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Категория</th>
+  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Дата подачи</th>
+  <th class="numeric-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Статус</th>
+  <th class="numeric-cell" style='z-index: 50;position: sticky; top: -16px;background: white'><button id="all_button_found" class="col button dynamic-popover-found" style="height:100%;">:</button></th>
+            </tr>
+          </thead>
+          <tbody id="virt_found">
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+</template>
+<script>
+export default {
+  on:{
+    pageInit:function(){
+      var app = this.$app;
+      var $$ = this.$$;
+      var router = this.$router;
+      var myHeight = $(document).height();
+  myHeight = myHeight -170;
+$$('.scrollable').css({height:myHeight+'px'});
+app.preloader.show('black');
+app.request.postJSON('http://bi.tedeco.kz/api/u1.php',{zapros:'list'},function(otvet){
+app.preloader.hide();
+//console.log(JSON.stringify(otvet));
+$$('#found_colz').text(otvet.length+" найдено");
+var virt_u1="";
+	for (var s=0;s<otvet.length; s++){
+    var ud = otvet[s].ud_file;
+    var obr = otvet[s].obr;
+    var trud = otvet[s].trud;
+    var zayav = otvet[s].zayav;
+    var cat = otvet[s].cat;
+    var status = otvet[s].status;
+    if (status=="0")status='<div class="chip color-yellow"><div class="chip-label">В обработке</div></div>';
+    if (ud.substr(0, 5)=="/img/")ud='<a target="_blank" class="external" href="http://bi.tedeco.kz'+otvet[s].ud_file+'">'+ud.substr(6)+'</a>';
+    if (obr.substr(0, 5)=="/img/")obr='<a target="_blank" class="external" href="http://bi.tedeco.kz'+otvet[s].udobr_file+'">'+obr.substr(6)+'</a>';
+    if (trud.substr(0, 5)=="/img/")trud='<a target="_blank" class="external" href="http://bi.tedeco.kz'+otvet[s].trud+'">'+trud.substr(6)+'</a>';
+    if (zayav.substr(0, 5)=="/img/")zayav='<a target="_blank" class="external" href="http://bi.tedeco.kz'+otvet[s].zayav+'">'+zayav.substr(6)+'</a>';
+    if (cat.substr(0, 5)=="/img/")cat='<a target="_blank" class="external" href="http://bi.tedeco.kz'+otvet[s].cat+'">'+cat.substr(6)+'</a>';
+    else
+    if (otvet[s].cat==null)cat="не относится"
+    virt_u1+='<tr>'+
+			'<td class="checkbox-cell" value="'+otvet[s].id+'"><label class="checkbox"><input value="'+otvet[s].id+'" id="check_zaya'+otvet[s].id+'" type="checkbox"/><i class="icon-checkbox"></i></label></td>'+
+              '<td class="label-cell noselect" value="'+otvet[s].id+'" data-id="'+otvet[s].chat_id+'">'+ud+'</td>'+
+              '<td class="label-cell noselect" value="'+otvet[s].id+'" data-id="'+otvet[s].chat_id+'">'+otvet[s].tel+'</td>'+
+              '<td class="label-cell noselect" value="'+otvet[s].id+'" data-id="'+otvet[s].chat_id+'">'+otvet[s].mail+'</td>'+
+              '<td class="label-cell noselect" value="'+otvet[s].id+'" data-id="'+otvet[s].chat_id+'">'+obr+'</td>'+
+              '<td class="label-cell noselect" value="'+otvet[s].id+'" data-id="'+otvet[s].chat_id+'">'+trud+'</td>'+
+              '<td class="label-cell noselect" value="'+otvet[s].id+'" data-id="'+otvet[s].chat_id+'">'+zayav+'</td>'+
+              '<td class="label-cell noselect" value="'+otvet[s].id+'" data-id="'+otvet[s].chat_id+'">'+cat+'</td>'+
+         '<td class="label-cell noselect" value="'+otvet[s].id+'" data-id="'+otvet[s].chat_id+'">'+otvet[s].data+'</td>'+
+         '<td class="numeric-cell noselect" value="'+otvet[s].id+'" data-id="'+otvet[s].chat_id+'">'+status+'</td>'+
+			   '<td class="numeric-cell"><button name="1" class="col button dynamic-popover-found'+otvet[s].chat_id+'" data-id="'+otvet[s].chat_id+'" style="height:100%;">:</button></td>'+
+            '</tr>';
+}			
+	$$('#virt_found').html(virt_u1);
+});
+$$('#virt_found').on('click','button',function(){
+  var name=$$(this).attr('name');
+	var id=$$(this).attr('data-id');
+  var dynamicPopover = app.popover.create({
+  targetEl: 'button.dynamic-popover-found'+id,
+  content: '<div class="popover">'+
+              '<div class="popover-inner">'+
+                '<div class="list">'+
+        '<ul>'+
+          '<li><a class="list-button item-link popover-close" id="dobro">✅ Одобрить</a></li>'+
+		  '<li><a class="list-button item-link popover-close" id="otkaz">❌ Отказать</a></li>'+
+        '</ul>'+
+      '</div>'+
+              '</div>'+
+            '</div>',
+  // Events
+  on: {
+    open: function (popover) {
+	$$('#dobro').on('click',function(){
+    app.dialog.confirm('Вы уверены что хотите одобрить?',function(){
+    app.toast.create({
+  cssClass:'toast-green',
+  icon: '<i class="f7-icons">checkmark_seal_fill</i>',
+  text: 'Одобрено',
+  position: 'center',
+  closeTimeout: 2000,
+}).open();
+});
+	//dynamicPopover.close();
+	});
+	$$('#otkaz').on('click',function(){
+    app.dialog.confirm('Вы уверены что хотите отказать?',function(){
+    app.toast.create({
+  cssClass:'toast-red',
+  icon: '<i class="f7-icons">clear_fill</i>',
+  text: 'Отказано',
+  position: 'center',
+  closeTimeout: 2000,
+}).open();
+});
+	});
+    },
+    opened: function (popover) {
+
+    },
+  }
+});
+  dynamicPopover.open();
+  /*var tegs=[];
+  tegs.push({
+    url :"http://bi.tedeco.kz/img/"+$$(this).attr('put')
+  });
+    var myPhotoBrowserPopupDark = app.photoBrowser.create({
+    photos : tegs,
+    theme: 'dark',
+    type: 'popup',
+});
+myPhotoBrowserPopupDark.open();
+*/
+});
+
+    }
+  }
+};
+</script>

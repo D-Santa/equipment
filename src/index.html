@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <!--
@@ -14,14 +15,16 @@
 	    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
 
   <meta name="theme-color" content="#007aff">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
   <title>Equipment</title>
-  
+
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon" href="static/icons/apple-touch-icon.png">
@@ -29,16 +32,17 @@
   <link rel="stylesheet" href="static/dist/multiple-select.css">
   <!-- built styles file will be auto injected -->
 </head>
+
 <body>
   <div id="app">
 
     <div class="statusbar"></div>
 
 
-   
-  
 
-<div class="panel panel-right panel-cover theme-dark">
+
+
+    <div class="panel panel-right panel-cover theme-dark">
       <div class="view">
         <div class="page">
           <div class="navbar" style="background-color:#222c3c">
@@ -47,38 +51,107 @@
             </div>
           </div>
           <div class="page-content">
-		  <div class="list" id="adminskaya">
+            <div class="list" id="adminskaya">
               <ul>
-			   <li>
+                <li>
                   <a href="#" class="item-content item-link" id="company">
                     <div class="item-inner">
                       <div class="item-title">Админ панель</div>
                     </div>
                   </a>
                 </li>
-                </ul>
-        </div>
-        <div class="list">
-          <ul id="type_list">
-
-            </ul>
-    </div>
-				<div class="list">
+              </ul>
+            </div>
+            <div class="list">
+              <ul id="type_list">
+                <li>
+                  <a name="Аппарат для гемодиализа" class="item-content item-link" data-id="1">
+                    <div class="item-inner">
+                      <div class="item-title">Аппарат для гемодиализа</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a name="Система водоочистки" class="item-content item-link" data-id="2">
+                    <div class="item-inner">
+                      <div class="item-title">Система водоочистки</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a name="аппараты солемешания" class="item-content item-link" data-id="3">
+                    <div class="item-inner">
+                      <div class="item-title">аппараты солемешания</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a name="системы ЦРК" class="item-content item-link" data-id="4">
+                    <div class="item-inner">
+                      <div class="item-title">системы ЦРК</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a name="Diapact" class="item-content item-link" data-id="5">
+                    <div class="item-inner">
+                      <div class="item-title">Diapact</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a name="Кресло для гемодиализа" class="item-content item-link" data-id="6">
+                    <div class="item-inner">
+                      <div class="item-title">Кресло для гемодиализа</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a name="АХЧ" class="item-content item-link" data-id="8">
+                    <div class="item-inner">
+                      <div class="item-title">АХЧ</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a name="Рециркулятор" class="item-content item-link" data-id="9">
+                    <div class="item-inner">
+                      <div class="item-title">Рециркулятор</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a name="Кварцевая лампа" class="item-content item-link" data-id="10">
+                    <div class="item-inner">
+                      <div class="item-title">Кварцевая лампа</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="list">
               <ul>
-			  <li>
+                <li>
+                  <a href="#" class="item-content item-link" id="zadachi">
+                    <div class="item-inner">
+                      <div class="item-title">Задачи</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
                   <a href="#" class="item-content item-link" id="vyhod">
                     <div class="item-inner">
                       <div class="item-title">Выход</div>
                     </div>
                   </a>
                 </li>
-                </ul>
-				</div>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main view-init safe-areas" data-url="/"></div>
 
@@ -88,4 +161,5 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="static/dist/multiple-select.js"></script>
 </body>
+
 </html>

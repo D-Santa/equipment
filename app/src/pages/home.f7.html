@@ -119,6 +119,16 @@
 					</li>
 					<li class="accordion-item"><a href="#" class="item-content item-link">
 						<div class="item-inner">
+						  <div class="item-title">Ожидание зап. части<span class="badge color-red" id="bad_zap" style="display: none;">0</span></div>
+						</div></a>
+					  <div class="accordion-item-content" style="background-color: #c6c8d1;">
+						<div id="virt_home_zap" class="virt_home_">
+						  
+						</div>
+					  </div>
+					</li>
+					<li class="accordion-item"><a href="#" class="item-content item-link">
+						<div class="item-inner">
 						  <div class="item-title">Подтверждения от инициатора<span class="badge color-red" id="bad_pod" style="display: none;">0</span></div>
 						</div></a>
 					  <div class="accordion-item-content" style="background-color: #c6c8d1;">
@@ -153,7 +163,7 @@
 		var $$ = this.$$;
 		var router = this.$router;
 		app.data.url="/";	
-
+/*
 		var push = PushNotification.init({
      "android": {
         "senderID": "110519839613",
@@ -188,7 +198,7 @@ $$('#notifi').hide();
 				});
 				
 
-
+*/
 
 
 		app.panel.enableSwipe('left');

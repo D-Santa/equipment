@@ -23,8 +23,34 @@ var app = new Framework7({
   view:{
     pushState:true,
   },
+  methods:{
+    auth:function(calback){
+      var log = JSON.parse(localStorage.getItem("f7form-user"));
+      if (log!=null){
+      var mail = log.mail; var token=log.token;
+      app.request.post('http://bbnura.tedeco.kz/api/vhod.php',{log:"",pass:"",token:token},function(data){
+      if (data[0].message=="ok"){
+        app.data.user.id=data[0].id;
+        app.data.user.token=data[0].toekn;
+        app.data.user.name=data[0].name;
+      calback(true);
+      }else {
+      app.form.removeFormData("user");
+      calback(false);
+      }
+      },'json');
+    }
+    else
+    return calback(false);
+    },
+      },
   data:{
-  url:"http://bi.tedeco.kz"
+    user:{
+      id:"",
+      name:"",
+      token:""
+    },
+  url:"http://bbnura.tedeco.kz"
     
   },
 

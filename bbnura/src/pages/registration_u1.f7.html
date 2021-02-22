@@ -1,377 +1,449 @@
+<style>
+  .aurora{
+   --f7-dialog-width: 50%;
+  }
+.ms-drop {
+  width: 100%;
+}
+.ms-dd{
+  margin-left: 7px;
+}
+</style>
 <template>
-<div class="page" data-name="registration">
-  <div class="navbar">
-    <div class="navbar-bg"></div>
-    <div class="navbar-inner">
-      <div class="left">
-        <a class="link panel-open icon-only" data-panel="left">
-          <i class="icon f7-icons">bars</i>
-        </a>
-      </div>
-      <div class="title">Регистрация пользователя</div>
-      <div class="right">
-        <a class="link popover-open" data-popover=".profile-popover">
-          <span class="margin-right-half">Добро пожалоавть, <b>Администратор</b></span>
-          <img src="https://i.pravatar.cc/56?u=9" class="avatar">
-        </a>
-      </div>
-      <div class="title-large">
-        <div class="title-large-text display-flex align-items-center">
-          <i class="icon f7-icons margin-right-half" style="font-size: 24px">person_2_alt</i>
-          <span>Регистрация пользователя</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="page-content">
-    <div class="card data-table data-table-init" id="list_gemo" style="--f7-card-border-radius: 0px;">
-      <div class="card-header">Список заявок<span id="zaya_name">Все</span><div style="right: 5px;"><font color="gray"><span id="obw_colz"></span></font><font color="red"><span id="obw_chekz"></span></font></div></div>
-      <div class="card-content card-content-padding scrollable">
-        <table>
-          <thead>
-            <tr>
-              <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Уд. личности</th>
-              <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Телефон</th>
-              <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Почта</th>
-  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Образование</th>
-  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Трудовая</th>
-  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Заявление</th>
-  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Категория</th>
-  <th class="label-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Дата подачи</th>
-  <th class="numeric-cell" style='z-index: 50;position: sticky; top: -16px;background: white'>Статус</th>
-  <th class="numeric-cell" style='z-index: 50;position: sticky; top: -16px;background: white'><button class="col button dynamic-popoverz" style="height:100%;">:</button></th>
-            </tr>
-          </thead>
-          <tbody id="virt_u1">
+ <div class="page" data-name="reguser">
+   <div class="navbar">
+     <div class="navbar-bg"></div>
+     <div class="navbar-inner">
+       <div class="left">
+         <a class="link panel-open icon-only" data-panel="left">
+           <i class="icon f7-icons">bars</i>
+         </a>
+       </div>
+       <div class="title">Регистрация</div>
+       <div class="right">
+         <a class="link popover-open" data-popover=".profile-popover">
+           <span class="margin-right-half">Добро пожалоавть, <b>Администратор</b></span>
+           <img src="" class="avatar">
+         </a>
+       </div>
+       <div class="title-large">
+         <div class="title-large-text display-flex align-items-center">
+           <i class="icon f7-icons margin-right-half" style="font-size: 24px">person_badge_plus_fill</i>
+           <span>Регистрация</span>
+         </div>
+       </div>
+     </div>
+   </div>
 
-          </tbody>
-        </table>
-      </div>
+<div class="page-content">
 
-    </div>
-  </div>
+         
+<div class="row margin-horizontal">
+
+             <div class="col-100 margin-top">
+       
+         <div class="card text-color-black col-100"  style="--f7-card-border-radius:30px;">
+                     <div class="card-content card-content-padding">
+           <a id="add_user" class="col button button-fill button-round color-red" style="position:absolute;right: 15px;">Добавить новую&nbsp;<i class="icon f7-icons" style="margin-top:-2px;">add</i></a>
+
+<i class="icon f7-icons margin-right-half" style="font-size: 24px; margin-top:-5px;margin-left:10px;opacity:0.6;">person</i><font size="4px" style="opacity:0.6;"><b>Пользователи</b></font>
+   </div>
+
+                   </div>
+               <div class="card data-table data-table-init"  style="--f7-card-border-radius: 0px;">
+                 <div class="card-header">Список пользователей</div>
+                 <div class="card-content card-content-padding scrollable">
+                   <table>
+                     <thead>
+                       <tr id="users">
+                       </tr>
+                     </thead>
+                     <tbody id="div_user">
+           
+                     </tbody>
+                   </table>
+                 </div>
+
+               </div>
+             </div>
+           </div>
+ </div>
+
+
+
 </div>
 </template>
 <script>
 export default {
-  on:{
-    pageInit:function(){
-      var app = this.$app;
-      var $$ = this.$$;
-      var router = this.$router;
-      var myHeight = $(document).height();
-      var sql = "id!=0";
-  myHeight = myHeight -170;
-$$('.scrollable').css({height:myHeight+'px'});
-app.preloader.show('black');
-app.request.postJSON('http://bi.tedeco.kz/api/u1.php',{zapros:'list', sql:sql},function(otvet){
-app.preloader.hide();
-//console.log(JSON.stringify(otvet));
-$$('#obw_colz').text(otvet.length+" найдено");
-var virt_u1="";
-	for (var s=0;s<otvet.length; s++){
-    var ud = otvet[s].ud_file;
-    var obr = otvet[s].obr;
-    var trud = otvet[s].trud;
-    var zayav = otvet[s].zayav;
-    var cat = otvet[s].cat;
-    var status = otvet[s].status;
-    status=="0" ? status='<div class="chip color-yellow"><div class="chip-label">В обработке</div></div>' : status=="3" ? status='<div class="chip color-green"><div class="chip-label">Одобрено</div></div>' : status=="1" ? status='<div class="chip color-orange"><div class="chip-label">Переотправка</div></div>' : status='<div class="chip color-red"><div class="chip-label">Отказано</div></div>';
-    if (ud.substr(0, 5)=="/img/")ud='<a target="_blank" class="external" href="'+app.data.url+otvet[s].ud_file+'">'+ud.substr(6)+'</a>';
-    if (obr.substr(0, 5)=="/img/")obr='<a target="_blank" class="external" href="'+app.data.url+otvet[s].udobr_file+'">'+obr.substr(6)+'</a>';
-    if (trud.substr(0, 5)=="/img/")trud='<a target="_blank" class="external" href="'+app.data.url+otvet[s].trud+'">'+trud.substr(6)+'</a>';
-    if (zayav.substr(0, 5)=="/img/")zayav='<a target="_blank" class="external" href="'+app.data.url+otvet[s].zayav+'">'+zayav.substr(6)+'</a>';
-    if (cat.substr(0, 5)=="/img/")cat='<a target="_blank" class="external" href="'+app.data.url+otvet[s].cat+'">'+cat.substr(6)+'</a>';
-    else
-    if (otvet[s].cat==null)cat="не относится"
-    virt_u1+='<tr>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+ud+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+otvet[s].tel+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+otvet[s].mail+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+obr+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+trud+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+zayav+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+cat+'</td>'+
-         '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+otvet[s].data+'</td>'+
-         '<td class="numeric-cell noselect" data-id="'+otvet[s].chat_id+'">'+status+'</td>'+
-			   '<td class="numeric-cell"><button name="1" value="'+otvet[s].id+'" class="col button dynamic-popoverz'+otvet[s].chat_id+'" data-id="'+otvet[s].chat_id+'" style="height:100%;">:</button></td>'+
-            '</tr>';
-}			
-	$$('#virt_u1').html(virt_u1);
-});
 
+   on: {
+    pageMounted:function(){
 
-
-$$('.dynamic-popoverz').on('click',function(){
-
-
-var dynamicPopover2 = app.popover.create({
-  targetEl: 'button.dynamic-popoverz',
-  content: '<div class="popover">'+
-              '<div class="popover-inner">'+
-                '<div class="list">'+
-        '<ul>'+
-          '<li><a class="list-button item-link popover-close pokaz" name="Показать все" value="id!=0">Показать все</a></li>'+
-          '<li><a class="list-button item-link popover-close pokaz" name="Новые" value="status=0">Новые</a></li>'+
-          '<li><a class="list-button item-link popover-close pokaz" name="Одобрено" value="status=3">Одобрено</a></li>'+
-          '<li><a class="list-button item-link popover-close pokaz" name="Переотправить" value="status=1">Переотправить</a></li>'+
-		  '<li><a class="list-button item-link popover-close pokaz" name="Отказано" value="status=2">Отказано</a></li>'+
-        '</ul>'+
-      '</div>'+
-              '</div>'+
-            '</div>',
-  // Events
-  on: {
-    open: function (popover) {
-      $$('.pokaz').on('click',function(){
-        var name =$$(this).attr('name');
-        $$('#zaya_name').text(name);
-        sql = $$(this).attr('value');
-update(sql);
-      });
-
-    },
-    opened: function (popover) {
-
-    },
-  }
-});
-dynamicPopover2.open();
-});
-
-$$('#virt_u1').on('click','button',function(){
-  var name=$$(this).attr('name');
-  var chat_id=$$(this).attr('data-id');
-  var id=$$(this).attr('value');
-  var dynamicPopover = app.popover.create({
-  targetEl: 'button.dynamic-popoverz'+chat_id,
-  content: '<div class="popover">'+
-              '<div class="popover-inner">'+
-                '<div class="list">'+
-        '<ul>'+
-          '<li><a class="list-button item-link popover-close" id="dobro">✅ Одобрить</a></li>'+
-          '<li><a class="list-button item-link popover-close" id="pere">☣️ Переотправить</a></li>'+
-		  '<li><a class="list-button item-link popover-close" id="otkaz">❌ Отказать</a></li>'+
-        '</ul>'+
-      '</div>'+
-              '</div>'+
-            '</div>',
-  // Events
-  on: {
-    open: function (popover) {
-	$$('#dobro').on('click',function(){
-    app.dialog.confirm('Вы уверены что хотите одобрить?',function(){
-      app.preloader.show('black');
-app.request.postJSON('http://bi.tedeco.kz/api/u1.php',{zapros:'update', status:"3",id:id},function(otvet){
-app.preloader.hide();
-if (otvet[0].message=="ok"){
-    app.toast.create({
-  cssClass:'toast-green',
-  icon: '<i class="f7-icons">checkmark_seal_fill</i>',
-  text: 'Одобрено',
-  position: 'center',
-  closeTimeout: 2000,
-}).open();
-update(sql);
+var app = this.$app;
+var router = this.$router;
+var $$ = this.$$;
+var panel = app.panel.get('.panel-left');
+panel.disableCollapsedBreakpoint();
+app.methods.auth(function(otvet){
+if (otvet === false)setTimeout(() => {
+router.navigate('/',{reloadAll:true});
+}, 10);
+else{
+$$('.pages').show();
+panel.enableCollapsedBreakpoint();
 }
 });
+},
+     pageInit:function(){
+       var app = this.$app;
+   var router = this.$router;
+   var $$ = this.$$;
+   var panel = app.panel.get('.panel-left');
+panel.disableCollapsedBreakpoint();
+app.methods.auth(function(otvet){
+if (otvet === false)setTimeout(() => {
+router.navigate('/',{reloadAll:true});
+}, 10);
+else
+ lists('l');
 });
-	//dynamicPopover.close();
+
+
+function lists(load){
+ if (load!="")
+app.preloader.show('blue');
+app.request.postJSON(app.data.url+'/api/add_user.php',{zapros:'list',user_id:app.data.user.id},function(data){                                          							
+app.preloader.hide();
+var tr="";
+var fic="";
+  list_fic_table(function(otvet){
+if (otvet!=false)
+for (var f=0; f<otvet.length; f++)
+if (otvet[f].user_chek=="1")
+fic+='<th class="label-cell">'+otvet[f].name+'</th>';
+tr='<th class="label-cell">№</th>'+
+             '<th class="label-cell">Имя</th>'+
+             '<th class="label-cell">Логин</th>'+
+             '<th class="label-cell">Пароль</th>'+fic+
+             '<th class="label-cell">Редактировать</th>';
+$$('#users').html(tr);
   });
-  $$('#pere').on('click',function(){
-    app.dialog.confirm('Вы уверены что хотите на переотправку?',function(){
-      var dynamicPopup = app.popup.create({
-        content: '<div class="popup pop-info-action">'+
-	'<div class="view popup-view">'+
-		'<div class="page">'+
-			'<div class="navbar">'+
-				'<div class="navbar-inner" style="background-color:#222c3c;">'+
-					'<div class="title text-color-white">Переотправить</div>'+
-					'<div class="right"><a class="link popup-close text-color-white" href="#">x</a></div>'+
-				'</div>'+
-			'</div>'+
-			'<div class="page-content text-color-black"><div class="block-title">Выберите документы которые нужно переотправить</div>'+
-			'<div class="list inset" style="background-color:transperent;">'+
-  '<ul>'+
-    '<li>'+
-      '<label class="item-checkbox item-content">'+
-        '<input type="checkbox" id="demo-checkbox1"/>'+
-        '<i class="icon icon-checkbox"></i>'+
-        '<div class="item-inner">'+
-          '<div class="item-title">Уд. личности</div>'+
-          '</div>'+
-          '</label>'+
-          '</li>'+
-          '<li>'+
-      '<label class="item-checkbox item-content">'+
-        '<input type="checkbox" id="demo-checkbox2"/>'+
-        '<i class="icon icon-checkbox"></i>'+
-        '<div class="item-inner">'+
-          '<div class="item-title">Телефон</div>'+
-          '</div>'+
-          '</label>'+
-          '</li>'+
-          '<li>'+
-      '<label class="item-checkbox item-content">'+
-        '<input type="checkbox" id="demo-checkbox3"/>'+
-        '<i class="icon icon-checkbox"></i>'+
-        '<div class="item-inner">'+
-          '<div class="item-title">Почта</div>'+
-          '</div>'+
-          '</label>'+
-          '</li>'+
-          '<li>'+
-      '<label class="item-checkbox item-content">'+
-        '<input type="checkbox" id="demo-checkbox4"/>'+
-        '<i class="icon icon-checkbox"></i>'+
-        '<div class="item-inner">'+
-          '<div class="item-title">Образование</div>'+
-          '</div>'+
-          '</label>'+
-          '</li>'+
-          '<li>'+
-      '<label class="item-checkbox item-content">'+
-        '<input type="checkbox" id="demo-checkbox5"/>'+
-        '<i class="icon icon-checkbox"></i>'+
-        '<div class="item-inner">'+
-          '<div class="item-title">Трудовая</div>'+
-          '</div>'+
-          '</label>'+
-          '</li>'+
-          '<li>'+
-      '<label class="item-checkbox item-content">'+
-        '<input type="checkbox" id="demo-checkbox6"/>'+
-        '<i class="icon icon-checkbox"></i>'+
-        '<div class="item-inner">'+
-          '<div class="item-title">Заявление</div>'+
-          '</div>'+
-          '</label>'+
-          '</li>'+
-          '<li>'+
-      '<label class="item-checkbox item-content">'+
-        '<input type="checkbox" id="demo-checkbox7"/>'+
-        '<i class="icon icon-checkbox"></i>'+
-        '<div class="item-inner">'+
-          '<div class="item-title">Категория</div>'+
-          '</div>'+
-          '</label>'+
-          '</li>'+
-          '</ul></div><div class="card-footer row"><a class="button col button-fill color-blue print popup-close">Принять</a></div></div>'+
-		'</div>'+
-	'</div>'+
+
+if (data.length>=1){
+var virt_comp = document.getElementById("div_user"); 
+virt_comp.innerHTML="";
+ for (var s=0;s<data.length; s++){
+   virt_comp.innerHTML  +='<tr style="height:70px;">'+
+                         '<td class="label-cell" style="width:5%">'+(s+1)+'</td>'+
+                         '<td class="label-cell" style="width:20%">'+data[s].name+'</td>'+
+             '<td class="label-cell" style="width:15%">'+data[s].login+'</td>'+
+             '<td class="label-cell" style="width:15%">'+data[s].pass+'</td>'+
+             '<td class="label-cell"></td>'+
+             '<td class="label-cell" style="width:10%"><button class="button button-fill" value="1" data-id="'+data[s].id+'">Редактировать</button></td>'+
+             '<td class="label-cell" style="width:10%"><button class="button button-fill" value="2" data-id="'+data[s].id+'">Удалить</button></td>'+
+                       '</tr>';
+}
+}
+
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+});
+
+}
+
+
+$$('#add_user').on('click', function(){
+  var fic="",vc=0,vc1=0;
+  list_fic_table(function(otvet){
+if (otvet!=false)
+for (var f=0; f<otvet.length; f++)
+if (otvet[f].user_chek=="1")
+{
+  vc++;
+  var name = otvet[f].name;
+  list_row(otvet[f].id,function(zapros){
+    var option="";
+if (zapros!=false)
+for (var f1=0; f1<zapros.length; f1++)
+option+='<option value="'+zapros[f1].id+'">'+zapros[f1].name+'</option>';
+fic +='<li class="item-content item-input item-input-outline">'+
+                           '<div class="item-inner">'+
+                            ' <div class="item-title">'+name+'</div>'+
+                                '                           <div class="item-input-wrap input-dropdown-wrap">'+
+         '<select class="multi" multiple="multiple">'+option+
+        ' </select>'+
+      ' </div>'+
+                          ' </div>'+
+                         '</li>';
+                         vc1++;
+
+}); 
+}
+
+var tim = setInterval(() => {
+  if (vc==vc1){
+    clearInterval(tim);
+setTimeout(() => {
+  app.preloader.hide();
+  clearInterval(tim);
+  $(function() {
+      $('.multi').multipleSelect();
+    });
+app.dialog.create({
+title: '<div style="text-align: center;"><font color="red">Новый пользователь</font></div>',
+text:"",
+
+content:'<div class="list no-hairlines-md">'+
+ '<ul>'+
+  '<li class="item-content item-input item-input-outline">'+
+                             '<div class="item-inner">'+
+                               '<div class="item-title item-floating-label">ФИО</div>'+
+                               '<div class="item-input-wrap">'+
+                                 '<input type="text" placeholder="ФИО" id="name_user">'+
+                                 '<span class="input-clear-button"></span>'+
+                               '</div>'+
+                             '</div>'+
+                           '</li>'+
+ '<li class="item-content item-input item-input-outline">'+
+                             '<div class="item-inner">'+
+                               '<div class="item-title item-floating-label">Логин</div>'+
+                               '<div class="item-input-wrap">'+
+                                 '<input type="text" placeholder="Логин" id="log_user">'+
+                                 '<span class="input-clear-button"></span>'+
+                               '</div>'+
+                             '</div>'+
+                           '</li>'+
+ '<li class="item-content item-input item-input-outline">'+
+                             '<div class="item-inner">'+
+                               '<div class="item-title item-floating-label">Пароль</div>'+
+                               '<div class="item-input-wrap">'+
+                                 '<input type="text" placeholder="Пароль" id="pass_user">'+
+                                 '<span class="input-clear-button"></span>'+
+                               '</div>'+
+                             '</div>'+
+                           '</li>'+fic+
+ '</ul>'+
 '</div>',
-  // Events
-  on: {
-    open: function (popup) {
+on: {
+   opened: function () {
 
-    },
-    opened: function (popup) {
-$$('.print').on('click',function(){
-  app.preloader.show('black');
-  var dobro=[];
-  for (var g=0; g<7; g++)
-  dobro[g]=$$('#demo-checkbox'+(g+1)).prop('checked');
-app.request.postJSON('http://bi.tedeco.kz/api/u1.php',{zapros:'update', status:"1",id:id,dobro:dobro},function(otvet){
-app.preloader.hide();
-if (otvet[0].message=="ok"){
-    app.toast.create({
-  cssClass:'toast-orange',
-  icon: '<i class="f7-icons">arrow_counterclockwise_circle_fill</i>',
-  text: 'Переотправка',
-  position: 'center',
-  closeTimeout: 2000,
-}).open();
-update(sql);
-}
-});
-
-});
-    },
-  }
-}).open();
- 
-});
-	//dynamicPopover.close();
-	});
-	$$('#otkaz').on('click',function(){
-    app.dialog.confirm('Вы уверены что хотите отказать?',function(){
-      app.preloader.show('black');
-app.request.postJSON('http://bi.tedeco.kz/api/u1.php',{zapros:'update', status:"2",id:id},function(otvet){
-app.preloader.hide();
-if (otvet[0].message=="ok"){
-  app.toast.create({
-  cssClass:'toast-red',
-  icon: '<i class="f7-icons">clear_fill</i>',
-  text: 'Отказано',
-  position: 'center',
-  closeTimeout: 2000,
-}).open();
-update(sql);
-}
-});
-
-});
-	});
-    },
-    opened: function (popover) {
-
-    },
-  }
-});
-  dynamicPopover.open();
-  /*var tegs=[];
-  tegs.push({
-    url :"http://bi.tedeco.kz/img/"+$$(this).attr('put')
-  });
-    var myPhotoBrowserPopupDark = app.photoBrowser.create({
-    photos : tegs,
-    theme: 'dark',
-    type: 'popup',
-});
-myPhotoBrowserPopupDark.open();
-*/
-});
-
-function update(sql){
-  app.preloader.show('black');
-  app.request.postJSON('http://bi.tedeco.kz/api/u1.php',{zapros:'list', sql:sql},function(otvet){
-    app.preloader.hide();
-$$('#obw_colz').text(otvet.length+" найдено");
-var virt_u1="";
-	for (var s=0;s<otvet.length; s++){
-    var ud = otvet[s].ud_file;
-    var obr = otvet[s].obr;
-    var trud = otvet[s].trud;
-    var zayav = otvet[s].zayav;
-    var cat = otvet[s].cat;
-    var status = otvet[s].status;
-    status=="0" ? status='<div class="chip color-yellow"><div class="chip-label">В обработке</div></div>' : status=="3" ? status='<div class="chip color-green"><div class="chip-label">Одобрено</div></div>' : status=="1" ? status='<div class="chip color-orange"><div class="chip-label">Переотправка</div></div>' : status='<div class="chip color-red"><div class="chip-label">Отказано</div></div>';
-    if (ud.substr(0, 5)=="/img/")ud='<a target="_blank" class="external" href="'+app.data.url+otvet[s].ud_file+'">'+ud.substr(6)+'</a>';
-    if (obr.substr(0, 5)=="/img/")obr='<a target="_blank" class="external" href="'+app.data.url+otvet[s].udobr_file+'">'+obr.substr(6)+'</a>';
-    if (trud.substr(0, 5)=="/img/")trud='<a target="_blank" class="external" href="'+app.data.url+otvet[s].trud+'">'+trud.substr(6)+'</a>';
-    if (zayav.substr(0, 5)=="/img/")zayav='<a target="_blank" class="external" href="'+app.data.url+otvet[s].zayav+'">'+zayav.substr(6)+'</a>';
-    if (cat.substr(0, 5)=="/img/")cat='<a target="_blank" class="external" href="'+app.data.url+otvet[s].cat+'">'+cat.substr(6)+'</a>';
-    else
-    if (otvet[s].cat==null)cat="не относится"
-    virt_u1+='<tr>'+
-	'<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+ud+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+otvet[s].tel+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+otvet[s].mail+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+obr+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+trud+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+zayav+'</td>'+
-              '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+cat+'</td>'+
-         '<td class="label-cell noselect" data-id="'+otvet[s].chat_id+'">'+otvet[s].data+'</td>'+
-         '<td class="numeric-cell noselect" data-id="'+otvet[s].chat_id+'">'+status+'</td>'+
-			   '<td class="numeric-cell"><button name="1" value="'+otvet[s].id+'" class="col button dynamic-popoverz'+otvet[s].chat_id+'" data-id="'+otvet[s].chat_id+'" style="height:100%;">:</button></td>'+
-            '</tr>';
-}			
-	$$('#virt_u1').html(virt_u1);
-});
-
-}
-
+   }
+ },
+buttons: [
+{
+       text: '<a class="col button button-fill">Отмена</a>',
+    onClick: function() {
     }
+     },
+   {
+       text: '<a class="col button button-fill">Добавить</a>',
+    close:false,
+   onClick: function(){
+   app.preloader.show('blue');
+   app.request.postJSON(app.data.url+'/api/add_user.php',{zapros:"add",user_name:$$('#name_user').val(),user_roles:"1",user_log:$$('#log_user').val(),user_pass:$$('#pass_user').val(),user_fic:"",user_id:app.data.user.id},function(otvet){                                          							
+app.preloader.hide();
+if (otvet[0].message=="ok"){
+app.dialog.close();
+app.dialog.alert('Добавлено',function(){
+ lists("");
+});
+}
+else
+if (otvet[0].message=="nolog"){
+var toastCenter = app.toast.create({
+ text: 'Такой логин уже есть в системе',
+ position: 'center',
+ closeTimeout: 1000,
+});
+toastCenter.open();
+}
+else
+app.dialog.alert('Ошибка');
+},
+function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+   
+   }
+     }
+],
+
+}).open(); 
+}, 500);
   }
-};
+}, 500);
+  
+
+                         
+
+  });
+
+});
+
+
+
+function list_fic_table(callback){
+          app.preloader.show('white');
+              app.request.postJSON(app.data.url+'/api/add_fic_table.php', { zapros: 'list',user_id:app.data.user.id}, function (otvet) {
+                app.preloader.hide();
+                if (otvet.length>=1)
+                  callback(otvet);
+                  else
+                  callback(false);
+          });
+        }
+
+        function list_row(id,callback){
+          app.preloader.show('white');
+              app.request.postJSON(app.data.url+'/api/add_fic_table.php', { zapros: 'list_row',fic_table_id:id}, function (otvet) {
+
+                if (otvet.length>=1)callback(otvet);
+                else
+                callback(false);
+          }); 
+        }
+
+$$('#div_user').on('click','button',function(){
+ var value = $$(this).attr('value');
+var id = $$(this).attr('data-id');
+if (value=="2")
+app.dialog.alert('Вы точно хотите удалить?',function(){
+app.preloader.show('blue');
+app.request.post(app.data.url+'/api/add_user.php',{zapros:'dell',id:id},function(data){                                          							
+app.preloader.hide();
+if (data[0].message=="ok"){
+app.dialog.alert('Удалено',function(){
+ lists("");
+});
+}
+},function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+});
+else
+app.preloader.show('blue');
+app.request.post(app.data.url+'/api/add_user.php',{zapros:'user',id:id},function(user){                                          							
+app.preloader.hide();
+if (user[0].message=="ok"){
+ app.dialog.create({
+title: '<div style="text-align: center;"><font color="red">Редактирование пользователя</font></div>',
+text:"",
+
+content:'<div class="list no-hairlines-md">'+
+ '<ul>'+
+  '<li class="item-content item-input item-input-outline item-input-with-value">'+
+                             '<div class="item-inner">'+
+                               '<div class="item-title item-floating-label">ФИО</div>'+
+                               '<div class="item-input-wrap">'+
+                                 '<input type="text" placeholder="ФИО" id="name_user" value="'+user[0].name+'" class="input-with-value">'+
+                                 '<span class="input-clear-button"></span>'+
+                               '</div>'+
+                             '</div>'+
+                           '</li>'+
+ '<li class="item-content item-input item-input-outline item-input-with-value">'+
+                             '<div class="item-inner">'+
+                               '<div class="item-title item-floating-label">Логин</div>'+
+                               '<div class="item-input-wrap">'+
+                                 '<input type="text" placeholder="Логин" id="log_user" value="'+user[0].log+'" class="input-with-value">'+
+                                 '<span class="input-clear-button"></span>'+
+                               '</div>'+
+                             '</div>'+
+                           '</li>'+
+ '<li class="item-content item-input item-input-outline item-input-with-value">'+
+                             '<div class="item-inner">'+
+                               '<div class="item-title item-floating-label">Пароль</div>'+
+                               '<div class="item-input-wrap">'+
+                                 '<input type="text" placeholder="Пароль" id="pass_user" value="'+user[0].pass+'" class="input-with-value">'+
+                                 '<span class="input-clear-button"></span>'+
+                               '</div>'+
+                             '</div>'+
+                           '</li>'+
+                           '<li class="item-content item-input item-input-outline item-input-with-value">'+
+                           '<div class="item-inner">'+
+                            ' <div class="item-title item-floating-label">Отвечает</div>'+
+                                '                           <div class="item-input-wrap input-dropdown-wrap">'+
+         '<select id="otv_user">'+
+      '  <option value="0">0</option>'+
+        ' </select>'+
+      ' </div>'+
+                          ' </div>'+
+                         '</li>'+
+ '</ul>'+
+'</div>',
+on: {
+   opened: function () {
+     var ot="";
+     var otv = user[0].otv;
+     for (var s=1;s <5; s++){
+       var otv1="";
+ if (s==1) otv1= "1";
+ else
+ if (s==2) otv1="2";
+ else
+ if (s==3) otv1="3";
+ else
+ if (s==4) otv1="4";
+     if (parseInt(otv)==s)	
+     ot  +='<option value="'+s+'" selected>'+otv1+'</option>';	
+ else
+ ot  +='<option value="'+s+'">'+otv1+'</option>';	
+ }
+ $$('#otv_user').html(ot);
+   }
+ },
+buttons: [
+{
+       text: '<a class="col button button-fill">Отмена</a>',
+    onClick: function() {
+    }
+     },
+   {
+       text: '<a class="col button button-fill">Сохранить</a>',
+    close:false,
+   onClick: function(){
+     app.dialog.close();
+   app.preloader.show('blue');
+   app.request.post(app.data.url+'/api/add_user.php',{zapros:"update",id:id,otv:$$('#otv_user').val(),name:$$('#name_user').val(),log:$$('#log_user').val(),pass:$$('#pass_user').val()},function(otvet){                                          							
+app.preloader.hide();
+if (otvet[0].message=="ok"){
+app.dialog.close();
+app.dialog.alert('Сохранено',function(){
+ lists("");
+});
+}
+else
+if (otvet[0].message=="nolog"){
+var toastCenter = app.toast.create({
+ text: 'Такой логин уже есть в системе',
+ position: 'center',
+ closeTimeout: 1000,
+});
+toastCenter.open();
+
+}
+else
+app.dialog.alert('Ошибка');
+},
+function(){
+app.preloader.hide();
+app.dialog.alert('Нет подключения к интернету');
+},'json');
+   
+   }
+     }
+],
+
+}).open();   
+
+} 
+},'json');
+
+});
+
+   },
+   },
+ };
 </script>
